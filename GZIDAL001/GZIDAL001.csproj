@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patient\" />
+    <Folder Include="Medicijn\" />
   </ItemGroup>
 </Project>
