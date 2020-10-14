@@ -11,9 +11,9 @@ namespace ConsoleTest
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            var test = new Patient();
-            var lol = await test.FindPatientAsync("1999123", 119);
-            Console.WriteLine(JsonConvert.SerializeObject(lol));
+            Console.Clear();
+
+            Console.WriteLine(JsonConvert.SerializeObject(await PatientService.ZoekPatientAsync("1999", 119)));
         }
     }
 }

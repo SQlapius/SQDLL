@@ -8,41 +8,9 @@ using static GZIDAL001.Config;
 
 namespace GZIDAL001.Patient
 {
-    public class PatientService
+    public static class PatientService
     {
-        HttpClient _httpClient;
-
-        public PatientService()
-        {
-            _httpClient = new HttpClient();
-        }
-
-        //async public Task<Root> GetPatient(int vesId, int patId, bool Force = false)
-        //{
-        //    Debug.WriteLine("hit");
-        //    try
-        //    {
-        //        var data = new Dictionary<string, int?>
-        //        {
-        //            { "vesId", vesId},
-        //            { "patId", patId },
-        //        };
-
-        //        //var test = new HttpClient();
-        //        var response = await
-        //             _httpClient.PostAsync("https://fatum.sqlapius.net/ords/api/zi-v0/patient",
-        //             new StringContent(JsonConvert.SerializeObject(data)));
-        //        var responseString = await response.Content.ReadAsStringAsync();
-        //        return JsonConvert.DeserializeObject<Root>(responseString);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception(e.Message);
-        //        //return "errror";
-        //    }
-        //}
-
-        public async Task<DataSet> GetPatientAsync(string value, int vesId)
+        public static async Task<DataSet> ZoekPatientAsync(string value, int vesId)
         {
             try
             {
@@ -66,7 +34,7 @@ namespace GZIDAL001.Patient
                 OracleDataAdapter da = new OracleDataAdapter(cmd);
 
                 return await Task.Run(() =>
-                {
+                { 
                     da.Fill(dataSet);
                     return dataSet;
                 }); 
