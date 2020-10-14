@@ -42,13 +42,12 @@ namespace GZIDAL001.Patient
         //    }
         //}
 
-        public async Task<DataSet> GetUserAsync(string value, int vesId)
+        public async Task<DataSet> GetPatientAsync(string value, int vesId)
         {
-            DataSet dataset = new DataSet();
-
             try
             {
                 using OracleConnection connection = new OracleConnection(DB_CONNECTION_STRING);
+                using DataSet dataSet = new DataSet();
 
                 OracleCommand cmd = new OracleCommand
                 {
@@ -57,39 +56,24 @@ namespace GZIDAL001.Patient
                     CommandType = CommandType.StoredProcedure
                 };
 
-                cmd.Parameters.Add("p_zoek", OracleDbType.Varchar2).Value = value; // Input id
-                cmd.Parameters.Add("p_vesId", OracleDbType.Int32).Value = vesId; // Input id
+                cmd.Parameters.Add("p_zoek", OracleDbType.Varchar2).Value = value; 
+                cmd.Parameters.Add("p_vesId", OracleDbType.Int32).Value = vesId;
                 cmd.Parameters.Add("u_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
                 cmd.Parameters.Add("u_Status", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
-                try
-                {
-                    connection.Open();
-                    await cmd.ExecuteNonQueryAsync();
-                    OracleDataAdapter da = new OracleDataAdapter(cmd);
+                connection.Open();
 
-                    return await Task.Run(() =>
-                     {
-                         da.Fill(dataset);
-                         return dataset;
-                     }); 
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
 
-                }
-                catch (Exception ex)
+                return await Task.Run(() =>
                 {
-                    new Exception(ex.ToString());
-                    return default;
-                }
-                finally
-                { 
-                    connection.Close();
-                    dataset.Dispose();
-                }
+                    da.Fill(dataSet);
+                    return dataSet;
+                }); 
             }
             catch(Exception ex)
             {
-                new Exception(ex.ToString());
-                return default;
+                throw new Exception(ex.ToString());
             }
         }
     }

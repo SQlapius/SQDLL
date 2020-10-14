@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Linq;
+using Newtonsoft.Json;
+using System.Collections;
 using System.Data;
 
 namespace GZIDAL001.Patient
@@ -13,7 +15,6 @@ namespace GZIDAL001.Patient
 
         private PatientService _patientService = new PatientService();
 
-
         public Patient()
         {
         }
@@ -22,24 +23,16 @@ namespace GZIDAL001.Patient
         {
             try
             { 
-                var data = await _patientService.GetUserAsync(parameter, vesId);
-
-                if (data == null) return new List<Patient>();
-
-                List<Patient> patients = new List<Patient>();
-
-                foreach (DataRow item in data.Tables[0].Rows)
-                {
-                    Patient patient = new Patient
-                    {
-                        Naam = item["NAAM"].ToString()
-                    };
-
-                    patients.Add(patient);
-                }
+                var data = await _patientService.GetPatientAsync(parameter, vesId);
+                var patients = (
+                    from DataRow dr in data.Tables[0].Rows
+                        select new Patient()
+                        {
+                            Naam = dr["NAAM"].ToString()
+                        }
+                ).ToList();
 
                 return patients;
-
             }
             catch(Exception e)
             {

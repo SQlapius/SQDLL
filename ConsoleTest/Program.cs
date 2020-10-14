@@ -12,7 +12,7 @@ namespace ConsoleTest
         static async System.Threading.Tasks.Task Main(string[] args)
         {
             var test = new Patient();
-            var lol = await test.FindPatientAsync("1999", 119);
+            var lol = await test.FindPatientAsync("1999123", 119);
             Console.WriteLine(JsonConvert.SerializeObject(lol));
         }
     }
