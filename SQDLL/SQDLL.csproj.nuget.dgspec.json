@@ -1,22 +1,22 @@
 {
   "format": 1,
   "restore": {
-    "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj": {}
+    "/Users/lonsqlapis/Projects/SqlDLL/SQDLL/SQDLL.csproj": {}
   },
   "projects": {
-    "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj": {
+    "/Users/lonsqlapis/Projects/SqlDLL/SQDLL/SQDLL.csproj": {
       "restore": {
-        "projectUniqueName": "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj",
+        "projectUniqueName": "/Users/lonsqlapis/Projects/SqlDLL/SQDLL/SQDLL.csproj",
         "projectName": "SQDLL",
-        "projectPath": "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj",
-        "projectJsonPath": "/Users/londymartina/Documents/projects/SQDLL/SQDLL/project.json",
-        "packagesPath": "/Users/londymartina/.nuget/packages/",
+        "projectPath": "/Users/lonsqlapis/Projects/SqlDLL/SQDLL/SQDLL.csproj",
+        "projectJsonPath": "/Users/lonsqlapis/Projects/SqlDLL/SQDLL/project.json",
+        "packagesPath": "/Users/lonsqlapis/.nuget/packages/",
         "projectStyle": "ProjectJson",
         "configFilePaths": [
-          "/Users/londymartina/.config/NuGet/NuGet.Config"
+          "/Users/lonsqlapis/.config/NuGet/NuGet.Config"
         ],
         "sources": {
-          "/Users/londymartina/Desktop/SQ-Nuget/plugin.sq_uikit": {},
+          "/Users/lonsqlapis/Desktop/Tools/SQ-Nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         }
       },

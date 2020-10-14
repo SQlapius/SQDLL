@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -41,37 +42,54 @@ namespace GZIDAL001.Patient
         //    }
         //}
 
-        public string GetUser()
+        public async Task<DataSet> GetUserAsync(string value, int vesId)
         {
+            DataSet dataset = new DataSet();
+
             try
             {
                 using OracleConnection connection = new OracleConnection(DB_CONNECTION_STRING);
-                OracleCommand command = new OracleCommand
+
+                OracleCommand cmd = new OracleCommand
                 {
-                    CommandText = "SELECT password,customerId,securityQuestion,securityAnswer,email FROM Users WHERE username LIKE :username"
+                    Connection = connection,
+                    CommandText = "med_zi_sq.ZoekPat",
+                    CommandType = CommandType.StoredProcedure
                 };
 
-                command.Parameters.Add(":username", OracleDbType.NVarchar2).Value = "OK";
-                command.Connection = connection;
-                connection.Open();
+                cmd.Parameters.Add("p_zoek", OracleDbType.Varchar2).Value = value; // Input id
+                cmd.Parameters.Add("p_vesId", OracleDbType.Int32).Value = vesId; // Input id
+                cmd.Parameters.Add("u_cursor", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("u_Status", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
-                OracleDataReader reader = command.ExecuteReader();
+                try
+                {
+                    connection.Open();
+                    await cmd.ExecuteNonQueryAsync();
+                    OracleDataAdapter da = new OracleDataAdapter(cmd);
 
-                    while (reader.Read())
-                    {
-                        string password = reader["password"].ToString();
-                        string customerId = reader["customerId"].ToString();
-                        string securityQuestion = reader["securityQuestion"].ToString();
-                        string securityAnswer = reader["securityAnswer"].ToString();
-                        string email = reader["email"].ToString();
-                        return "";
-                    }
+                    return await Task.Run(() =>
+                     {
+                         da.Fill(dataset);
+                         return dataset;
+                     }); 
 
-                return "";
+                }
+                catch (Exception ex)
+                {
+                    new Exception(ex.ToString());
+                    return default;
+                }
+                finally
+                { 
+                    connection.Close();
+                    dataset.Dispose();
+                }
             }
-            catch 
+            catch(Exception ex)
             {
-                return "";
+                new Exception(ex.ToString());
+                return default;
             }
         }
     }
