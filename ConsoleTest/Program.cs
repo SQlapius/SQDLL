@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using GZIDAL001;
+using GZIDAL001.Medicijn;
 using GZIDAL001.Patient;
 using Newtonsoft.Json;
 
@@ -11,9 +12,8 @@ namespace ConsoleTest
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
-            Console.Clear();
+            //Console.WriteLine(JsonConvert.SerializeObject(await MedicijnService.ZoekMedicijn("A", 1, 2)));
 
-            Console.WriteLine(JsonConvert.SerializeObject(await PatientService.ZoekPatientAsync("1999", 119)));
         }
     }
 }
