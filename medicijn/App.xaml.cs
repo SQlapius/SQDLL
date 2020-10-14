@@ -3,7 +3,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Diagnostics;
 using Newtonsoft.Json;
-using test;
 
 namespace medicijn
 {
@@ -14,10 +13,6 @@ namespace medicijn
             InitializeComponent();
 
             MainPage = new MainPage();
-
-            //Class1 ok = new Class1();
-
-            //var ok2 = ok.GetUser();
         }
 
         protected override async void OnStart()

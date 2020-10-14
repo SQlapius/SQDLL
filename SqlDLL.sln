@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTest", "ConsoleTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GZIDAL001", "GZIDAL001\GZIDAL001.csproj", "{CF8A9FAD-4382-4E55-8A70-16D39E47025E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GZIDAL002", "GZIDAL002\GZIDAL002.csproj", "{60A6F188-A4ED-4802-8A20-FF7AB479FACC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,5 +111,17 @@ Global
 		{CF8A9FAD-4382-4E55-8A70-16D39E47025E}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{CF8A9FAD-4382-4E55-8A70-16D39E47025E}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{CF8A9FAD-4382-4E55-8A70-16D39E47025E}.Release|iPhone.Build.0 = Release|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{60A6F188-A4ED-4802-8A20-FF7AB479FACC}.Release|iPhone.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

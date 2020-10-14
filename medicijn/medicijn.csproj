@@ -17,11 +17,8 @@
     <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="4.7.0" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="SQDLL">
-      <HintPath>..\SQDLL\bin\Release\SQDLL.dll</HintPath>
+    <Reference Include="GZIDAL002">
+      <HintPath>..\GZIDAL002\bin\Debug\GZIDAL002.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\test\test.csproj" />
   </ItemGroup>
 </Project>
