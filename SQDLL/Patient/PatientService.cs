@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Oracle.ManagedDataAccess.Client;
 
 namespace SQDLL.Patient
 {
@@ -38,6 +39,39 @@ namespace SQDLL.Patient
             {
                 throw new Exception(e.Message);
                 //return "errror";
+            }
+        }
+
+        public string GetUser(string username)
+        {
+            if (username != null)
+            {
+                try
+                {
+                    using (OracleConnection connection = new OracleConnection(CONNECTION_STRING))
+                    {
+                        OracleCommand command = new OracleCommand();
+                        command.CommandText = "SELECT password,customerId,securityQuestion,securityAnswer,email FROM Users WHERE username LIKE :username";
+                        command.Parameters.Add(":username", OracleDbType.NVarchar2).Value = username;
+                        command.Connection = connection;
+                        connection.Open();
+                        OracleDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            string password = reader["password"].ToString();
+                            string customerId = reader["customerId"].ToString();
+                            string securityQuestion = reader["securityQuestion"].ToString();
+                            string securityAnswer = reader["securityAnswer"].ToString();
+                            string email = reader["email"].ToString();
+                            return "";
+                        }
+                    }
+                }
+
+                catch (Exception e)
+                {
+                    return "";
+                }
             }
         }
     }

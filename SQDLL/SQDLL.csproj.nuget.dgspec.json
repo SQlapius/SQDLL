@@ -1,0 +1,32 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj": {}
+  },
+  "projects": {
+    "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj": {
+      "restore": {
+        "projectUniqueName": "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj",
+        "projectName": "SQDLL",
+        "projectPath": "/Users/londymartina/Documents/projects/SQDLL/SQDLL/SQDLL.csproj",
+        "projectJsonPath": "/Users/londymartina/Documents/projects/SQDLL/SQDLL/project.json",
+        "packagesPath": "/Users/londymartina/.nuget/packages/",
+        "projectStyle": "ProjectJson",
+        "configFilePaths": [
+          "/Users/londymartina/.config/NuGet/NuGet.Config"
+        ],
+        "sources": {
+          "/Users/londymartina/Desktop/SQ-Nuget/plugin.sq_uikit": {},
+          "https://api.nuget.org/v3/index.json": {}
+        }
+      },
+      "dependencies": {
+        "NETStandard.Library": "[2.0.3, )",
+        "Newtonsoft.Json": "[12.0.3, )"
+      },
+      "frameworks": {
+        "netstandard1.5": {}
+      }
+    }
+  }
+}

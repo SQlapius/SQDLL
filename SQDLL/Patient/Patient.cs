@@ -13,7 +13,6 @@ namespace SQDLL.Patient
 
     public class Patient
     {
-
         PatientService _patientService;
 
         public int VES_ID { get; set; }
@@ -24,28 +23,26 @@ namespace SQDLL.Patient
 
         public string SEDULA { get; set; }
 
-        //public List<MedicineModel> Medikatie { get; set; }
-
         public DateTime DOB { get; set; }
 
-        public Patient(int vesid, int patid)
+        public Patient(int vesId, int patId)
         {
             _patientService = new PatientService();
-            VES_ID = vesid;
-            PAT_ID = patid;
 
+            VES_ID = vesId;
+            PAT_ID = patId;
         }
 
         async public Task<Patient> GetInfo()
         {
             try
             {
-                var Response = await _patientService.GetPatient(VES_ID, PAT_ID);
-                var count = Response.patient.Count;
+                var response = await _patientService.GetPatient(VES_ID, PAT_ID);
+                var count = response.patient.Count;
               
-                if (!(Response.patient.Count < 1))
+                if (!(response.patient.Count < 1))
                 {
-                    return Response.patient[0];
+                    return response.patient[0];
                 }
 
                 throw new Exception("Geen data gevonden");
