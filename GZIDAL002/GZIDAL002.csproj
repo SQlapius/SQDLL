@@ -31,10 +31,12 @@
     <Compile Include="Medicijn\MedicijnService.cs" />
     <Compile Include="Patient\PatientService.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Patient\Models\Patient.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patient\" />
     <Folder Include="Medicijn\" />
+    <Folder Include="Patient\Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
