@@ -28,15 +28,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Medicijn\MedicijnService.cs" />
-    <Compile Include="Patient\PatientService.cs" />
+    <Compile Include="Medicijnen\MedicijnService.cs" />
+    <Compile Include="Patienten\PatientService.cs" />
     <Compile Include="Config.cs" />
-    <Compile Include="Patient\Models\Patient.cs" />
+    <Compile Include="Patienten\Models\Patient.cs" />
+    <Compile Include="Medicijnen\Models\Medicijn.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Patient\" />
-    <Folder Include="Medicijn\" />
-    <Folder Include="Patient\Models\" />
+    <Folder Include="Patienten\" />
+    <Folder Include="Medicijnen\" />
+    <Folder Include="Patienten\Models\" />
+    <Folder Include="Medicijnen\Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

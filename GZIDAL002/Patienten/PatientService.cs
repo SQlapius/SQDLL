@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
-using GZIDAL002.Patient.Models;
+using GZIDAL002.Patienten.Models;
 using Newtonsoft.Json;
 using static GZIDAL002.Config;
 
-namespace GZIDAL002.Patient
+namespace GZIDAL002.Patienten
 {
     public class PatientService
     {
@@ -18,12 +18,13 @@ namespace GZIDAL002.Patient
             _httpClient = new HttpClient();
         }
 
-        public async Task<List<int>> ZoekPatient(int vesId, string sedula)
+        public async Task<List<Patient>> ZoekPatient(int vesId, string sedula)
         {
-            var response = await _httpClient.GetAsync($"{API_URL}/patient/0{vesId}{sedula}");
+            var response = await _httpClient.GetAsync($"{API_URL}/patient/{vesId.ToString("D4")}{sedula}");
             var content = await response.Content.ReadAsStringAsync();
 
-            return new List<int> {  };
+            return JsonConvert.DeserializeObject<ZoekPatientResponse>(content)
+                .Patienten;
         }
     }
 }

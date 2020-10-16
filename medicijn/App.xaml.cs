@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using medicijn.Views.Patienten;
 
 namespace medicijn
 {
@@ -12,7 +13,7 @@ namespace medicijn
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ZoekPatientView();
         }
 
         protected override async void OnStart()

@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace GZIDAL002.Patient.Models
+namespace GZIDAL002.Patienten.Models
 {
     public class Patient
     {
@@ -22,5 +23,11 @@ namespace GZIDAL002.Patient.Models
 
         [JsonProperty("vesId")]
         public int VesId { get; set; }
+    }
+
+    public class ZoekPatientResponse
+    {
+        [JsonProperty("patient")]
+        public List<Patient> Patienten { get; set; }
     }
 }

@@ -28,4 +28,10 @@
       <HintPath>..\GZIDAL002\bin\Debug\GZIDAL002.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\" />
+    <Folder Include="Views\Patienten\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="ViewModels\Patienten\" />
+  </ItemGroup>
 </Project>
