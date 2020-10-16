@@ -13,7 +13,7 @@ namespace medicijn
         {
             InitializeComponent();
 
-            MainPage = new ZoekPatientView();
+            MainPage = new ViewPatientView();
         }
 
         protected override async void OnStart()
