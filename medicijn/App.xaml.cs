@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using System.Diagnostics;
 using Newtonsoft.Json;
 using medicijn.Views.Patienten;
+using medicijn.Views.Medicijnen;
 
 namespace medicijn
 {

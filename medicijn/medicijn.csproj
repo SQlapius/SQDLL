@@ -35,10 +35,15 @@
     <Folder Include="ViewModels\Patienten\" />
     <Folder Include="Views\Recepten\" />
     <Folder Include="ViewModels\Recepten\" />
+    <Folder Include="Views\Medicijnen\" />
+    <Folder Include="ViewModels\Medicijnen\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Patienten\ViewPatientView.xaml.cs">
       <DependentUpon>ViewPatientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">
+      <DependentUpon>ZoekMedicijnView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

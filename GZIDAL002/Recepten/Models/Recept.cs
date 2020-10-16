@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using GZIDAL002.Medicijnen.Models;
 using GZIDAL002.Patienten.Models;
+using Newtonsoft.Json;
 
 namespace GZIDAL002.Recepten.Models
 {
@@ -12,9 +15,19 @@ namespace GZIDAL002.Recepten.Models
 
         public ObservableCollection<ReceptRegel> ReceptRegels { get; set; } = new ObservableCollection<ReceptRegel>();
 
-        public void AddRegel()
+        public Recept(Patient patient)
         {
-            ReceptRegels.Add(new ReceptRegel());
+
+        }
+
+        public void AddRegel(Medicijn medicijn, int aantal, string dosering)
+        {
+            ReceptRegels.Add(new ReceptRegel()
+            {
+                Naam = medicijn.Naam,
+                Aantal = aantal,
+                Dosering = dosering
+            });
         }
     }
 }

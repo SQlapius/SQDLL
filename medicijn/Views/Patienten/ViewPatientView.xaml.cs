@@ -21,7 +21,7 @@ namespace medicijn.Views.Patienten
 
         void Button_Clicked(System.Object sender, System.EventArgs e)
         {
-            ok.Content = new MakeReceptView(Navigation);
+            ok.Content = new MakeReceptView(Navigation, ((ViewPatientViewModel)BindingContext).Patient);
         }
     }
 }

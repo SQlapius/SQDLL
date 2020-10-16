@@ -12,8 +12,19 @@
                 <Button
                     Padding="0"
                     HorizontalOptions="EndAndExpand"
+                    Command="{Binding NewReceptLinePressedCommand}"
                     Text="Add Regel" />
             </StackLayout>
+             <StackLayout BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0, 10">
+                            <Label Text="{Binding Naam}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
         </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
+using GZIDAL002.Patienten.Models;
 using GZIDAL002.Recepten.Models;
+using medicijn.Views.Medicijnen;
 using Xamarin.Forms;
 
 namespace medicijn.ViewModels.Recepten
@@ -9,23 +12,27 @@ namespace medicijn.ViewModels.Recepten
     {
         INavigation _navigation;
 
-        public ICommand NewReceptLinePressed { get; set; }
+        public ICommand NewReceptLinePressedCommand { get; set; }
 
         public Recept Recept { get; set; }
 
+        public Patient Patient { get; set; }
+
         public MakeReceptViewModel()
         {
-            NewReceptLinePressed = new Command(OpenMedicinePicker);
+            NewReceptLinePressedCommand = new Command(OpenMedicinePicker);
         }
 
-        public MakeReceptViewModel(INavigation navigation)
+        public  MakeReceptViewModel(INavigation navigation, Patient patient) : this()
         {
             _navigation = navigation;
+
+            Recept = new Recept(patient);
         }
 
         private async void OpenMedicinePicker()
         {
-            await _navigation.PushModalAsync(new ContentPage());
+            await _navigation.PushModalAsync(new ZoekMedicijnView(Recept));
         }
     }
 }
