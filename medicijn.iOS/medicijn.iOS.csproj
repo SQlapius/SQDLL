@@ -131,6 +131,10 @@
       <Project>{078FA7F7-3D32-4226-8ABE-A85A5F764CE0}</Project>
       <Name>medicijn</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GZIDAL002\GZIDAL002.csproj">
+      <Project>{60A6F188-A4ED-4802-8A20-FF7AB479FACC}</Project>
+      <Name>GZIDAL002</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

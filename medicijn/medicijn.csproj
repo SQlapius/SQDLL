@@ -23,4 +23,9 @@
   <ItemGroup>
     <ProjectReference Include="..\GZIDAL002\GZIDAL002.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="GZIDAL002">
+      <HintPath>..\GZIDAL002\bin\Debug\GZIDAL002.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

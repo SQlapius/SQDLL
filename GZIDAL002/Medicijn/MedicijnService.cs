@@ -21,7 +21,7 @@ namespace GZIDAL002.Medicijn
             var response = await _httpClient.GetAsync($"{API_URL}/medicijn/{naam}");
             var content = await response.Content.ReadAsStringAsync();
 
-            return 0;
+            return 20;
         }
     }
 }
