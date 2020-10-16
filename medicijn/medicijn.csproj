@@ -34,4 +34,9 @@
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Patienten\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Views\Patienten\ViewPatientView.xaml.cs">
+      <DependentUpon>ViewPatientView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>
