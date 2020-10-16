@@ -33,6 +33,8 @@
     <Folder Include="Views\Patienten\" />
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Patienten\" />
+    <Folder Include="Views\Recepten\" />
+    <Folder Include="ViewModels\Recepten\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Patienten\ViewPatientView.xaml.cs">

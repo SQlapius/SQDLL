@@ -33,12 +33,16 @@
     <Compile Include="Config.cs" />
     <Compile Include="Patienten\Models\Patient.cs" />
     <Compile Include="Medicijnen\Models\Medicijn.cs" />
+    <Compile Include="Recepten\Models\Recept.cs" />
+    <Compile Include="Recepten\Models\ReceptRegel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patienten\" />
     <Folder Include="Medicijnen\" />
     <Folder Include="Patienten\Models\" />
     <Folder Include="Medicijnen\Models\" />
+    <Folder Include="Recepten\" />
+    <Folder Include="Recepten\Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

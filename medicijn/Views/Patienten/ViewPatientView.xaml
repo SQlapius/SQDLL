@@ -81,8 +81,9 @@
                 </Frame>  
            </StackLayout>  
         </StackLayout>
-        <Frame Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
-            <Button 
+        <Frame x:Name="ok" Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
+            <Button
+                Clicked="Button_Clicked"
                 BackgroundColor="#1ea8de"
                 Padding="10, 0" 
                 FontAttributes="Bold"
