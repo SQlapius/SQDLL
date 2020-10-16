@@ -11,7 +11,7 @@ namespace medicijn.Views.Patienten
         {
             InitializeComponent();
 
-            BindingContext = new ZoekPatientViewModel();
+            BindingContext = new ZoekPatientViewModel(Navigation);
         }
     }
 }

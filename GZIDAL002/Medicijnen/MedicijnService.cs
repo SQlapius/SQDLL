@@ -14,7 +14,7 @@ namespace GZIDAL002.Medicijnen
         HttpClient _httpClient;
 
         public MedicijnService()
-        {
+        { 
             _httpClient = new HttpClient();
         }
 

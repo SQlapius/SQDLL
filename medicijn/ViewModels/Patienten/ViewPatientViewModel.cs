@@ -6,9 +6,13 @@ namespace medicijn.ViewModels.Patienten
 {
     public class ViewPatientViewModel
     {
-        public ViewPatientViewModel(Patient p)
+        public Patient Patient { get; set; }
+
+        public ViewPatientViewModel() { }
+
+        public ViewPatientViewModel(Patient patient)
         {
-            Debug.WriteLine("het ik kom hier");
+            Patient = patient;
         }
     }
 }
