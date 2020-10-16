@@ -1,5 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Views.Patienten.ViewPatientView">
-    <ContentPage.Content>
-    </ContentPage.Content>
+<ContentPage BackgroundColor="#F8F8F8" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Views.Patienten.ViewPatientView">
+    <Grid Padding="20, 40, 20, 20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout Grid.Column="0">
+            <StackLayout>
+                <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Center">
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Frame CornerRadius="10" HorizontalOptions="Center" BackgroundColor="Red" WidthRequest="50" HeightRequest="50"/>
+                        <Label FontAttributes="Bold" Text="Zjerilon Ferero"/> 
+                    </StackLayout>
+                </Frame>  
+                <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Center">
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Frame CornerRadius="10" HorizontalOptions="Center" BackgroundColor="Red" WidthRequest="10" HeightRequest="10"/>
+                        <Label Text="Zjerilon Ferero"/> 
+                    </StackLayout>
+                </Frame>  
+           </StackLayout>  
+        </StackLayout>
+    </Grid>
 </ContentPage>
