@@ -11,11 +11,11 @@ namespace medicijn.Views.Patienten
         public ViewPatientView()
         {
             InitializeComponent();
+        }
 
-            var patient = new Patient();
-
+        public ViewPatientView(Patient patient)
+        {
             BindingContext = new ViewPatientViewModel(patient);
-           
         }
     }
 }

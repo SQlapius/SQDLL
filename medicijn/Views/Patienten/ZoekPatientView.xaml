@@ -18,6 +18,7 @@
             </StackLayout>
             <ListView
                 ItemsSource="{Binding Patients}"
+                SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"
                 HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>

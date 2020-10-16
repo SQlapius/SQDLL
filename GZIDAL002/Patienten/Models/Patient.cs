@@ -23,6 +23,9 @@ namespace GZIDAL002.Patienten.Models
 
         [JsonProperty("vesId")]
         public int VesId { get; set; }
+
+        [JsonProperty("patId")]
+        public int PatId { get; set; }
     }
 
     public class ZoekPatientResponse

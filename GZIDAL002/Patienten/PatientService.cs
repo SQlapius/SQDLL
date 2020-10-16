@@ -20,11 +20,18 @@ namespace GZIDAL002.Patienten
 
         public async Task<List<Patient>> ZoekPatient(int vesId, string sedula)
         {
-            var response = await _httpClient.GetAsync($"{API_URL}/patient/{vesId:D4}{sedula}");
-            var content = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var response = await _httpClient.GetAsync($"{API_URL}/patient/{vesId:D4}{sedula}");
+                var content = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<ZoekPatientResponse>(content)
-                .Patienten;
+                return JsonConvert.DeserializeObject<ZoekPatientResponse>(content)
+                    .Patienten;
+            }
+            catch
+            {
+                return new List<Patient>();
+            }
         }
     }
 }
