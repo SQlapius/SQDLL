@@ -1,25 +1,79 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage BackgroundColor="#F8F8F8" xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Views.Patienten.ViewPatientView">
-    <Grid Padding="20, 40, 20, 20">
+    <Grid ColumnSpacing="10" Padding="20, 40, 20, 20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackLayout Grid.Column="0">
-            <StackLayout>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackLayout>
+            <Label FontSize="36" FontAttributes="Bold" Text="Patient"/>  
+        </StackLayout>
+        <StackLayout Grid.Column="0" Grid.Row="1">
+            <StackLayout VerticalOptions="FillAndExpand" Spacing="10">
                 <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Center">
-                    <StackLayout HorizontalOptions="CenterAndExpand">
-                        <Frame CornerRadius="10" HorizontalOptions="Center" BackgroundColor="Red" WidthRequest="50" HeightRequest="50"/>
-                        <Label FontAttributes="Bold" Text="Zjerilon Ferero"/> 
+                    <StackLayout HorizontalOptions="CenterAndExpand" Padding="15, 30">
+                        <Frame 
+                            CornerRadius="10"
+                            Margin="0, 0, 0, 20"
+                            HorizontalOptions="Center"
+                            BackgroundColor="Red"
+                            WidthRequest="50"
+                            HeightRequest="50"/>
+                        <Label FontAttributes="Bold" TextColor="#1ea8de" Text="Zjerilon Ferero"/> 
                     </StackLayout>
                 </Frame>  
-                <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Center">
-                    <StackLayout HorizontalOptions="CenterAndExpand">
-                        <Frame CornerRadius="10" HorizontalOptions="Center" BackgroundColor="Red" WidthRequest="10" HeightRequest="10"/>
-                        <Label Text="Zjerilon Ferero"/> 
+                <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
+                        <Label FontAttributes="Bold" Text="Information" Margin="0, 0, 0, 20"/> 
+                        <StackLayout Spacing="20">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Naam:"/> 
+                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="Zjerilon Ferero"/> 
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Sedula:"/> 
+                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="1999051401"/> 
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Gender:"/> 
+                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="Male"/> 
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Day Of Birth:"/> 
+                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="14 mei 1999"/> 
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Patient ID:"/> 
+                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="19938493"/> 
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Weight"/> 
+                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="80kg"/> 
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Last visit"/> 
+                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="25 aug 2020"/> 
+                            </StackLayout>
+                        </StackLayout>
                     </StackLayout>
                 </Frame>  
            </StackLayout>  
         </StackLayout>
+        <Frame Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
+            <Button 
+                BackgroundColor="#1ea8de"
+                Padding="10, 0" 
+                FontAttributes="Bold"
+                TextColor="white"
+                HeightRequest="50"
+                VerticalOptions="Start"
+                HorizontalOptions="EndAndExpand"
+                Text="Nieuw Recept"/>
+        </Frame>
     </Grid>
 </ContentPage>
