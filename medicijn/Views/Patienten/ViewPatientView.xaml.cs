@@ -13,7 +13,7 @@ namespace medicijn.Views.Patienten
             InitializeComponent();
         }
 
-        public ViewPatientView(Patient patient)
+        public ViewPatientView(Patient patient) : this()
         {
             BindingContext = new ViewPatientViewModel(patient);
         }
