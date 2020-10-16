@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using GZIDAL002.Patienten;
+using GZIDAL002.Patienten.Models;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace medicijn.ViewModels.Patienten
@@ -13,6 +17,17 @@ namespace medicijn.ViewModels.Patienten
 
         public string SearchValue { get; set; }
 
+        private ObservableCollection<Patient> _patients;
+        public ObservableCollection<Patient> Patients
+        {
+            get => _patients;
+            set
+            {
+                _patients = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ZoekPatientViewModel()
         {
             _patientService = new PatientService();
@@ -20,9 +35,11 @@ namespace medicijn.ViewModels.Patienten
             SearchButtonPressedCommand = new Command(SearchPatient);
         }
 
-        public void SearchPatient()
+        public async void SearchPatient()
         {
-            _patientService.ZoekPatient(119, SearchValue);
+            Patients = new ObservableCollection<Patient>(
+                await _patientService.ZoekPatient(119, SearchValue)
+            );
         }
     }
 }

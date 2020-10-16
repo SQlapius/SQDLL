@@ -10,10 +10,28 @@
             <StackLayout Orientation="Horizontal">
                 <Entry
                     HorizontalOptions="FillAndExpand"
+                    Text="{Binding SearchValue}"
                    />
                 <Button
-                    Text="Zoek" />
+                    Text="Zoek"
+                    Command="{Binding SearchButtonPressedCommand}"/>
             </StackLayout>
+            <ListView
+                ItemsSource="{Binding Patients}"
+                HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5, 10">
+                                <Label
+                                    FontAttributes="Bold"
+                                    Text="{Binding Naam}"  />
+                                <Label Text="{Binding Sedula}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
