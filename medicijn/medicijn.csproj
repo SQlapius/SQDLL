@@ -40,9 +40,6 @@
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Views\Patienten\ViewPatientView.xaml.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">
       <DependentUpon>ZoekMedicijnView.xaml</DependentUpon>
     </Compile>
