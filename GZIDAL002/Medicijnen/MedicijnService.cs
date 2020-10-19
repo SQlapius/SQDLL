@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
+using GZIDAL002.Helpers;
 using GZIDAL002.Medicijnen.Models;
 using Newtonsoft.Json;
 using static GZIDAL002.Config;
@@ -11,20 +12,26 @@ namespace GZIDAL002.Medicijnen
 {
     public class MedicijnService
     {
-        HttpClient _httpClient;
+        APIHelper _api;
 
         public MedicijnService()
-        { 
-            _httpClient = new HttpClient();
+        {
+            _api = new APIHelper();
         }
 
         public async Task<List<Medicijn>> ZoekMedicijn(string naam)
         {
-            var response = await _httpClient.GetAsync($"{API_URL}/medicijn/{naam}");
-            var content = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var url = $"{API_URL}/sqz-v0/medicijn/{naam}";
+                var response = await _api.Get<ZoekMedicijnResponse>(url);
 
-            return JsonConvert.DeserializeObject<ZoekMedicijnResponse>(content)
-                .Medicijnen;
+                return response.Medicijnen;
+            }
+            catch
+            {
+                return new List<Medicijn>();
+            }
         }
     }
 }

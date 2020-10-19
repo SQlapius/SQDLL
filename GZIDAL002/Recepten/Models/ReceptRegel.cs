@@ -1,9 +1,11 @@
 ﻿using System;
+using GZIDAL002.Medicijnen.Models;
+
 namespace GZIDAL002.Recepten.Models
 {
     public class ReceptRegel
     {
-        public string Naam { get; set; }
+        public Medicijn Medicijn { get; set; }
 
         public int Aantal { get; set; }
 

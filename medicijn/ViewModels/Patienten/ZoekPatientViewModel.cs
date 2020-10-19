@@ -57,7 +57,7 @@ namespace medicijn.ViewModels.Patienten
         private async void SearchPatient()
         {
             Patients = new ObservableCollection<Patient>(
-                await _patientService.ZoekPatient(119, SearchValue) 
+                await _patientService.ZoekPatient(119, SearchValue)
             );
         }
 

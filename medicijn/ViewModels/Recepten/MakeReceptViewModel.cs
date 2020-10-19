@@ -27,7 +27,7 @@ namespace medicijn.ViewModels.Recepten
         {
             _navigation = navigation;
 
-            Recept = new Recept(patient);
+            Recept = new Recept(patient, new GZIDAL002.Medicijnen.Models.Medicijn(), "test", 5, "20");
         }
 
         private async void OpenMedicinePicker()
