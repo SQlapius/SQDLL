@@ -75,7 +75,7 @@ namespace medicijn.ViewModels.Medicijnen
                 Dosering
             );
 
-            await _navigation.PopModalAsync();
+            Modal.Instance.IsVisible = false;
         }
 
         private async void SearchMedicijn()
