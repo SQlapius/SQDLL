@@ -7,6 +7,7 @@ using GZIDAL002.Medicijnen.Models;
 using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
+using medicijn.Utils;
 
 namespace medicijn.ViewModels.Medicijnen
 {
@@ -16,6 +17,8 @@ namespace medicijn.ViewModels.Medicijnen
         MedicijnService _medicijnService;
 
         public ICommand SearchButtonPressedCommand { get; }
+
+        public ICommand CloseOverlayCommand { get; }
 
         public string SearchValue { get; set; }
 
@@ -53,6 +56,8 @@ namespace medicijn.ViewModels.Medicijnen
             _medicijnService = new MedicijnService();
 
             SearchButtonPressedCommand = new Command(SearchMedicijn);
+
+            CloseOverlayCommand = new Command(CloseOverlay);
         }
 
         public ZoekMedicijnViewModel(INavigation navigation, Recept recept) : this()
@@ -70,7 +75,7 @@ namespace medicijn.ViewModels.Medicijnen
                 Dosering
             );
 
-            await _navigation.PopModalAsync();
+            Modal.Instance.IsVisible = false;
         }
 
         private async void SearchMedicijn()
@@ -78,6 +83,11 @@ namespace medicijn.ViewModels.Medicijnen
             Medicijnen = new ObservableCollection<Medicijn>(
                 await _medicijnService.ZoekMedicijn(SearchValue)
             );
+        }
+        
+        private void CloseOverlay() 
+        {
+            Modal.Instance.IsVisible = false;
         }
     }
 }

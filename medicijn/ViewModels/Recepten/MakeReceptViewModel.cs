@@ -5,6 +5,7 @@ using GZIDAL002.Patienten.Models;
 using GZIDAL002.Recepten.Models;
 using medicijn.Views.Medicijnen;
 using Xamarin.Forms;
+using medicijn.Utils;
 
 namespace medicijn.ViewModels.Recepten
 {
@@ -32,7 +33,9 @@ namespace medicijn.ViewModels.Recepten
 
         private async void OpenMedicinePicker()
         {
-            await _navigation.PushModalAsync(new ZoekMedicijnView(Recept));
+            //await _navigation.PushModalAsync(new ZoekMedicijnView(Recept));
+            Modal.Instance.IsVisible = true;
+            Modal.Instance.Content = new ZoekMedicijnView(Recept);
         }
     }
 }
