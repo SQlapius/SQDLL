@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace medicijn.Views.Medicijnen
 {
-    public partial class ZoekMedicijnView : ContentPage
+    public partial class ZoekMedicijnView : ContentView
     {
         public ZoekMedicijnView()
         {

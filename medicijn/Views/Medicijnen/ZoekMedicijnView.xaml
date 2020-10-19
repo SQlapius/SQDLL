@@ -1,39 +1,56 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Views.Medicijnen.ZoekMedicijnView">
-    <ContentPage.Content>
-        <StackLayout Padding="20">
-            <StackLayout Orientation="Horizontal">
-                <Entry
-                    HorizontalOptions="FillAndExpand"
-                    Text="{Binding SearchValue}"
-                   />
-                <Button
-                    Text="Zoek"
-                    Command="{Binding SearchButtonPressedCommand}"/>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Views.Medicijnen.ZoekMedicijnView">
+    <ContentView.Content>
+        <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="650">
+            <StackLayout>
+                <StackLayout Padding="20" Orientation="Horizontal"> 
+                    <Label FontSize="30" FontAttributes="Bold" Text="Zoek medicijn" HorizontalOptions="FillAndExpand"/>
+                    <StackLayout 
+                        WidthRequest="20" 
+                        HeightRequest="20" 
+                        BackgroundColor="Black" 
+                        VerticalOptions="Start" 
+                        HorizontalOptions="End">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CloseOverlayCommand}"/>    
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Entry
+                            HorizontalOptions="FillAndExpand"
+                            Text="{Binding SearchValue}"
+                           />
+                        <Button
+                            Text="Zoek"
+                            Command="{Binding SearchButtonPressedCommand}"/>
+                    </StackLayout>
+                    <Entry
+                        Placeholder="Aantal"
+                        Text="{Binding Aantal} "/>
+                    <Entry
+                        Placeholder="Dosering"
+                        Text="{Binding Dosering}"/>
+                    <ListView
+                        ItemsSource="{Binding Medicijnen}"
+                        SelectedItem="{Binding SelectedMedicijn, Mode=TwoWay}"
+                        HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="5, 10">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            Text="{Binding Naam}"  />
+                                        <Label Text="{Binding HPKode}" />
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
             </StackLayout>
-            <Entry
-                Placeholder="Aantal"
-                Text="{Binding Aantal} "/>
-            <Entry
-                Placeholder="Dosering"
-                Text="{Binding Dosering}"/>
-            <ListView
-                ItemsSource="{Binding Medicijnen}"
-                SelectedItem="{Binding SelectedMedicijn, Mode=TwoWay}"
-                HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="5, 10">
-                                <Label
-                                    FontAttributes="Bold"
-                                    Text="{Binding Naam}"  />
-                                <Label Text="{Binding HPKode}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

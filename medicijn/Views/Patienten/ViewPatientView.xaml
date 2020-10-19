@@ -4,94 +4,106 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="#F8F8F8"
     NavigationPage.HasNavigationBar="False"
+    xmlns:local="clr-namespace:medicijn.Utils"
     x:Class="medicijn.Views.Patienten.ViewPatientView">
-    <Grid ColumnSpacing="10" Padding="20, 40, 20, 20">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" ColumnSpacing="10" Padding="20, 40, 20, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <StackLayout>
-            <Label FontSize="36" FontAttributes="Bold" Text="Patient"/>  
-        </StackLayout>
-        <StackLayout Grid.Column="0" Grid.Row="1">
-            <StackLayout VerticalOptions="FillAndExpand" Spacing="10">
-                <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Center">
-                    <StackLayout HorizontalOptions="CenterAndExpand" Padding="15, 30">
-                        <Frame
-                            HasShadow="True"
-                            CornerRadius="10"
-                            IsClippedToBounds="True"
-                            Margin="0, 0, 0, 20"
-                            Padding="0"
-                            HorizontalOptions="Center"
-                            WidthRequest="100"
-                            HeightRequest="100">
-                            <Image
-                                Aspect="AspectFill"
-                                HorizontalOptions="FillAndExpand"
-                                VerticalOptions="FillAndExpand"
-                                Source="https://as.nyu.edu/content/dam/nyu-as/faculty/images/Guy.jpg" />
-                        </Frame>
-                        <Label
-                            Text="{Binding Patient.Naam}"
-                            FontAttributes="Bold"
-                            TextColor="#1ea8de"
-                            HorizontalTextAlignment="Center"/> 
-                    </StackLayout>
-                </Frame>  
-                <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="FillAndExpand">
-                    <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
-                        <Label FontAttributes="Bold" Text="Information" Margin="0, 0, 0, 20"/> 
-                        <StackLayout Spacing="20">
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Naam:"/> 
-                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Naam}"/> 
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Sedula:"/> 
-                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Sedula}"/> 
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Gender:"/> 
-                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Sex}"/> 
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Day Of Birth:"/> 
-                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Dob, StringFormat='{0:dd MMM yyyy}'}"/> 
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Patient ID:"/> 
-                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.PatId}"/> 
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Ves ID:"/> 
-                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.VesId}"/> 
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Last visit"/> 
-                                <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="25 aug 2020"/> 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout>
+                <Label FontSize="36" FontAttributes="Bold" Text="Patient"/>  
+            </StackLayout>
+            <StackLayout Grid.Column="0" Grid.Row="1">
+                <StackLayout VerticalOptions="FillAndExpand" Spacing="10">
+                    <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Center">
+                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="15, 30">
+                            <Frame
+                                HasShadow="True"
+                                CornerRadius="10"
+                                IsClippedToBounds="True"
+                                Margin="0, 0, 0, 20"
+                                Padding="0"
+                                HorizontalOptions="Center"
+                                WidthRequest="100"
+                                HeightRequest="100">
+                                <Image
+                                    Aspect="AspectFill"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="FillAndExpand"
+                                    Source="https://as.nyu.edu/content/dam/nyu-as/faculty/images/Guy.jpg" />
+                            </Frame>
+                            <Label
+                                Text="{Binding Patient.Naam}"
+                                FontAttributes="Bold"
+                                TextColor="#1ea8de"
+                                HorizontalTextAlignment="Center"/> 
+                        </StackLayout>
+                    </Frame>  
+                    <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                        <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
+                            <Label FontAttributes="Bold" Text="Information" Margin="0, 0, 0, 20"/> 
+                            <StackLayout Spacing="20">
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Naam:"/> 
+                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Naam}"/> 
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Sedula:"/> 
+                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Sedula}"/> 
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Gender:"/> 
+                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Sex}"/> 
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Day Of Birth:"/> 
+                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Dob, StringFormat='{0:dd MMM yyyy}'}"/> 
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Patient ID:"/> 
+                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.PatId}"/> 
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Ves ID:"/> 
+                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.VesId}"/> 
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Last visit"/> 
+                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="25 aug 2020"/> 
+                                </StackLayout>
                             </StackLayout>
                         </StackLayout>
-                    </StackLayout>
-                </Frame>  
-           </StackLayout>  
+                    </Frame>  
+               </StackLayout>  
+            </StackLayout>
+            <Frame x:Name="ok" Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
+                <Button
+                    Clicked="Button_Clicked"
+                    BackgroundColor="#1ea8de"
+                    Padding="10, 0" 
+                    FontAttributes="Bold"
+                    TextColor="white"
+                    HeightRequest="50"
+                    VerticalOptions="Start"
+                    HorizontalOptions="EndAndExpand"
+                    Text="Nieuw Recept"/>
+            </Frame>
+        </Grid>
+        <StackLayout
+            PropertyChanged="test_PropertyChanged"
+            x:Name="test"
+            IsVisible="{Binding Source={x:Static local:Modal.Instance},Path=IsVisible}"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+            AbsoluteLayout.LayoutFlags="All">
+            <ContentView Opacity="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Content="{Binding Source={x:Static local:Modal.Instance},Path=Content}" >
+            </ContentView>
         </StackLayout>
-        <Frame x:Name="ok" Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
-            <Button
-                Clicked="Button_Clicked"
-                BackgroundColor="#1ea8de"
-                Padding="10, 0" 
-                FontAttributes="Bold"
-                TextColor="white"
-                HeightRequest="50"
-                VerticalOptions="Start"
-                HorizontalOptions="EndAndExpand"
-                Text="Nieuw Recept"/>
-        </Frame>
-    </Grid>
+    </AbsoluteLayout>
 </ContentPage>
