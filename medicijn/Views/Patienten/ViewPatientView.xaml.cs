@@ -4,43 +4,48 @@ using System.Collections.Generic;
 using GZIDAL002.Patienten.Models;
 using medicijn.ViewModels.Patienten;
 using medicijn.Views.Recepten;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using Xamarin.Forms;
 using medicijn.Utils;
+using medicijn.Views.Medicijnen;
 
 namespace medicijn.Views.Patienten
 {
     public partial class ViewPatientView : ContentPage
     {
-        private Modal _vm;
+        Modal _vm;
+
         public ViewPatientView()
         {
             InitializeComponent();
-            test.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            Overlay.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
+            Navigator.Instance.SetMainPage(ok);
         }
+
         public ViewPatientView(Patient patient) : this()
         {
             BindingContext = new ViewPatientViewModel(patient);
         }
 
-        void Button_Clicked(System.Object sender, System.EventArgs e)
+        async void Button_Clicked(System.Object sender, System.EventArgs e)
         {
-            ok.Content = new MakeReceptView(Navigation, ((ViewPatientViewModel)BindingContext).Patient);
+            Navigator.Instance.Add(new MakeReceptView(Navigation, ((ViewPatientViewModel)BindingContext).Patient));
         }
 
-        async void test_PropertyChanged(System.Object sender, PropertyChangedEventArgs e)
+        async void Overlay_PropertyChanged(System.Object sender, PropertyChangedEventArgs e)
         {
             if(e.PropertyName == "IsVisible") {
                 if(Modal.Instance.IsVisible)
                 {
-                    await test.FadeTo(1, 500, Easing.SpringOut);
-                } else {
-                    
-                    await test.FadeTo(0, 500, Easing.SpringOut);
+                    await Overlay.FadeTo(1, 500, Easing.SpringOut);
+                } 
+                else 
+                {
+                    await Overlay.FadeTo(0, 500, Easing.SpringOut);
                 }
             }
-            return;
         }
     }
 }
