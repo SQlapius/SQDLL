@@ -109,8 +109,8 @@
             </Frame>
         </Grid>
         <StackLayout
-            PropertyChanged="test_PropertyChanged"
-            x:Name="test"
+            PropertyChanged="Overlay_PropertyChanged"
+            x:Name="Overlay"
             IsVisible="{Binding Source={x:Static local:Modal.Instance},Path=IsVisible}"
             AbsoluteLayout.LayoutBounds="0,0,1,1"
             AbsoluteLayout.LayoutFlags="All">

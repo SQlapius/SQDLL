@@ -22,6 +22,10 @@
                         <DataTemplate>
                             <StackLayout Padding="0, 10">
                                 <Label Text="{Binding Medicijn.Naam}" />
+
+                                <StackLayout>
+
+                                </StackLayout>
                             </StackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
