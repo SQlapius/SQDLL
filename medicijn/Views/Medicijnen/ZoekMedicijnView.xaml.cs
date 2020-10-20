@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GZIDAL002.Medicijnen.Models;
 using GZIDAL002.Recepten.Models;
 using medicijn.ViewModels.Medicijnen;
 using Xamarin.Forms;
@@ -18,6 +19,11 @@ namespace medicijn.Views.Medicijnen
         public ZoekMedicijnView(Recept recept) : this()
         {
             BindingContext = new ZoekMedicijnViewModel(Navigation, recept);
+        }
+
+        public ZoekMedicijnView(Action<Medicijn, int, string> addRegelToRecept) : this()
+        {
+            BindingContext = new ZoekMedicijnViewModel(Navigation, addRegelToRecept);
         }
     }
 }

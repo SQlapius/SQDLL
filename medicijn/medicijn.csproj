@@ -38,6 +38,7 @@
     <Folder Include="Views\Medicijnen\" />
     <Folder Include="ViewModels\Medicijnen\" />
     <Folder Include="Utils\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">

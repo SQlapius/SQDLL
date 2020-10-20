@@ -16,15 +16,17 @@
                     Command="{Binding NewReceptLinePressedCommand}"
                     Text="Add Regel" />
             </StackLayout>
-             <StackLayout BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="0, 10">
-                            <Label Text="{Binding Naam}" />
-                        </StackLayout>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
+            <ScrollView>
+                 <StackLayout BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="0, 10">
+                                <Label Text="{Binding Medicijn.Naam}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

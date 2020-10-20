@@ -29,7 +29,7 @@ namespace medicijn.Views.Patienten
             ok.Content = new MakeReceptView(Navigation, ((ViewPatientViewModel)BindingContext).Patient);
         }
 
-        async void test_PropertyChanged(System.Object sender, PropertyChangedEventArgs e)
+        async void test_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if(e.PropertyName == "IsVisible") {
                 if(Modal.Instance.IsVisible)
@@ -41,6 +41,11 @@ namespace medicijn.Views.Patienten
                 }
             }
             return;
+        }
+
+        void Button_Clicked_1(object sender, System.EventArgs e)
+        {
+            ok.Content = new ViewPatientMedicatieView(((ViewPatientViewModel)BindingContext).Patient);
         }
     }
 }

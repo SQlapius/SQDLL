@@ -84,16 +84,28 @@
                </StackLayout>  
             </StackLayout>
             <Frame x:Name="ok" Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
-                <Button
-                    Clicked="Button_Clicked"
-                    BackgroundColor="#1ea8de"
-                    Padding="10, 0" 
-                    FontAttributes="Bold"
-                    TextColor="white"
-                    HeightRequest="50"
-                    VerticalOptions="Start"
-                    HorizontalOptions="EndAndExpand"
-                    Text="Nieuw Recept"/>
+                <StackLayout Orientation="Horizontal">
+                    <Button
+                        Clicked="Button_Clicked"
+                        BackgroundColor="#1ea8de"
+                        Padding="10, 0" 
+                        FontAttributes="Bold"
+                        TextColor="white"
+                        HeightRequest="50"
+                        VerticalOptions="Start"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Nieuw Recept"/>
+                    <Button
+                        Clicked="Button_Clicked_1"
+                        BackgroundColor="#1ea8de"
+                        Padding="10, 0" 
+                        FontAttributes="Bold"
+                        TextColor="white"
+                        HeightRequest="50"
+                        VerticalOptions="Start"
+                        HorizontalOptions="End"
+                        Text="Toon Medicatie"/>
+                 </StackLayout>
             </Frame>
         </Grid>
         <StackLayout

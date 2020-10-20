@@ -39,6 +39,8 @@
     <Compile Include="Helpers\APIHelper.cs" />
     <Compile Include="Global\Models\Status.cs" />
     <Compile Include="Patienten\Models\Medicatie.cs" />
+    <Compile Include="Recepten\Models\ContraIndicatie.cs" />
+    <Compile Include="Recepten\Models\Interacties.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patienten\" />

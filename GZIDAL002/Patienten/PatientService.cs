@@ -51,7 +51,7 @@ namespace GZIDAL002.Patienten
 
                 return response.Medicatie;
             }
-            catch
+            catch 
             {
                 return new List<Medicatie>();
             }

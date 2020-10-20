@@ -21,36 +21,39 @@ namespace GZIDAL002.Recepten
             _api = new APIHelper();
         }
 
-        public async Task<Recept> MaakRecept(
-            Patient patient,
+        public async Task<Recept> AddReceptRegel(
+            Recept recept,
             Medicijn medicijn,
             int aantal,
-            string dosering,
-            string medewerker,
-            int recId = 0
+            string dosering
         )
         {
             var url = $"{API_URL}/zi-v0/receptline";
             var data = new Dictionary<string, dynamic>
             {
-                { "vesId", patient.VesId},
-                { "patId", patient.PatId },
+                { "vesId", recept.Patient.VesId},
+                { "patId", recept.Patient.PatId },
                 { "prKode", medicijn.PRKode },
                 { "aantal", aantal },
                 { "dosering", dosering },
-                { "recId", recId },
+                { "recId", recept.Id },
             };
 
-            var response = await _api.Post<Root>(url, data);
-            var recept = new Recept(
-                patient,
-                medicijn,
-                medewerker,
-                aantal,
-                dosering
-            );
+            var response = await _api.Post<AddReceptRegelResponseRoot>(url, data);
+            var regel = response.Regel[0];
 
-            Debug.WriteLine(JsonConvert.SerializeObject(response));
+            if(response.Regel[0].Status[0].StatusCode >= 0)
+            {
+                recept.Id = regel.Id;
+                recept.AddRegel(new ReceptRegel()
+                {
+                    Medicijn = medicijn,
+                    Aantal = aantal,
+                    Dosering = dosering,
+                    ContraIndicaties = regel.ContraIndicaties,
+                    Interacties = regel.Interacties
+                });
+            }
 
             return recept;
         }

@@ -16,8 +16,9 @@ namespace medicijn.ViewModels.Medicijnen
         INavigation _navigation;
         MedicijnService _medicijnService;
 
-        public ICommand SearchButtonPressedCommand { get; }
+        private Action<Medicijn, int, string> _addRegelToRecept;
 
+        public ICommand SearchButtonPressedCommand { get; }
         public ICommand CloseOverlayCommand { get; }
 
         public string SearchValue { get; set; }
@@ -56,7 +57,6 @@ namespace medicijn.ViewModels.Medicijnen
             _medicijnService = new MedicijnService();
 
             SearchButtonPressedCommand = new Command(SearchMedicijn);
-
             CloseOverlayCommand = new Command(CloseOverlay);
         }
 
@@ -67,13 +67,15 @@ namespace medicijn.ViewModels.Medicijnen
             Recept = recept;
         }
 
-        private async void AddMedicijnToRecept(Medicijn medicijn)
+        public ZoekMedicijnViewModel(INavigation navigation, Action<Medicijn, int, string> addRegelToRecept) : this()
         {
-            Recept.AddRegel(
-                medicijn,
-                int.Parse(Aantal),
-                Dosering
-            );
+            _navigation = navigation;
+            _addRegelToRecept = addRegelToRecept;
+        }
+
+        private void AddMedicijnToRecept(Medicijn medicijn)
+        {
+            _addRegelToRecept.Invoke(medicijn, int.Parse(Aantal), Dosering);
 
             Modal.Instance.IsVisible = false;
         }
