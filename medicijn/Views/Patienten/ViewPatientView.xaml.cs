@@ -29,11 +29,6 @@ namespace medicijn.Views.Patienten
             BindingContext = new ViewPatientViewModel(patient);
         }
 
-        async void Button_Clicked(System.Object sender, System.EventArgs e)
-        {
-            Navigator.Instance.Add(new MakeReceptView(Navigation, ((ViewPatientViewModel)BindingContext).Patient));
-        }
-
         async void Overlay_PropertyChanged(System.Object sender, PropertyChangedEventArgs e)
         {
             if(e.PropertyName == "IsVisible") {
@@ -46,11 +41,6 @@ namespace medicijn.Views.Patienten
                     await Overlay.FadeTo(0, 500, Easing.SpringOut);
                 }
             }
-        }
-
-        void Button_Clicked_1(object sender, System.EventArgs e)
-        {
-            ok.Content = new ViewPatientMedicatieView(((ViewPatientViewModel)BindingContext).Patient);
         }
     }
 }

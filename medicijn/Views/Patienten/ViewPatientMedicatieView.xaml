@@ -57,7 +57,7 @@
                         />
                     <Button
                         Text="Maak Recept"
-                        Command="{Binding MakeReceptButtonPressedCommand}"
+                        Command="{Binding CreateNewReceptPressedCommand}"
                         TextColor="White"
                         FontAttributes="Bold"
                         Padding="10, 0"

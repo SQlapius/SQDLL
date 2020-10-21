@@ -6,41 +6,38 @@ using System.Threading.Tasks;
 using medicijn.Utils;
 using System.Windows.Input;
 using medicijn.Views.Recepten;
+using medicijn.Views.Patienten;
 
 namespace medicijn.ViewModels.Patienten
 {
     public class ViewPatientViewModel : BaseViewModel 
     {
-        
-        public ICommand CloseOverlayCommand { get; set; }
+        public ICommand CloseOverlayCommand { get; }
+        public ICommand ShowPatientMedicationPressedCommand { get; }
+        public ICommand CreateNewReceptPressedCommand { get; }
 
         public Patient Patient { get; set; }
 
-        private MakeReceptView _content = new MakeReceptView();
-        public MakeReceptView Content 
+        public ViewPatientViewModel()
         {
-            get => _content;
-               
-            set
-            {
-                _content = value;
-                OnPropertyChanged();
-            }
+            CloseOverlayCommand = new Command(CloseOverlay);
+            ShowPatientMedicationPressedCommand = new Command(NavigateToPatientMedication);
+            CreateNewReceptPressedCommand = new Command(NavigateToCreateNewRecept);
         }
 
-        public ViewPatientViewModel() { }
-
-        public ViewPatientViewModel(Patient patient)
+        public ViewPatientViewModel(Patient patient) : this()
         {
             Patient = patient;
-            CloseOverlayCommand = new Command(CloseOverlay);
-            test();
         }
 
-        public async void test()
+        public void NavigateToCreateNewRecept()
         {
-            //Modal.Instance.IsVisible = true;
-            Modal.Instance.Content = new MakeReceptView();
+            Navigator.Instance.Add(new MakeReceptView(Patient));
+        }
+
+        public void NavigateToPatientMedication()
+        {
+            Navigator.Instance.Add(new ViewPatientMedicatieView(Patient));
         }
 
         public void CloseOverlay()

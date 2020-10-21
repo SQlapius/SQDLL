@@ -42,9 +42,9 @@ namespace GZIDAL002.Recepten
             var response = await _api.Post<AddReceptRegelResponseRoot>(url, data);
             var regel = response.Regel[0];
 
-            if(response.Regel[0].Status[0].StatusCode >= 0)
+            if(regel.Status[0].StatusCode >= 0)
             {
-                recept.Id = regel.Id;
+                recept.Id = regel.RecId;
                 recept.AddRegel(new ReceptRegel()
                 {
                     Medicijn = medicijn,

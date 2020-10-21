@@ -19,6 +19,17 @@ namespace medicijn.ViewModels.Recepten
 
         public ICommand NewReceptLinePressedCommand { get; set; }
 
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Recept _recept;
         public Recept Recept
         {
@@ -47,15 +58,18 @@ namespace medicijn.ViewModels.Recepten
 
         public async void AddRegelToRecept(Medicijn medicijn, int aantal, string dosering)
         {
+            IsLoading = true;
             Recept = await _receptService.AddReceptRegel(
                 Recept,
                 medicijn,
                 aantal,
                 dosering
             );
+
+            IsLoading = false;
         }
 
-        private async void OpenMedicinePicker()
+        private void OpenMedicinePicker()
         {
             //await _navigation.PushModalAsync(new ZoekMedicijnView(Recept));
             Modal.Instance.IsVisible = true;
