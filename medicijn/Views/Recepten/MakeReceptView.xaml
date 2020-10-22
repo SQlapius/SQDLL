@@ -5,18 +5,12 @@
     xmlns:converters="clr-namespace:medicijn.Converters"
     x:Class="medicijn.Views.Recepten.MakeReceptView">
     <ContentView.Content>
-        <StackLayout Margin="0, 20">
-            <StackLayout Orientation="Horizontal">
-                <Label
-                    FontAttributes="Bold"
-                    Text="Nieuwe Recept" />
-                <Button
-                    HeightRequest="0"
-                    Margin="0"
-                    HorizontalOptions="EndAndExpand"
-                    Command="{Binding NewReceptLinePressedCommand}"
-                    Text="Add Regel" />
-            </StackLayout>
+        <StackLayout Margin="0, 0">
+            <Button
+                Margin="0"
+                HorizontalOptions="EndAndExpand"
+                Command="{Binding NewReceptLinePressedCommand}"
+                Text="Add Regel" />
             <ActivityIndicator
                 IsVisible="{Binding IsLoading}"
                 IsEnabled="{Binding IsLoading}"

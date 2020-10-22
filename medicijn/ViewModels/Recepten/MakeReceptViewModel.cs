@@ -47,6 +47,7 @@ namespace medicijn.ViewModels.Recepten
         public MakeReceptViewModel()
         {
             NewReceptLinePressedCommand = new Command(OpenMedicinePicker);
+            Navigator.Instance.SetTitle("Nieuw Recept");
             PressedCancelButtonCommand = new Command(PressedCancelButton);
         }
 
