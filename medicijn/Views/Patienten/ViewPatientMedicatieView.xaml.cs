@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using GZIDAL002.Patienten.Models;
 using medicijn.ViewModels.Patienten;
 using Xamarin.Forms;
+using Newtonsoft.Json;
 
 namespace medicijn.Views.Patienten
 {

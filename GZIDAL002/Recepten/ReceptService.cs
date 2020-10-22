@@ -57,5 +57,28 @@ namespace GZIDAL002.Recepten
 
             return recept;
         }
+
+        public async Task<Recept> AddBestaandeMedicatieToRecept(Recept recept, List<int> medIds)
+        {
+            try
+            {
+                var body = new Dictionary<string, dynamic>
+                {
+                    { "recId", recept.Id },
+                    { "patId", recept.Patient.PatId },
+                    { "vesId", recept.Patient.VesId },
+                    { "medIds", medIds },
+                };
+
+                var url = $"{API_URL}/zi-v0/medicijn/herhaalmed";
+                var response = await _api.Post<Recept>(url, body);
+
+                return response;
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.ToString());
+            }
+        }
     }
 }

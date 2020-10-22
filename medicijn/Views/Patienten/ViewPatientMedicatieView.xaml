@@ -2,6 +2,7 @@
 <ContentView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="ViewPatientMedicatiePage"
     x:Class="medicijn.Views.Patienten.ViewPatientMedicatieView">
     <ContentView.Content>
         <StackLayout>
@@ -15,24 +16,36 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="30" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="50" />
                                 </Grid.ColumnDefinitions>
-                                <CheckBox
-                                    Color="#1ea8de"
-                                    />
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.ClickedOnMedicijnCommand, Source={x:Reference ViewPatientMedicatiePage}}" CommandParameter="{Binding MedId}"/>  
+                                    </StackLayout.GestureRecognizers>
+                                    <CheckBox
+                                        VerticalOptions="Start"
+                                        IsChecked="{Binding IsChecked}"
+                                        IsEnabled="False"
+                                        Color="#1ea8de"
+                                        />
+                                    <Label
+                                        Grid.Column="1"
+                                        VerticalOptions="Center"
+                                        Text="{Binding Naam}"/>
+                                </StackLayout>
                                 <Label
-                                    Grid.Column="1"
                                     VerticalOptions="Center"
-                                    Text="{Binding Naam}"
-                                    />
-                                <Label
-                                    Grid.Column="2"
+                                    Grid.Column="1"
                                     Text="{Binding Dosering}" />
                                 <Label
-                                    Grid.Column="3"
+                                    VerticalOptions="Center"
+                                    Grid.Column="2"
                                     Text="{Binding MedId}" />
                             </Grid>
                         </DataTemplate>
@@ -44,12 +57,20 @@
                 Orientation="Horizontal">
                 <Label
                     VerticalOptions="Center"
-                    Text="0 Geselecteerde Medicijnen"
-                    FontAttributes="Bold,Italic" />
+                    Text="{Binding SelectedMedicatiesCount}"
+                    FontAttributes="Bold,Italic">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Aantal geselecteerde medicatie(s): " />
+                            <Span Text="{Binding SelectedMedicatiesCount}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
                 <StackLayout HorizontalOptions="EndAndExpand" Orientation="Horizontal">
                     <Button
                         Text="Cancel"
                         TextColor="#1ea8de"
+                        Command="{Binding CancelPressedCommand}"
                         Padding="20, 10"
                         BorderWidth="2"
                         FontAttributes="Bold"

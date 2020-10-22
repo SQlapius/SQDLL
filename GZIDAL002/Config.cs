@@ -6,3 +6,4 @@ namespace GZIDAL002
         public static string API_URL = "http://192.168.245.69/ords/api";
     }
 }
+
