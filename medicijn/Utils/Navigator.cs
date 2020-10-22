@@ -14,7 +14,29 @@ namespace medicijn.Utils
         private View MainContent { get; set; }
         public ContentView MainView { get; set; }
 
-        public ObservableCollection<ContentView> Pages { get; set; } 
+        public ObservableCollection<ContentView> Pages { get; set; }
+
+        private string _currentTitle = "";
+        public string CurrentTitle
+        {
+            get => _currentTitle;
+            set
+            {
+                _currentTitle = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _showBackButton = false;
+        public bool ShowBackButton
+        {
+            get => _showBackButton;
+            set
+            {
+                _showBackButton = value;
+                OnPropertyChanged();
+            }
+        }
 
         private Navigator()
         {
@@ -34,6 +56,7 @@ namespace medicijn.Utils
 
         public void Add(ContentView view) 
         {
+            ShowBackButton = true;
             Pages.Add(view);
 
             MainView.Content = view; 
@@ -41,9 +64,10 @@ namespace medicijn.Utils
 
         public void Pop() 
         {
-            if(Pages.Count == 1) 
+            if(Pages.Count <= 1) 
             {
                 MainView.Content = MainContent;
+                ShowBackButton = false;
             }
             else
             { 
@@ -51,6 +75,13 @@ namespace medicijn.Utils
             }
 
             Pages.RemoveAt(Pages.Count - 1);
+            SetTitle("");
+        }
+
+        public void SetTitle(string title)
+        {
+            CurrentTitle = title;
+            return;
         }
     }
 }
