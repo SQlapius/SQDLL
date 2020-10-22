@@ -44,7 +44,9 @@ namespace GZIDAL002.Recepten
 
             if(regel.Status[0].StatusCode >= 0)
             {
-                recept.Id = regel.RecId;
+                recept.RecId = regel.RecId;
+                recept.Id = regel.Id;
+
                 recept.AddRegel(new ReceptRegel()
                 {
                     Medicijn = medicijn,
@@ -64,7 +66,7 @@ namespace GZIDAL002.Recepten
             {
                 var body = new Dictionary<string, dynamic>
                 {
-                    { "recId", recept.Id },
+                    { "recId", recept.RecId },
                     { "patId", recept.Patient.PatId },
                     { "vesId", recept.Patient.VesId },
                     { "medIds", medIds },
@@ -78,6 +80,26 @@ namespace GZIDAL002.Recepten
             catch(Exception e)
             {
                 throw new Exception(e.ToString());
+            }
+        }
+
+        public async Task<Recept> SaveRecept(Recept recept)
+        {
+            try
+            {
+                var url = $"{API_URL}/zi-v0/receptcommit";
+                var body = new Dictionary<string, dynamic>
+                {
+                    { "recId", recept.Id }
+                };
+                var response = await _api.Post<Recept>(url, body);
+
+                return recept;
+
+            }
+            catch
+            {
+                return null;
             }
         }
     }

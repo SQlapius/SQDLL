@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using GZIDAL002.Global.Models;
 using GZIDAL002.Helpers;
 using GZIDAL002.Patienten.Models;
+using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
 using static GZIDAL002.Config;
 
@@ -79,6 +81,22 @@ namespace GZIDAL002.Patienten
             {
                 return false;
             }
+        }
+
+        public async Task<Status> SavePatientCIAardFlag(int pcaId, string actie)
+        {
+            var url = $"{API_URL}/zi-v0/savepcaflag";
+            var data = new Dictionary<string, dynamic>()
+            {
+                { "pcaId", pcaId },
+                { "aktie", actie }
+            };
+            var response = await _api.Post<SavePatientCAardResponse>(
+                url,
+                data
+            );
+
+            return response.Aard[0].Status[0];
         }
     }
 }

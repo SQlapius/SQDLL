@@ -11,11 +11,11 @@ namespace GZIDAL002.Recepten.Models
     public class Recept
     {
         public int Id { get; set; } = 0;
+        public int RecId { get; set; } = 0;
 
         [JsonIgnore]
         public Patient Patient { get; set; }
 
-        [JsonIgnore]
         public ObservableCollection<ReceptRegel> ReceptRegels { get; set; } = new ObservableCollection<ReceptRegel>();
 
         [JsonIgnore]
