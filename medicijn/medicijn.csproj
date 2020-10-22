@@ -39,6 +39,7 @@
     <Folder Include="ViewModels\Medicijnen\" />
     <Folder Include="Utils\" />
     <Folder Include="Models\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">

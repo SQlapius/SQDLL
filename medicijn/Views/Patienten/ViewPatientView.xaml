@@ -86,7 +86,7 @@
             <Frame x:Name="ok" Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
                 <StackLayout Orientation="Horizontal">
                     <Button
-                        Clicked="Button_Clicked"
+                        Command="{Binding CreateNewReceptPressedCommand}"
                         BackgroundColor="#1ea8de"
                         Padding="10, 0" 
                         FontAttributes="Bold"
@@ -96,8 +96,8 @@
                         HorizontalOptions="EndAndExpand"
                         Text="Nieuw Recept"/>
                     <Button
-                        Clicked="Button_Clicked_1"
                         BackgroundColor="#1ea8de"
+                        Command="{Binding ShowPatientMedicationPressedCommand}"
                         Padding="10, 0" 
                         FontAttributes="Bold"
                         TextColor="white"
@@ -114,8 +114,11 @@
             IsVisible="{Binding Source={x:Static local:Modal.Instance},Path=IsVisible}"
             AbsoluteLayout.LayoutBounds="0,0,1,1"
             AbsoluteLayout.LayoutFlags="All">
-            <ContentView Opacity="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Content="{Binding Source={x:Static local:Modal.Instance},Path=Content}" >
-            </ContentView>
+            <ContentView
+                Opacity="1"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Content="{Binding Source={x:Static local:Modal.Instance},Path=Content}"/>
         </StackLayout>
     </AbsoluteLayout>
 </ContentPage>

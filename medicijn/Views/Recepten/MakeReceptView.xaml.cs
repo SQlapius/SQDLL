@@ -13,9 +13,9 @@ namespace medicijn.Views.Recepten
             InitializeComponent();
         }
 
-        public MakeReceptView(INavigation navigation, Patient patient) : this()
+        public MakeReceptView(Patient patient) : this()
         {
-            BindingContext = new MakeReceptViewModel(navigation, patient);
+            BindingContext = new MakeReceptViewModel(Navigation, patient);
         }
     }
 }

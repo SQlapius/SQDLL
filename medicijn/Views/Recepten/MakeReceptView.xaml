@@ -2,29 +2,42 @@
 <ContentView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:medicijn.Converters"
     x:Class="medicijn.Views.Recepten.MakeReceptView">
     <ContentView.Content>
-        <StackLayout>
-            <Label Text="Hey ik ben hier" TextColor="White"/>
+        <StackLayout Margin="0, 20">
             <StackLayout Orientation="Horizontal">
                 <Label
                     FontAttributes="Bold"
                     Text="Nieuwe Recept" />
                 <Button
-                    Padding="0"
+                    HeightRequest="0"
+                    Margin="0"
                     HorizontalOptions="EndAndExpand"
                     Command="{Binding NewReceptLinePressedCommand}"
                     Text="Add Regel" />
             </StackLayout>
-            <ScrollView>
+            <ActivityIndicator
+                IsVisible="{Binding IsLoading}"
+                IsEnabled="{Binding IsLoading}"
+                IsRunning="{Binding IsLoading}"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"/>
+            <ScrollView IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
                  <StackLayout BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Padding="0, 10">
-                                <Label Text="{Binding Medicijn.Naam}" />
-
-                                <StackLayout>
-
+                                <Label
+                                    Text="{Binding Medicijn.Naam}"
+                                    FontSize="20"
+                                    FontAttributes="Bold"/>
+                                <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Text="{Binding CIAard}" />
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
                                 </StackLayout>
                             </StackLayout>
                         </DataTemplate>
