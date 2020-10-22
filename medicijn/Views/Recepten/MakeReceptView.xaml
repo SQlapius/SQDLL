@@ -35,7 +35,7 @@
                                 <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
-                                            <Label Text="{Binding CIAard}" />
+                                            <Label Text="{Binding Aard}" />
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
@@ -44,6 +44,26 @@
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
             </ScrollView>
+            <StackLayout
+                VerticalOptions="EndAndExpand"
+                Orientation="Horizontal"
+                HorizontalOptions="End">
+                  <Button
+                        Text="Cancel"
+                        TextColor="#1ea8de"
+                        Padding="20, 10"
+                        BorderWidth="2"
+                        FontAttributes="Bold"
+                        BorderColor="#1ea8de"
+                        />
+                    <Button
+                        Text="Verwijs"
+                        Command="{Binding CreateNewReceptPressedCommand}"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        Padding="10, 0"
+                        Background="#1ea8de"/>
+            </StackLayout>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

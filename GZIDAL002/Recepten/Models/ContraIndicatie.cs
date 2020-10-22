@@ -8,25 +8,25 @@ namespace GZIDAL002.Recepten.Models
         [JsonProperty("medId")]
         public int MedId { get; set; }
 
-        [JsonProperty("cicode")]
+        [JsonProperty("prKode")]
+        public int PRKode { get; set; }
+
+        [JsonProperty("medNaam")]
+        public string MedNaam { get; set; }
+
+        [JsonProperty("inaard")]
+        public int InAard { get; set; }
+
+        [JsonProperty("aard")]
+        public string Aard { get; set; }
+
+        [JsonProperty("pcaId")]
+        public int PcaId { get; set; }
+
+        [JsonProperty("ciCode")]
         public int CICode { get; set; }
 
-        [JsonProperty("ciaard_nr")]
-        public int CIAardNr { get; set; }
-
-        [JsonProperty("op_Scherm")]
-        public int OpScherm { get; set; }
-
-        [JsonProperty("op_lijst")]
-        public int OpLijst { get; set; }
-
-        [JsonProperty("bs")]
-        public int Bs { get; set; }
-
-        [JsonProperty("b")]
-        public string B { get; set; }
-
-        [JsonProperty("ciaard")]
-        public string CIAard { get; set; }
+        [JsonProperty("pcaFlag")]
+        public int PcaFlag { get; set; }
     }
 }

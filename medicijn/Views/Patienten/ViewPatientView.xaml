@@ -86,6 +86,16 @@
             <Frame x:Name="ok" Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
                 <StackLayout Orientation="Horizontal">
                     <Button
+                        BackgroundColor="#1ea8de"
+                        Command="{Binding GCButtonPressedCommand}"
+                        Padding="10, 0" 
+                        FontAttributes="Bold"
+                        TextColor="white"
+                        HeightRequest="50"
+                        VerticalOptions="Start"
+                        HorizontalOptions="EndAndExpand"
+                        Text="Garbage Collection"/>
+                    <Button
                         Command="{Binding CreateNewReceptPressedCommand}"
                         BackgroundColor="#1ea8de"
                         Padding="10, 0" 
@@ -93,7 +103,7 @@
                         TextColor="white"
                         HeightRequest="50"
                         VerticalOptions="Start"
-                        HorizontalOptions="EndAndExpand"
+                        HorizontalOptions="End"
                         Text="Nieuw Recept"/>
                     <Button
                         BackgroundColor="#1ea8de"
