@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
+using GZIDAL002.Global.Models;
 using GZIDAL002.Helpers;
 using GZIDAL002.Patienten.Models;
 using Newtonsoft.Json;
@@ -54,6 +55,29 @@ namespace GZIDAL002.Patienten
             catch 
             {
                 return new List<Medicatie>();
+            }
+        }
+
+        public async Task<bool> GCPatient(Patient patient)
+        {
+            try
+            {
+                var url = $"{API_URL}/zi-v0/gc";
+                var data = new Dictionary<string, dynamic>()
+                {
+                    { "vesId", patient.VesId},
+                    { "patId", patient.PatId },
+                };
+                var response = await _api.Post<Status>(
+                    url,
+                    data
+                );
+
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }
