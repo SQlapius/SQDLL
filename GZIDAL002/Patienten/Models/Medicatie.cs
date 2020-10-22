@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace GZIDAL002.Patienten.Models
 {
-    public class Medicatie
+    public class Medicatie 
     {
         [JsonProperty("medId")]
         public int MedId { get; set; }
