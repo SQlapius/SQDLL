@@ -62,6 +62,7 @@ namespace medicijn.ViewModels.Patienten
             MakeReceptButtonPressedCommand = new Command(MakeReceptPressed);
             ClickedOnMedicijnCommand = new Command<int>(ClickedOnMedicijn);
             CancelPressedCommand = new Command(CancelPressed);
+            Navigator.Instance.SetTitle("Maak recept");
         }
 
         public ViewPatientMedicatieViewModel(Patient patient, INavigation navigation) : this()

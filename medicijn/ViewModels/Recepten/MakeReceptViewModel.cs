@@ -59,6 +59,7 @@ namespace medicijn.ViewModels.Recepten
             CreateNewReceptPressedCommand = new Command(SubmitRecept);
             CancelButtonPressedCommand = new Command(NavigateBack);
             MedAardPressedCommand = new Command<ContraIndicatie>(ChoosePatientCIAardAction);
+            Navigator.Instance.SetTitle("Nieuw Recept");
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()

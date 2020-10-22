@@ -8,9 +8,6 @@
     <ContentView.Content>
         <StackLayout Margin="0, 20">
             <StackLayout Orientation="Horizontal">
-                <Label
-                    FontAttributes="Bold"
-                    Text="Nieuwe Recept" />
                 <Button
                     HeightRequest="0"
                     Margin="0"
@@ -77,15 +74,14 @@
                 VerticalOptions="End"
                 Orientation="Horizontal"
                 HorizontalOptions="End">
-                  <Button
-                      Command="{Binding CancelButtonPressedCommand}"
-                      Text="Cancel"
-                      TextColor="#1ea8de"
-                      Padding="20, 10"
-                      BorderWidth="2"
-                      FontAttributes="Bold"
-                      BorderColor="#1ea8de"
-                        />
+                <Button
+                    Command="{Binding CancelButtonPressedCommand}"
+                    Text="Cancel"
+                    TextColor="#1ea8de"
+                    Padding="20, 10"
+                    BorderWidth="2"
+                    FontAttributes="Bold"
+                    BorderColor="#1ea8de" />
                 <Button
                     Text="Verwijs"
                     Command="{Binding CreateNewReceptPressedCommand}"

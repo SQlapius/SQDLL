@@ -18,6 +18,7 @@ namespace medicijn.ViewModels.Patienten
         public ICommand CloseOverlayCommand { get; }
         public ICommand ShowPatientMedicationPressedCommand { get; }
         public ICommand CreateNewReceptPressedCommand { get; }
+        public ICommand PressedBackButton { get; }
         public ICommand GCButtonPressedCommand { get; }
 
         public Patient Patient { get; set; }
@@ -29,6 +30,7 @@ namespace medicijn.ViewModels.Patienten
             CloseOverlayCommand = new Command(CloseOverlay);
             ShowPatientMedicationPressedCommand = new Command(NavigateToPatientMedication);
             CreateNewReceptPressedCommand = new Command(NavigateToCreateNewRecept);
+            PressedBackButton = new Command(GoBack);
             GCButtonPressedCommand = new Command(CleanPatientData);
         }
 
@@ -58,6 +60,11 @@ namespace medicijn.ViewModels.Patienten
         public void CloseOverlay()
         { 
             Modal.Instance.IsVisible = false;
+        }
+
+        public void GoBack()
+        {
+            Navigator.Instance.Pop();
         }
     }
 }
