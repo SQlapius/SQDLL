@@ -18,6 +18,7 @@ namespace medicijn.ViewModels.Recepten
         ReceptService _receptService;
 
         public ICommand NewReceptLinePressedCommand { get; set; }
+        public ICommand PressedCancelButtonCommand { get; set; }
 
         private bool _isLoading;
         public bool IsLoading
@@ -46,6 +47,7 @@ namespace medicijn.ViewModels.Recepten
         public MakeReceptViewModel()
         {
             NewReceptLinePressedCommand = new Command(OpenMedicinePicker);
+            PressedCancelButtonCommand = new Command(PressedCancelButton);
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()
@@ -74,6 +76,11 @@ namespace medicijn.ViewModels.Recepten
             //await _navigation.PushModalAsync(new ZoekMedicijnView(Recept));
             Modal.Instance.IsVisible = true;
             Modal.Instance.Content = new ZoekMedicijnView(AddRegelToRecept);
+        }
+
+        private void PressedCancelButton()
+        {
+            Navigator.Instance.Pop();
         }
     }
 }

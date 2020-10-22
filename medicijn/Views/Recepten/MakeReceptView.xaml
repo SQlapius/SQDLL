@@ -48,14 +48,14 @@
                 VerticalOptions="EndAndExpand"
                 Orientation="Horizontal"
                 HorizontalOptions="End">
-                  <Button
-                        Text="Cancel"
-                        TextColor="#1ea8de"
-                        Padding="20, 10"
-                        BorderWidth="2"
-                        FontAttributes="Bold"
-                        BorderColor="#1ea8de"
-                        />
+                <Button
+                    Command="{Binding PressedCancelButtonCommand}"
+                    Text="Cancel"
+                    TextColor="#1ea8de"
+                    Padding="20, 10"
+                    BorderWidth="2"
+                    FontAttributes="Bold"
+                    BorderColor="#1ea8de" />
                     <Button
                         Text="Verwijs"
                         Command="{Binding CreateNewReceptPressedCommand}"
