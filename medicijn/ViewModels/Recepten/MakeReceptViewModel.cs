@@ -10,6 +10,8 @@ using GZIDAL002.Recepten;
 using GZIDAL002.Medicijnen.Models;
 using Newtonsoft.Json;
 using GZIDAL002.Patienten;
+using medicijn.Views.Recepten;
+using medicijn.Models;
 
 namespace medicijn.ViewModels.Recepten
 {
@@ -23,6 +25,7 @@ namespace medicijn.ViewModels.Recepten
         public ICommand CancelButtonPressedCommand { get; }
         public ICommand MedAardPressedCommand { get; }
         public ICommand CreateNewReceptPressedCommand { get; }
+        public ICommand CIInfoButtonPressedCommand { get; }
 
         private bool _isLoading;
         public bool IsLoading
@@ -59,7 +62,7 @@ namespace medicijn.ViewModels.Recepten
             CreateNewReceptPressedCommand = new Command(SubmitRecept);
             CancelButtonPressedCommand = new Command(NavigateBack);
             MedAardPressedCommand = new Command<ContraIndicatie>(ChoosePatientCIAardAction);
-            Navigator.Instance.SetTitle("Nieuw Recept");
+            CIInfoButtonPressedCommand = new Command<ContraIndicatie>(NavigateToCIInfoView);
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()
@@ -69,7 +72,7 @@ namespace medicijn.ViewModels.Recepten
             Recept = new Recept(patient, "Londy");
         }
 
-        public async void ChoosePatientCIAardAction(ContraIndicatie contra)
+        private async void ChoosePatientCIAardAction(ContraIndicatie contra)
         {
             if (contra.PatCIAardActie == "B")
                 return;
@@ -90,7 +93,7 @@ namespace medicijn.ViewModels.Recepten
             contra.PatCIAardActie = actie;
         }
 
-        public string[] GetAardActieOptions(ContraIndicatie CI)
+        private string[] GetAardActieOptions(ContraIndicatie CI)
         {
             return new string[]
             {
@@ -100,14 +103,12 @@ namespace medicijn.ViewModels.Recepten
             };
         }
 
-        public async void SubmitRecept()
+        private async void SubmitRecept()
         {
             var ok = await _receptService.SaveRecept(Recept);
-
-            Debug.WriteLine(JsonConvert.SerializeObject(ok));
         }
 
-        public async void AddRegelToRecept(Medicijn medicijn, int aantal, string dosering)
+        private async void AddRegelToRecept(Medicijn medicijn, int aantal, string dosering)
         {
             IsLoading = true;
             Recept = await _receptService.AddReceptRegel(
@@ -134,10 +135,20 @@ namespace medicijn.ViewModels.Recepten
             return "";
         }
 
+        private void NavigateToCIInfoView(ContraIndicatie ci)
+        {
+            Navigator.Instance.Add(
+                new NavPage(
+                    $"{ci.CICode} - {ci.Aard}",
+                    new CIInfoTextView(ci)
+                )
+            );
+        }
+
         private void OpenMedicinePicker()
         {
-            Modal.Instance.IsVisible = true;
             Modal.Instance.Content = new ZoekMedicijnView(AddRegelToRecept);
+            Modal.Instance.IsVisible = true;
         }
 
         private void NavigateBack()

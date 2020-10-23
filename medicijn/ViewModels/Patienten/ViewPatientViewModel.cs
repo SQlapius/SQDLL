@@ -8,6 +8,7 @@ using System.Windows.Input;
 using medicijn.Views.Recepten;
 using medicijn.Views.Patienten;
 using GZIDAL002.Patienten;
+using medicijn.Models;
 
 namespace medicijn.ViewModels.Patienten
 {
@@ -49,12 +50,19 @@ namespace medicijn.ViewModels.Patienten
 
         public void NavigateToCreateNewRecept()
         {
-            Navigator.Instance.Add(new MakeReceptView(Patient));
+            Navigator.Instance.Add(
+                new NavPage("Nieuw Recept", new MakeReceptView(Patient))
+            );
         }
 
         public void NavigateToPatientMedication()
         {
-            Navigator.Instance.Add(new ViewPatientMedicatieView(Patient));
+            Navigator.Instance.Add(
+                 new NavPage(
+                     "Actieve Medicatie",
+                     new ViewPatientMedicatieView(Patient)
+                )
+            );
         }
 
         public void CloseOverlay()

@@ -36,7 +36,7 @@ namespace GZIDAL002.Recepten
                 { "prKode", medicijn.PRKode },
                 { "aantal", aantal },
                 { "dosering", dosering },
-                { "recId", recept.Id },
+                { "recId", recept.RecId },
             };
 
             var response = await _api.Post<AddReceptRegelResponseRoot>(url, data);
@@ -80,6 +80,26 @@ namespace GZIDAL002.Recepten
             catch(Exception e)
             {
                 throw new Exception(e.ToString());
+            }
+        }
+
+        public async Task<string> GetCIInfoTekst(int CICode)
+        {
+            try
+            {
+                var url = $"{API_URL}/zi-v0/getcitekst";
+                var body = new Dictionary<string, dynamic>
+                {
+                    { "cicode", CICode }
+                };
+
+                var response = await _api.Post<GetCIInfoTekstResponse>(url, body);
+
+                return response.Infos[0].Info;
+            }
+            catch
+            {
+                return "";
             }
         }
 

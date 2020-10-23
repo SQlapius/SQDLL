@@ -69,6 +69,7 @@ namespace GZIDAL002.Patienten
                 {
                     { "vesId", patient.VesId},
                     { "patId", patient.PatId },
+                    { "action", "DESTROOI" }
                 };
                 var response = await _api.Post<Status>(
                     url,

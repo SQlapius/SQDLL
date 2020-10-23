@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GZIDAL002.Global;
 using Newtonsoft.Json;
 
@@ -43,10 +44,15 @@ namespace GZIDAL002.Recepten.Models
         }
     }
 
-    public class CAardPatientActieFlag
+    internal class CIInfoText
     {
-        public const string Bewaken = "B";
-        public const string Onderdrukken = "H";
-        public const string BewakingStoppen = "S";
+        [JsonProperty("txt")]
+        public string Info { get; set; }
+    }
+
+    internal class GetCIInfoTekstResponse
+    {
+        [JsonProperty("ci")]
+        public List<CIInfoText> Infos { get; set; }
     }
 }
