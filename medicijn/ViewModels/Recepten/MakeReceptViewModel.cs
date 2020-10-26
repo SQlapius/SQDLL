@@ -26,6 +26,7 @@ namespace medicijn.ViewModels.Recepten
         public ICommand MedAardPressedCommand { get; }
         public ICommand CreateNewReceptPressedCommand { get; }
         public ICommand CIInfoButtonPressedCommand { get; }
+        public ICommand IAInfoButtonPressedCommand { get; }
 
         private bool _isLoading;
         public bool IsLoading
@@ -63,6 +64,8 @@ namespace medicijn.ViewModels.Recepten
             CancelButtonPressedCommand = new Command(NavigateBack);
             MedAardPressedCommand = new Command<ContraIndicatie>(ChoosePatientCIAardAction);
             CIInfoButtonPressedCommand = new Command<ContraIndicatie>(NavigateToCIInfoView);
+            IAInfoButtonPressedCommand = new Command<Interactie>(NavigateToIAInfoView);
+
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()
@@ -135,12 +138,22 @@ namespace medicijn.ViewModels.Recepten
             return "";
         }
 
+        private void NavigateToIAInfoView(Interactie ia)
+        {
+            Navigator.Instance.Add(
+                  new NavPage(
+                      $"{ia.IAKode} - {ia.IAOms}",
+                      new DisplayInfoTextView(ia)
+                  )
+              );
+        }
+
         private void NavigateToCIInfoView(ContraIndicatie ci)
         {
             Navigator.Instance.Add(
                 new NavPage(
                     $"{ci.CICode} - {ci.Aard}",
-                    new CIInfoTextView(ci)
+                    new DisplayInfoTextView(ci)
                 )
             );
         }

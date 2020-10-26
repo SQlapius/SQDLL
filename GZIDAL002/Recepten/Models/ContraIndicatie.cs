@@ -55,4 +55,16 @@ namespace GZIDAL002.Recepten.Models
         [JsonProperty("ci")]
         public List<CIInfoText> Infos { get; set; }
     }
+
+    internal class AIInfoText
+    {
+        [JsonProperty("txt")]
+        public string Info { get; set; }
+    }
+
+    internal class GetAIInfoTekstResponse
+    {
+        [JsonProperty("ia")]
+        public List<CIInfoText> Infos { get; set; }
+    }
 }
