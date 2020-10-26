@@ -95,14 +95,14 @@
                                 </DataTrigger>
                         </StackLayout.Triggers>
                         <StackLayout Orientation="Horizontal" Margin="0, 15">
-                            <Button Command="{Binding PressedBackButton}" 
+                            <StackLayout
                                     WidthRequest="20"
                                     IsVisible="{Binding Source={x:Static local:Navigator.Instance}, Path=ShowBackButton}"
                                     HeightRequest="20" 
+                                    x:Name="BackButton"
                                     VerticalOptions="CenterAndExpand" 
-                                    HorizontalOptions="Start" 
-                                    BackgroundColor="Red">  
-                            </Button>
+                                    HorizontalOptions="Start">
+                            </StackLayout>
                             <Label 
                                 FontSize="25" 
                                 FontAttributes="Bold" 
