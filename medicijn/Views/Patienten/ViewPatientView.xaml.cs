@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using Xamarin.Forms;
 using medicijn.Utils;
+using Plugin.SQ_UIKit;
 using medicijn.Views.Medicijnen;
 
 namespace medicijn.Views.Patienten
@@ -22,6 +23,13 @@ namespace medicijn.Views.Patienten
             InitializeComponent();
             Overlay.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
             Navigator.Instance.SetMainPage(ok);
+
+            BackButton.Children.Insert(0, new IconLabel(IconLabel.Icon.Chevron_Left, IconLabel.Type.Solid)
+            {
+                FontSize = 20,
+                TextColor = Color.Black,
+                HorizontalOptions = LayoutOptions.Center
+            });
         }
 
         public ViewPatientView(Patient patient) : this()
