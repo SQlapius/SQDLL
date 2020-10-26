@@ -23,6 +23,8 @@ namespace medicijn.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+            Plugin.SQ_UIKit.iOS.RendererInitializer.Init();
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
