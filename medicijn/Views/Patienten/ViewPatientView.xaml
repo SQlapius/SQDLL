@@ -96,12 +96,15 @@
                         </StackLayout.Triggers>
                         <StackLayout Orientation="Horizontal" Margin="0, 15">
                             <StackLayout
-                                    WidthRequest="20"
-                                    IsVisible="{Binding Source={x:Static local:Navigator.Instance}, Path=ShowBackButton}"
-                                    HeightRequest="20" 
-                                    x:Name="BackButton"
-                                    VerticalOptions="CenterAndExpand" 
-                                    HorizontalOptions="Start">
+                                WidthRequest="20"
+                                IsVisible="{Binding Source={x:Static local:Navigator.Instance}, Path=ShowBackButton}"
+                                HeightRequest="20" 
+                                x:Name="BackButton"
+                                VerticalOptions="CenterAndExpand" 
+                                HorizontalOptions="Start">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding PressedBackButton}" />
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                             <Label 
                                 FontSize="25" 
