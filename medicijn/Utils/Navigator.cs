@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using medicijn.Models;
 using Newtonsoft.Json;
 
 
@@ -14,7 +15,7 @@ namespace medicijn.Utils
         private View MainContent { get; set; }
         public ContentView MainView { get; set; }
 
-        public ObservableCollection<ContentView> Pages { get; set; }
+        public ObservableCollection<NavPage> Pages { get; set; }
 
         private string _currentTitle = "";
         public string CurrentTitle
@@ -38,9 +39,7 @@ namespace medicijn.Utils
             }
         }
 
-        private Navigator()
-        {
-        }
+        private Navigator() { }
 
         static Navigator()
         {
@@ -51,15 +50,16 @@ namespace medicijn.Utils
         { 
             MainView = contentView;
             MainContent = contentView.Content;
-            Pages = new ObservableCollection<ContentView>();
+            Pages = new ObservableCollection<NavPage>();
         }
 
-        public void Add(ContentView view) 
+        public void Add(NavPage page) 
         {
             ShowBackButton = true;
-            Pages.Add(view);
+            Pages.Add(page);
 
-            MainView.Content = view; 
+            MainView.Content = page.Content;
+            CurrentTitle = page.PageTitle;
         }
 
         public void Pop() 
@@ -67,21 +67,23 @@ namespace medicijn.Utils
             if(Pages.Count <= 1) 
             {
                 MainView.Content = MainContent;
+                CurrentTitle = "";
                 ShowBackButton = false;
             }
             else
-            { 
-                MainView.Content = Pages[Pages.Count - 2];
+            {
+                var page = Pages[Pages.Count - 2];
+
+                MainView.Content = page.Content;
+                CurrentTitle = page.PageTitle;
             }
 
             Pages.RemoveAt(Pages.Count - 1);
-            SetTitle("");
         }
 
         public void SetTitle(string title)
         {
             CurrentTitle = title;
-            return;
         }
     }
 }

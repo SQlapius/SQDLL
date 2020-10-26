@@ -5,6 +5,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using medicijn.Views.Patienten;
 using medicijn.Views.Medicijnen;
+using medicijn.Views.Recepten;
 
 namespace medicijn
 {

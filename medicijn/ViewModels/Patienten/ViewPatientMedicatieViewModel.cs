@@ -59,10 +59,10 @@ namespace medicijn.ViewModels.Patienten
         {
             _patientService = new PatientService();
             _receptService = new ReceptService();
+
             MakeReceptButtonPressedCommand = new Command(MakeReceptPressed);
             ClickedOnMedicijnCommand = new Command<int>(ClickedOnMedicijn);
             CancelPressedCommand = new Command(CancelPressed);
-            Navigator.Instance.SetTitle("Maak recept");
         }
 
         public ViewPatientMedicatieViewModel(Patient patient, INavigation navigation) : this()
@@ -104,9 +104,9 @@ namespace medicijn.ViewModels.Patienten
             try
             { 
                 var medicaties = Medicatie
-                                    .Where(x => x.IsChecked == true)
-                                    .Select(x => x.MedId)
-                                    .ToList();
+                                .Where(x => x.IsChecked == true)
+                                .Select(x => x.MedId)
+                                .ToList();
 
                 var recept = new Recept(Patient, "Londy");
 

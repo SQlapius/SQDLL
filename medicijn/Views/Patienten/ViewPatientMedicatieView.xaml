@@ -26,7 +26,9 @@
                                 </Grid.RowDefinitions>
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.ClickedOnMedicijnCommand, Source={x:Reference ViewPatientMedicatiePage}}" CommandParameter="{Binding MedId}"/>  
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.ClickedOnMedicijnCommand, Source={x:Reference ViewPatientMedicatiePage}}"
+                                            CommandParameter="{Binding MedId}"/>  
                                     </StackLayout.GestureRecognizers>
                                     <CheckBox
                                         VerticalOptions="Start"

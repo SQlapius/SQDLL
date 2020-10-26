@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using GZIDAL002.Global;
 using Newtonsoft.Json;
+
 
 namespace GZIDAL002.Recepten.Models
 {
-    public class ContraIndicatie
+    public class ContraIndicatie : BaseViewModel
     {
         [JsonProperty("medId")]
         public int MedId { get; set; }
@@ -28,5 +31,28 @@ namespace GZIDAL002.Recepten.Models
 
         [JsonProperty("pcaFlag")]
         public int PcaFlag { get; set; }
+
+        private string _patCIAardActie = "O";
+        public string PatCIAardActie
+        {
+            get => _patCIAardActie;
+            set
+            {
+                _patCIAardActie = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    internal class CIInfoText
+    {
+        [JsonProperty("txt")]
+        public string Info { get; set; }
+    }
+
+    internal class GetCIInfoTekstResponse
+    {
+        [JsonProperty("ci")]
+        public List<CIInfoText> Infos { get; set; }
     }
 }

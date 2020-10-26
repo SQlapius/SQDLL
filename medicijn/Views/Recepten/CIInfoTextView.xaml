@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:medicijn.Converters"
+    x:Class="medicijn.Views.Recepten.CIInfoTextView">
+    <ContentView.Content>
+        <StackLayout>
+            <ActivityIndicator
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="CenterAndExpand"
+                IsEnabled="{Binding IsLoading}"
+                IsRunning="{Binding IsLoading}"
+                IsVisible="{Binding IsLoading}" />
+            <WebView
+                IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand"
+                Source="{Binding HtmlSource}" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

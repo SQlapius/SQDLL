@@ -41,6 +41,7 @@
     <Compile Include="Patienten\Models\Medicatie.cs" />
     <Compile Include="Recepten\Models\ContraIndicatie.cs" />
     <Compile Include="Recepten\Models\Interacties.cs" />
+    <Compile Include="Global\BaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patienten\" />

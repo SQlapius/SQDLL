@@ -3,60 +3,111 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:medicijn.Converters"
+    x:Name="MakeReceptPage"
     x:Class="medicijn.Views.Recepten.MakeReceptView">
     <ContentView.Content>
-        <StackLayout Margin="0, 0">
-            <Button
-                Margin="0"
-                HorizontalOptions="EndAndExpand"
-                Command="{Binding NewReceptLinePressedCommand}"
-                Text="Add Regel" />
-            <ActivityIndicator
-                IsVisible="{Binding IsLoading}"
-                IsEnabled="{Binding IsLoading}"
-                IsRunning="{Binding IsLoading}"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand"/>
-            <ScrollView IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
-                 <StackLayout BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Padding="0, 10">
-                                <Label
-                                    Text="{Binding Medicijn.Naam}"
-                                    FontSize="20"
-                                    FontAttributes="Bold"/>
-                                <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Label Text="{Binding Aard}" />
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Button
+                    Margin="0"
+                    Padding="0"
+                    HeightRequest="20"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="EndAndExpand"
+                    Command="{Binding NewReceptLinePressedCommand}"
+                    Text="Add Regel" />
+            </StackLayout>
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ActivityIndicator
+                    IsVisible="{Binding IsLoading}"
+                    IsEnabled="{Binding IsLoading}"
+                    IsRunning="{Binding IsLoading}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="CenterAndExpand"/>
+                <ScrollView  IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
+                     <StackLayout BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Padding="0, 10">
+                                    <Label
+                                        FontSize="20"
+                                        FontAttributes="Bold">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span FontAttributes="Bold" FontSize="25" Text="{Binding Aantal, StringFormat='{0}x'}" />
+                                                <Span Text=" " />
+                                                <Span
+                                                    FontAttributes="Bold, Italic"
+                                                    Text="{Binding Medicijn.Naam}" />
+                                                <Span Text=" - " />
+                                                <Span Text="{Binding Dosering}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Info">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Command="{Binding BindingContext.CIInfoButtonPressedCommand, Source={x:Reference MakeReceptPage}}"
+                                                                CommandParameter="{Binding .}"/>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                    <Label
+                                                        Text="{Binding Aard}">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer
+                                                                Command="{Binding BindingContext.MedAardPressedCommand, Source={x:Reference MakeReceptPage}}"
+                                                                CommandParameter="{Binding .}"/>
+                                                        </Label.GestureRecognizers>
+                                                        <Label.Triggers>
+                                                            <DataTrigger
+                                                                TargetType="Label"
+                                                                Binding="{Binding PatCIAardActie}"
+                                                                Value="B">
+                                                                <Setter Property="BackgroundColor" Value="Red" />
+                                                            </DataTrigger>
+                                                            <DataTrigger
+                                                                TargetType="Label"
+                                                                Binding="{Binding PatCIAardActie}"
+                                                                Value="H">
+                                                                <Setter
+                                                                    Property="TextDecorations"
+                                                                    Value="Strikethrough" />
+                                                            </DataTrigger>
+                                                        </Label.Triggers>
+                                                    </Label>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
                                 </StackLayout>
-                            </StackLayout>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
-                </StackLayout>
-            </ScrollView>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
             <StackLayout
-                VerticalOptions="EndAndExpand"
+                VerticalOptions="End"
                 Orientation="Horizontal"
                 HorizontalOptions="End">
                 <Button
-                    Command="{Binding PressedCancelButtonCommand}"
+                    Command="{Binding CancelButtonPressedCommand}"
                     Text="Cancel"
                     TextColor="#1ea8de"
                     Padding="20, 10"
                     BorderWidth="2"
                     FontAttributes="Bold"
                     BorderColor="#1ea8de" />
-                    <Button
-                        Text="Verwijs"
-                        Command="{Binding CreateNewReceptPressedCommand}"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        Padding="10, 0"
-                        Background="#1ea8de"/>
+                <Button
+                    Text="Verwijs"
+                    Command="{Binding CreateNewReceptPressedCommand}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Padding="10, 0"
+                    Background="#1ea8de"/>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>
