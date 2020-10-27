@@ -44,6 +44,11 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
+                                    <Label
+                                        FontAttributes="Bold"
+                                        Text="Contra Indicaties"
+                                        FontSize="18"
+                                        Margin="0, 10, 0, 0"/>
                                     <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate>
@@ -82,6 +87,37 @@
                                                 </StackLayout>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <StackLayout>
+                                        <StackLayout.Triggers>
+                                            <DataTrigger
+                                                TargetType="StackLayout"
+                                                Binding="{Binding Interacties.Count}"
+                                                Value="0">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </StackLayout.Triggers>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            Text="Interacties"
+                                            FontSize="18"
+                                            Margin="0, 10, 0, 0"/>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Interacties}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Info">
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer
+                                                                    Command="{Binding BindingContext.IAInfoButtonPressedCommand, Source={x:Reference MakeReceptPage}}"
+                                                                    CommandParameter="{Binding .}"/>
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                        <Label Text="{Binding IAOms}" />
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
                                     </StackLayout>
                                 </StackLayout>
                             </DataTemplate>

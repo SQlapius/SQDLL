@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Net.Http;
 using System.Threading.Tasks;
 using GZIDAL002.Helpers;
 using GZIDAL002.Medicijnen.Models;
-using GZIDAL002.Patienten.Models;
 using GZIDAL002.Recepten.Models;
-using Newtonsoft.Json;
 using static GZIDAL002.Config;
 
 namespace GZIDAL002.Recepten
@@ -52,8 +48,9 @@ namespace GZIDAL002.Recepten
                     Medicijn = medicijn,
                     Aantal = aantal,
                     Dosering = dosering,
-                    ContraIndicaties = regel.ContraIndicaties,
-                    Interacties = regel.Interacties
+                    ContraIndicaties = regel.ContraIndicaties ??
+                        new List<ContraIndicatie>(),
+                    Interacties = regel.Interacties ?? new List<Interactie>()
                 });
             }
 
@@ -90,7 +87,7 @@ namespace GZIDAL002.Recepten
                 var url = $"{API_URL}/zi-v0/getcitekst";
                 var body = new Dictionary<string, dynamic>
                 {
-                    { "cicode", CICode }
+                    { "ciCode", CICode }
                 };
 
                 var response = await _api.Post<GetCIInfoTekstResponse>(url, body);
@@ -99,7 +96,27 @@ namespace GZIDAL002.Recepten
             }
             catch
             {
-                return "";
+                return "No Info Found";
+            }
+        }
+
+        public async Task<string> GetAIInfoTekst(int IAKode)
+        {
+            try
+            {
+                var url = $"{API_URL}/zi-v0/getiatekst";
+                var body = new Dictionary<string, dynamic>
+                {
+                    { "iaKode", IAKode }
+                };
+
+                var response = await _api.Post<GetAIInfoTekstResponse>(url, body);
+
+                return response.Infos[0].Info;
+            }
+            catch
+            {
+                return "No Info Found";
             }
         }
 
