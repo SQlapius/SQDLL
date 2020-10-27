@@ -39,10 +39,17 @@ namespace GZIDAL002.Patienten.Models
         public List<Medicatie> Medicaties { get; set; }
 
         [JsonProperty("OM")]
-        public List<string> OngewensteMiddelen { get; set; }
+        public List<OngewensteMiddel> OngewensteMiddelen { get; set; }
 
         [JsonProperty("IA")]
         public List<Interactie> interacties { get; set; }
+    }
+
+    internal class DetailedPatientResponse
+    {
+        [JsonProperty("patient")]
+        public List<Patient> Patient { get; set; }
+    }
 
     internal class ZoekPatientResponse
     {
