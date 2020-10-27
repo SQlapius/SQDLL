@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Input;
 using GZIDAL002.Medicijnen;
@@ -8,6 +10,7 @@ using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using medicijn.Utils;
+using medicijn.Databases;
 
 namespace medicijn.ViewModels.Medicijnen
 {
@@ -15,6 +18,7 @@ namespace medicijn.ViewModels.Medicijnen
     {
         INavigation _navigation;
         MedicijnService _medicijnService;
+        MedicijnDatabase _medicijnDatabase;
 
         private Action<Medicijn, int, string> _addRegelToRecept;
 
@@ -44,14 +48,7 @@ namespace medicijn.ViewModels.Medicijnen
         private ObservableCollection<Medicijn> _medicijnen;
         public ObservableCollection<Medicijn> Medicijnen
         {
-            get
-            {
-                if (SearchValue == "" || SearchValue == null) {
-                    HeaderText = "RECENT SEARCHES";
-                    return _recentSearches;
-                }
-                return _medicijnen; 
-            }
+            get => _medicijnen; 
             set
             {
                 _medicijnen = value;
@@ -65,6 +62,7 @@ namespace medicijn.ViewModels.Medicijnen
             get => _recentSearches;
             set
             {
+                Debug.WriteLine(JsonConvert.SerializeObject(value));
                 _recentSearches = value;
                 OnPropertyChanged();
             }
@@ -95,24 +93,20 @@ namespace medicijn.ViewModels.Medicijnen
         public ZoekMedicijnViewModel()
         {
             _medicijnService = new MedicijnService();
+            _medicijnDatabase = new MedicijnDatabase();
 
             SearchButtonPressedCommand = new Command(SearchMedicijn);
             CloseOverlayCommand = new Command(CloseOverlay);
-            RecentSearches = new ObservableCollection<Medicijn>();
 
+            LoadRecentSearches();
 
-            RecentSearches.Add(new Medicijn
-            {
-                HPKode = 2100533,
-                PRKode = 95273,
-                GPKode = 134929,
-                NMMEMO = "VOTRT4",
-                NMMEMO050 = "PAZOT4",
-                ATCode = "L01XE11",
-                NMNaam = "VOTRIENT TABLET FILMOMHULD 400MG",
-                NMNaam050 = "PAZOPANIB TABLET 400MG",
-                Naam = "VOTRIENT TABLET FILMOMHULD 400MG - PAZOPANIB TABLET 400MG",
-            });
+        }
+
+        async private void LoadRecentSearches()
+        {
+            HeaderText = "RECENT SEARCHES";
+
+            Medicijnen = await _medicijnDatabase.GetLast5Medicijn();
         }
 
         public ZoekMedicijnViewModel(INavigation navigation, Recept recept) : this()
@@ -130,15 +124,19 @@ namespace medicijn.ViewModels.Medicijnen
 
         private void AddMedicijnToRecept(Medicijn medicijn)
         {
-            //_addRegelToRecept.Invoke(medicijn, int.Parse(Aantal), Dosering);
+            _addRegelToRecept.Invoke(medicijn, int.Parse(Aantal), Dosering);
 
-            _addRegelToRecept.Invoke(medicijn, 2, "2");
+            //_addRegelToRecept.Invoke(medicijn, 2, "2");
+
+
+            _medicijnDatabase.StoreMedicijn(medicijn);
 
             Modal.Instance.IsVisible = false;
         }
 
         public async void SearchMedicijn()
         {
+
             if(SearchValue == "" || SearchValue == null) return;
 
             HeaderText = "SEARCH RESULTS";

@@ -49,12 +49,12 @@
                             </AbsoluteLayout>
                         </Grid>
                     </StackLayout>
-                    <!--<Entry
+                    <Entry
                         Placeholder="Aantal"
                         Text="{Binding Aantal} "/>
                     <Entry
                         Placeholder="Dosering"
-                        Text="{Binding Dosering}"/>-->
+                        Text="{Binding Dosering}"/>
 
                     <StackLayout VerticalOptions="FillAndExpand" HeightRequest="0"  HorizontalOptions="FillAndExpand">
                         <StackLayout Margin="0, 10"> 
