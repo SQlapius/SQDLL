@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GZIDAL002.Global.Models;
+using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
 
 namespace GZIDAL002.Patienten.Models
@@ -27,7 +28,21 @@ namespace GZIDAL002.Patienten.Models
 
         [JsonProperty("patId")]
         public int PatId { get; set; }
-    }
+
+        [JsonProperty("sqPatId")]
+        public int SqPatId { get; set; }
+
+        [JsonProperty("apuId")]
+        public int ApuId { get; set; }
+
+        [JsonProperty("MED")]
+        public List<Medicatie> Medicaties { get; set; }
+
+        [JsonProperty("OM")]
+        public List<string> OngewensteMiddelen { get; set; }
+
+        [JsonProperty("IA")]
+        public List<Interactie> interacties { get; set; }
 
     internal class ZoekPatientResponse
     {

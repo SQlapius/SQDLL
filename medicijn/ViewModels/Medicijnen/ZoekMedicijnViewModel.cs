@@ -124,10 +124,9 @@ namespace medicijn.ViewModels.Medicijnen
 
         private void AddMedicijnToRecept(Medicijn medicijn)
         {
-            _addRegelToRecept.Invoke(medicijn, int.Parse(Aantal), Dosering);
+            //_addRegelToRecept.Invoke(medicijn, int.Parse(Aantal), Dosering);
 
-            //_addRegelToRecept.Invoke(medicijn, 2, "2");
-
+            _addRegelToRecept.Invoke(medicijn, 2, "2");
 
             _medicijnDatabase.StoreMedicijn(medicijn);
 

@@ -59,6 +59,8 @@ namespace medicijn.ViewModels.Patienten
             Patients = new ObservableCollection<Patient>(
                 await _patientService.ZoekPatient(119, SearchValue)
             );
+
+            Debug.WriteLine(JsonConvert.SerializeObject(Patients));
         }
 
         private async void NavigateToPatientView(Patient patient)

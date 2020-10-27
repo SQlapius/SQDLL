@@ -30,8 +30,8 @@ namespace medicijn.Databases
             try
             {
                 var databaseConnection = await GetDatabaseConnection<Medicijn>().ConfigureAwait(false);
-                
-                 databaseConnection.Table<Medicijn>().DeleteAsync(x => x.Naam == medicijn.Naam).ConfigureAwait(false);
+
+                await databaseConnection.Table<Medicijn>().DeleteAsync(x => x.Naam == medicijn.Naam).ConfigureAwait(false);
 
                 return await _databaseConnection.InsertAsync(medicijn);
                 
@@ -49,17 +49,17 @@ namespace medicijn.Databases
             {
                 var databaseConnection = await GetDatabaseConnection<Medicijn>().ConfigureAwait(false);
 
-                var kip = await databaseConnection.Table<Medicijn>().ToListAsync();
+                var medicijnen = await databaseConnection.Table<Medicijn>().ToListAsync();
 
-                var test = await AttemptAndRetry(
+                var latestfivemedicijnen = await AttemptAndRetry(
                             () => databaseConnection.Table<Medicijn>()
-                            .Skip(kip.Count - 5)
+                            .Skip(medicijnen.Count - 5)
                             .ToListAsync())
                             .ConfigureAwait(false);
 
-                test.Reverse();
+                latestfivemedicijnen.Reverse();
 
-                return new ObservableCollection<Medicijn>(test);
+                return new ObservableCollection<Medicijn>(latestfivemedicijnen);
             }
             
             catch (Exception e)

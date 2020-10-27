@@ -37,6 +37,22 @@ namespace GZIDAL002.Patienten
             }
         }
 
+        public async Task<Status> GetPatientDetailed(int pcaId, string actie)
+        {
+            var url = $"{API_URL}/zi-v0/savepcaflag";
+            var data = new Dictionary<string, dynamic>()
+            {
+                { "pcaId", pcaId },
+                { "aktie", actie }
+            };
+            var response = await _api.Post<SavePatientCAardResponse>(
+                url,
+                data
+            );
+
+            return response.Aard[0].Status[0];
+        }
+
         public async Task<List<Medicatie>> GetPatientMedicatie(Patient patient)
         {
             try

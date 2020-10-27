@@ -45,8 +45,6 @@ namespace medicijn.ViewModels.Recepten
             get => _recept;
             set
             {
-                Debug.WriteLine("HALLO?");
-
                 _recept = value;
                 OnPropertyChanged();
             }
