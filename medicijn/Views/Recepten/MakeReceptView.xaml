@@ -44,49 +44,59 @@
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Label
-                                        FontAttributes="Bold"
-                                        Text="Contra Indicaties"
-                                        FontSize="18"
-                                        Margin="0, 10, 0, 0"/>
-                                    <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackLayout Orientation="Horizontal">
-                                                    <Label Text="Info">
-                                                        <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer
-                                                                Command="{Binding BindingContext.CIInfoButtonPressedCommand, Source={x:Reference MakeReceptPage}}"
-                                                                CommandParameter="{Binding .}"/>
-                                                        </Label.GestureRecognizers>
-                                                    </Label>
-                                                    <Label
-                                                        Text="{Binding Aard}">
-                                                        <Label.GestureRecognizers>
-                                                            <TapGestureRecognizer
-                                                                Command="{Binding BindingContext.MedAardPressedCommand, Source={x:Reference MakeReceptPage}}"
-                                                                CommandParameter="{Binding .}"/>
-                                                        </Label.GestureRecognizers>
-                                                        <Label.Triggers>
-                                                            <DataTrigger
-                                                                TargetType="Label"
-                                                                Binding="{Binding PatCIAardActie}"
-                                                                Value="B">
-                                                                <Setter Property="BackgroundColor" Value="Red" />
-                                                            </DataTrigger>
-                                                            <DataTrigger
-                                                                TargetType="Label"
-                                                                Binding="{Binding PatCIAardActie}"
-                                                                Value="H">
-                                                                <Setter
-                                                                    Property="TextDecorations"
-                                                                    Value="Strikethrough" />
-                                                            </DataTrigger>
-                                                        </Label.Triggers>
-                                                    </Label>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
+                                    <StackLayout>
+                                        <StackLayout.Triggers>
+                                            <DataTrigger
+                                                TargetType="StackLayout"
+                                                Binding="{Binding ContraIndicaties.Count}"
+                                                Value="0">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </StackLayout.Triggers>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            Text="Contra Indicaties"
+                                            FontSize="18"
+                                            Margin="0, 10, 0, 0"/>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="Info">
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer
+                                                                    Command="{Binding BindingContext.CIInfoButtonPressedCommand, Source={x:Reference MakeReceptPage}}"
+                                                                    CommandParameter="{Binding .}"/>
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                        <Label
+                                                            Text="{Binding Aard}">
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer
+                                                                    Command="{Binding BindingContext.MedAardPressedCommand, Source={x:Reference MakeReceptPage}}"
+                                                                    CommandParameter="{Binding .}"/>
+                                                            </Label.GestureRecognizers>
+                                                            <Label.Triggers>
+                                                                <DataTrigger
+                                                                    TargetType="Label"
+                                                                    Binding="{Binding PatCIAardActie}"
+                                                                    Value="B">
+                                                                    <Setter Property="BackgroundColor" Value="Red" />
+                                                                </DataTrigger>
+                                                                <DataTrigger
+                                                                    TargetType="Label"
+                                                                    Binding="{Binding PatCIAardActie}"
+                                                                    Value="H">
+                                                                    <Setter
+                                                                        Property="TextDecorations"
+                                                                        Value="Strikethrough" />
+                                                                </DataTrigger>
+                                                            </Label.Triggers>
+                                                        </Label>
+                                                    </StackLayout>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
                                     </StackLayout>
                                     <StackLayout>
                                         <StackLayout.Triggers>
@@ -119,6 +129,33 @@
                                             </BindableLayout.ItemTemplate>
                                         </StackLayout>
                                     </StackLayout>
+                                    <StackLayout>
+                                         <StackLayout.Triggers>
+                                            <DataTrigger
+                                                TargetType="StackLayout"
+                                                Binding="{Binding OngewensteMiddelen.Count}"
+                                                Value="0">
+                                                <Setter Property="IsVisible" Value="False" />
+                                            </DataTrigger>
+                                        </StackLayout.Triggers>
+                                        <Label
+                                            FontAttributes="Bold"
+                                            Text="Ongewenste Middelen"
+                                            FontSize="18"
+                                            Margin="0, 10, 0, 0"/>
+                                        <StackLayout BindableLayout.ItemsSource="{Binding OngewensteMiddelen}">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Text="{Binding Naam}" />
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
+                                        </StackLayout>
+                                    </StackLayout>
+                                    <StackLayout
+                                        HeightRequest="0.5"
+                                        Margin="0, 10, 0, 3"
+                                        HorizontalOptions="FillAndExpand"
+                                        BackgroundColor="#e3e3e3" />
                                 </StackLayout>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>

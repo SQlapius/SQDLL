@@ -17,6 +17,8 @@ namespace GZIDAL002.Recepten.Models
         public List<ContraIndicatie> ContraIndicaties { get; set; }
 
         public List<Interactie> Interacties { get; set; }
+
+        public List<OngewensteMiddel> OngewensteMiddelen { get; set; }
     }
 
     internal class AddReceptRegelResponse
@@ -41,6 +43,9 @@ namespace GZIDAL002.Recepten.Models
 
         [JsonProperty("IA")]
         public List<Interactie> Interacties { get; set; }
+
+        [JsonProperty("OM")]
+        public List<OngewensteMiddel> OngewensteMiddelen { get; set; }
 
         [JsonProperty("status")]
         public List<Status> Status { get; set; }
