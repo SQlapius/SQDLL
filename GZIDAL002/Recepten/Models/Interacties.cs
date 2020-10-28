@@ -25,5 +25,9 @@ namespace GZIDAL002.Recepten.Models
 
         [JsonProperty("iakode")]
         public int IAKode { get; set; }
+
+        [JsonProperty("aantal")]
+        public int Aantal { get; set; }
+
     }
 }

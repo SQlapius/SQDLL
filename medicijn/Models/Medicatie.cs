@@ -13,7 +13,7 @@ namespace medicijn.Models
         {
             base.MedId = med.MedId;
             base.Naam = med.Naam;
-            base.LastRec = med.LastRec;
+            base.LastRecDt = med.LastRecDt;
             base.Passport = med.Passport;
             base.PrKode = med.PrKode;
             base.Telrec = med.Telrec;

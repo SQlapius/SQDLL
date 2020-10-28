@@ -21,14 +21,20 @@ namespace GZIDAL002.Patienten.Models
         [JsonProperty("prKode")]
         public int PrKode { get; set; }
 
+        [JsonProperty("gpKode")]
+        public int GpKode { get; set; }
+
         [JsonProperty("dosering")]
         public string Dosering { get; set; }
 
         [JsonProperty("telrec")]
         public int Telrec { get; set; }
 
-        [JsonProperty("lastRec")]
-        public DateTime LastRec { get; set; }
+        [JsonProperty("lastRecDt")]
+        public DateTime LastRecDt { get; set; }
+
+        [JsonProperty("creaDt")]
+        public DateTime CreatedDate { get; set; }
     }
 
     internal class GetPatientMedicationResponse

@@ -63,10 +63,8 @@ namespace medicijn.ViewModels.Patienten
 
         private async void NavigateToPatientView(Patient patient)
         {
-            Debug.WriteLine("=========");
-            Debug.WriteLine(JsonConvert.SerializeObject(await _patientService.GetPatientDetailed(patient.VesId, patient.PatId)));
-
-            await _navigation.PushAsync(new ViewPatientView(patient));
+            var pat = await _patientService.GetPatientDetailed(patient.VesId, patient.PatId);
+            await _navigation.PushAsync(new ViewPatientView(pat));
         }
     }
 }

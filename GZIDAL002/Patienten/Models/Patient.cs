@@ -14,14 +14,14 @@ namespace GZIDAL002.Patienten.Models
         [JsonProperty("naam")]
         public string Naam { get; set; }
 
+        [JsonProperty("roepNaam")]
+        public string RoepNaam { get; set; }
+
         [JsonProperty("dob")]
         public DateTime Dob { get; set; }
 
         [JsonProperty("sex")]
         public string Sex { get; set; }
-
-        [JsonProperty("startDate")]
-        public string StartDate { get; set; }
 
         [JsonProperty("vesId")]
         public int VesId { get; set; }
@@ -42,7 +42,7 @@ namespace GZIDAL002.Patienten.Models
         public List<OngewensteMiddel> OngewensteMiddelen { get; set; }
 
         [JsonProperty("IA")]
-        public List<Interactie> interacties { get; set; }
+        public List<Interactie> Interacties { get; set; }
     }
 
     internal class DetailedPatientResponse
