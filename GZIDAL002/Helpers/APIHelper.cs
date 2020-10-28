@@ -25,8 +25,6 @@ namespace GZIDAL002.Helpers
             var response = await _httpClient.PostAsync(url, content);
             var responseString = await response.Content.ReadAsStringAsync();
 
-            //Debug.WriteLine(responseString);
-
             return JsonConvert.DeserializeObject<TResponse>(responseString);
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GZIDAL002.Global.Models;
 using GZIDAL002.Helpers;
 using GZIDAL002.Medicijnen.Models;
 using GZIDAL002.Recepten.Models;

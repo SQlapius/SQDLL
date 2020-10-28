@@ -32,6 +32,38 @@ namespace GZIDAL002.Recepten.Models
         [JsonProperty("pcaFlag")]
         public int PcaFlag { get; set; }
 
+        [JsonProperty("is-a")]
+        public int IsActiefFlag { get; set; }
+
+        [JsonProperty("is-b")]
+        public int IsBewaaktFlag { get; set; }
+
+        [JsonProperty("is-o")]
+        public int IsOnderdruktFlag { get; set; }
+
+        [JsonProperty("is-w")]
+        public int IsOngekozenFlag { get; set; }
+
+        public bool IsActief
+        {
+            get => IsActiefFlag == 1;
+        }
+
+        public bool IsBewaakt
+        {
+            get => IsBewaaktFlag == 1;
+        }
+
+        public bool IsOnderDrukt
+        {
+            get => IsOnderdruktFlag == 1;
+        }
+
+        public bool IsOngekozen
+        {
+            get => IsOngekozenFlag == 1;
+        }
+
         private string _patCIAardActie = "O";
         public string PatCIAardActie
         {
