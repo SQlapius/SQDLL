@@ -20,33 +20,9 @@
             <StackLayout>
                 <Label FontSize="36" FontAttributes="Bold" Text="Patient"/>  
             </StackLayout>
-            <StackLayout Grid.Column="0" Grid.Row="1">
+            <ScrollView Grid.Column="0" Grid.Row="1">
                 <StackLayout VerticalOptions="FillAndExpand" Spacing="10">
-                    <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Center">
-                        <StackLayout HorizontalOptions="CenterAndExpand" Padding="15, 30">
-                            <Frame
-                                HasShadow="True"
-                                CornerRadius="10"
-                                IsClippedToBounds="True"
-                                Margin="0, 0, 0, 20"
-                                Padding="0"
-                                HorizontalOptions="Center"
-                                WidthRequest="100"
-                                HeightRequest="100">
-                                <Image
-                                    Aspect="AspectFill"
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand"
-                                    Source="https://as.nyu.edu/content/dam/nyu-as/faculty/images/Guy.jpg" />
-                            </Frame>
-                            <Label
-                                Text="{Binding Patient.Naam}"
-                                FontAttributes="Bold"
-                                TextColor="#1ea8de"
-                                HorizontalTextAlignment="Center"/> 
-                        </StackLayout>
-                    </Frame>  
-                    <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                    <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Fill">
                         <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
                             <Label FontAttributes="Bold" Text="Information" Margin="0, 0, 0, 20"/> 
                             <StackLayout Spacing="20">
@@ -81,8 +57,23 @@
                             </StackLayout>
                         </StackLayout>
                     </Frame>  
+
+                    <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                        <StackLayout Padding="0">
+                            <Label FontAttributes="Bold" Text="Medicaties" Margin="0, 0, 0, 20"/> 
+                             <StackLayout BindableLayout.ItemsSource="{Binding Patient.Medicaties}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Margin="0, 0, 0, 5" Orientation="Horizontal">
+                                            <Label Text="{Binding Naam}"/> 
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>  
                </StackLayout>  
-            </StackLayout>
+            </ScrollView>
             <Frame Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
                 <StackLayout>
                     <StackLayout IsVisible="True" Margin="0, 0, 0, 15">
@@ -146,20 +137,9 @@
                                     VerticalOptions="Start"
                                     HorizontalOptions="End"
                                     Text="Garbage Collection"/>
-                             </StackLayout>
+                            </StackLayout>
                             <StackLayout>
-                                <Label Text="Patient Medicaties"/>
-                                 <StackLayout BindableLayout.ItemsSource="{Binding Patient.Medicaties}">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding Naam}"/> 
-                                            </StackLayout>
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
-                                </StackLayout>
-
-                                <Label Margin="0, 20, 0, 0" Text="Patient Interacties"/>
+                                <Label Margin="0, 20, 0, 0" FontAttributes="Bold"  Text="Patient Interacties"/>
                                  <StackLayout BindableLayout.ItemsSource="{Binding Patient.Interacties}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
@@ -169,8 +149,7 @@
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
-
-                                <Label Margin="0, 20, 0, 0" Text="Patient Ongewenste midellen"/>
+                                <Label Margin="0, 20, 0, 0" FontAttributes="Bold" Text="Patient Ongewenste midellen"/>
                                  <StackLayout BindableLayout.ItemsSource="{Binding Patient.OngewensteMiddelen}">
                                     <BindableLayout.ItemTemplate>
                                         <DataTemplate>
