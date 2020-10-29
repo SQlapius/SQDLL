@@ -122,13 +122,12 @@ namespace medicijn.ViewModels.Medicijnen
             _addRegelToRecept = addRegelToRecept;
         }
 
-        private void AddMedicijnToRecept(Medicijn medicijn)
+        private async void AddMedicijnToRecept(Medicijn medicijn)
         {
             //_addRegelToRecept.Invoke(medicijn, int.Parse(Aantal), Dosering);
 
             _addRegelToRecept.Invoke(medicijn, 2, "2");
-
-            _medicijnDatabase.StoreMedicijn(medicijn);
+            await _medicijnDatabase.StoreMedicijn(medicijn);
 
             Modal.Instance.IsVisible = false;
         }

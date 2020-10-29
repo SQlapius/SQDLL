@@ -79,14 +79,14 @@
                                                             <Label.Triggers>
                                                                 <DataTrigger
                                                                     TargetType="Label"
-                                                                    Binding="{Binding PatCIAardActie}"
-                                                                    Value="B">
+                                                                    Binding="{Binding IsBewaakt}"
+                                                                    Value="1">
                                                                     <Setter Property="BackgroundColor" Value="Red" />
                                                                 </DataTrigger>
                                                                 <DataTrigger
                                                                     TargetType="Label"
-                                                                    Binding="{Binding PatCIAardActie}"
-                                                                    Value="H">
+                                                                    Binding="{Binding IsOnderdrukt}"
+                                                                    Value="1">
                                                                     <Setter
                                                                         Property="TextDecorations"
                                                                         Value="Strikethrough" />
@@ -175,7 +175,7 @@
                     FontAttributes="Bold"
                     BorderColor="#1ea8de" />
                 <Button
-                    Text="Verwijs"
+                    Text="Bevestig Recept"
                     Command="{Binding CreateNewReceptPressedCommand}"
                     TextColor="White"
                     FontAttributes="Bold"
