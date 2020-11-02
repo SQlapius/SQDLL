@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using GZIDAL002.Global;
 using Newtonsoft.Json;
 
-
 namespace GZIDAL002.Recepten.Models
 {
     public class ContraIndicatie : BaseViewModel
@@ -32,39 +31,46 @@ namespace GZIDAL002.Recepten.Models
         [JsonProperty("pcaFlag")]
         public int PcaFlag { get; set; }
 
+        private int _isActief;
         [JsonProperty("is-a")]
-        public int IsActiefFlag { get; set; }
+        public int IsActief
+        {
+            get => _isActief;
+            set
+            {
+                _isActief = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private int _isBewaakt;
         [JsonProperty("is-b")]
-        public int IsBewaaktFlag { get; set; }
+        public int IsBewaakt
+        {
+            get => _isBewaakt;
+            set
+            {
+                _isBewaakt = value;
+                OnPropertyChanged();
+            }
+        }
 
+        private int _isOnderdrukt;
         [JsonProperty("is-o")]
-        public int IsOnderdruktFlag { get; set; }
+        public int IsOnderdrukt
+        {
+            get => _isOnderdrukt;
+            set
+            {
+                _isOnderdrukt = value;
+                OnPropertyChanged();
+            }
+        }
 
         [JsonProperty("is-w")]
-        public int IsOngekozenFlag { get; set; }
+        public int IsGekozen { get; set; }
 
-        public bool IsActief
-        {
-            get => IsActiefFlag == 1;
-        }
-
-        public bool IsBewaakt
-        {
-            get => IsBewaaktFlag == 1;
-        }
-
-        public bool IsOnderDrukt
-        {
-            get => IsOnderdruktFlag == 1;
-        }
-
-        public bool IsOngekozen
-        {
-            get => IsOngekozenFlag == 1;
-        }
-
-        private string _patCIAardActie = "O";
+        private string _patCIAardActie = "o";
         public string PatCIAardActie
         {
             get => _patCIAardActie;

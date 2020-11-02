@@ -78,6 +78,12 @@ namespace medicijn.ViewModels.Recepten
             if (contra.PatCIAardActie == "B")
                 return;
 
+            /*
+             *  Reset Values
+             */
+            contra.IsBewaakt = 0;
+            contra.IsOnderdrukt = 0;
+
             var chosenOption = await Application.Current.MainPage.DisplayActionSheet(
                 "Kies je actie voor " + contra.Aard,
                 "cancel",
@@ -91,7 +97,12 @@ namespace medicijn.ViewModels.Recepten
                 actie
             );
 
-            contra.PatCIAardActie = actie;
+            if (actie == "B")
+                contra.IsBewaakt = 1;
+
+            if (actie == "H")
+                contra.IsOnderdrukt = 1;
+
         }
 
         private string[] GetAardActieOptions(ContraIndicatie CI)
