@@ -80,7 +80,7 @@
                         />
                     <Button
                         Text="Maak Recept"
-                        Command="{Binding CreateNewReceptPressedCommand}"
+                        Command="{Binding MakeReceptButtonPressedCommand}"
                         TextColor="White"
                         FontAttributes="Bold"
                         Padding="10, 0"

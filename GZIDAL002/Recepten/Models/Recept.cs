@@ -16,10 +16,13 @@ namespace GZIDAL002.Recepten.Models
         [JsonIgnore]
         public Patient Patient { get; set; }
 
+        [JsonProperty("regels")]
         public ObservableCollection<ReceptRegel> ReceptRegels { get; set; } = new ObservableCollection<ReceptRegel>();
 
         [JsonIgnore]
         public string Medewerker { get; set; }
+
+        public Recept() { }
 
         public Recept(Patient pat, string medewerker)
         {
@@ -52,5 +55,17 @@ namespace GZIDAL002.Recepten.Models
         {
             ReceptRegels.Add(regel);
         }
+    }
+
+    internal class HerhaalReceptR
+    {
+        [JsonProperty("regels")]
+        public List<AddReceptRegelResponse> Regels {get; set;}
+    }
+
+    internal class MakeHerhaalReceptResponse
+    {
+        [JsonProperty("receptregels")]
+        public List<HerhaalReceptRes> Recept { get; set; }
     }
 }

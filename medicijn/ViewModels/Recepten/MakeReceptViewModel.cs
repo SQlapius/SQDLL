@@ -78,12 +78,6 @@ namespace medicijn.ViewModels.Recepten
             if (contra.PatCIAardActie == "B")
                 return;
 
-            /*
-             *  Reset Values
-             */
-            contra.IsBewaakt = 0;
-            contra.IsOnderdrukt = 0;
-
             var chosenOption = await Application.Current.MainPage.DisplayActionSheet(
                 "Kies je actie voor " + contra.Aard,
                 "cancel",
@@ -91,6 +85,16 @@ namespace medicijn.ViewModels.Recepten
                 "bewaken",
                 "onderdrukken"
             );
+
+            if (chosenOption == string.Empty)
+                return;
+
+            /*
+             *  Reset Values
+             */
+            contra.IsBewaakt = 0;
+            contra.IsOnderdrukt = 0;
+
             var actie = GetCIAardActieCode(chosenOption);
             var status = await _patientService.SavePatientCIAardFlag(
                 contra.PcaId,

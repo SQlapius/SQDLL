@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using GZIDAL002.Global.Models;
 using GZIDAL002.Helpers;
 using GZIDAL002.Medicijnen.Models;
 using GZIDAL002.Recepten.Models;
+using Newtonsoft.Json;
 using static GZIDAL002.Config;
 
 namespace GZIDAL002.Recepten
@@ -58,7 +60,7 @@ namespace GZIDAL002.Recepten
             return recept;
         }
 
-        public async Task<Recept> AddBestaandeMedicatieToRecept(Recept recept, List<int> medIds)
+        public async Task<bool> AddBestaandeMedicatieToRecept(Recept recept, List<int> medIds)
         {
             try
             {
@@ -70,13 +72,17 @@ namespace GZIDAL002.Recepten
                     { "medIds", medIds },
                 };
 
-                var url = $"{API_URL}/zi-v0/medicijn/herhaalmed";
-                var response = await _api.Post<Recept>(url, body);
+                var url = $"{API_URL}/zi-v0/herhaalmed";
+                var response = await _api.Post<MakeHerhaalReceptResponse>(url, body);
 
-                return response;
+                Debug.WriteLine(JsonConvert.SerializeObject(response));
+
+                return false;
             }
             catch(Exception e)
             {
+                Debug.WriteLine("ok");
+
                 throw new Exception(e.ToString());
             }
         }

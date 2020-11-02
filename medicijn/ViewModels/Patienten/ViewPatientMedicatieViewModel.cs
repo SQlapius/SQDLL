@@ -24,9 +24,7 @@ namespace medicijn.ViewModels.Patienten
         ReceptService _receptService;
 
         public ICommand MakeReceptButtonPressedCommand { get; set; }
-
         public ICommand ClickedOnMedicijnCommand { get; set; }
-        
         public ICommand CancelPressedCommand { get; set; }
 
         Patient Patient { get; set; }
