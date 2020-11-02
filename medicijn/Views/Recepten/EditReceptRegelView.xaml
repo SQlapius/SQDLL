@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Views.Recepten.EditReceptRegelView">
+    <ContentView.Content>
+        <Frame Padding="50, 40" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="500">
+            <StackLayout>
+                <Label Text="Edit Recept Regel" FontSize="32"/>
+                <StackLayout Margin="0, 20" Spacing="15" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                    <StackLayout Spacing="0">
+                        <Label FontAttributes="Bold" FontSize="11" Text="Medicijn"/>
+                        <Entry IsEnabled="False" Text="{Binding ReceptRegel.Medicijn.Naam}"/>
+                    </StackLayout>
+                    <StackLayout Spacing="0">
+                        <Label FontAttributes="Bold" FontSize="11" Text="Aantal"/>
+                        <Entry Text="{Binding ReceptRegel.Aantal}"/>
+                    </StackLayout>
+                    <StackLayout Spacing="0">
+                        <Label FontAttributes="Bold" FontSize="11" Text="Dosering"/>
+                        <Entry Text="{Binding ReceptRegel.Dosering}"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
+                    <Button
+                        Command="{Binding CancelButtonPressedCommand}"
+                        Text="Cancel"
+                        TextColor="#1ea8de"
+                        Padding="20, 10"
+                        BorderWidth="2"
+                        FontAttributes="Bold"
+                        BorderColor="#1ea8de" />
+                    <Button
+                        Command="{Binding EditRegelButtonPressed}"
+                        BackgroundColor="#1ea8de"
+                        Padding="10, 0" 
+                        FontAttributes="Bold"
+                        TextColor="white"
+                        HeightRequest="45"
+                        Text="Edit Regel"/>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

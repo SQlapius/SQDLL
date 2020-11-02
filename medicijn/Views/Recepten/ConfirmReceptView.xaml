@@ -1,5 +1,75 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Views.Recepten.ConfirmReceptView">
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    x:Name="ConfirmView"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="medicijn.Views.Recepten.ConfirmReceptView">
     <ContentView.Content>
+        <StackLayout Spacing="0">
+            <StackLayout>
+                <!--<Label Text="hey"/>
+                <BoxView  HeightRequest="1" BackgroundColor="#e3e3e3" HorizontalOptions="FillAndExpand"/>-->    
+            </StackLayout>
+            <StackLayout Spacing="0" BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowSpacing="0">
+                           <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/> 
+                                <ColumnDefinition Width="*"/> 
+                           </Grid.ColumnDefinitions>
+                           <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/> 
+                                <RowDefinition Height="1"/> 
+                           </Grid.RowDefinitions>
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" Text="{Binding Aantal}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span FontAttributes="Bold" Text="{Binding Aantal}"/>
+                                        <Span FontSize="11" Text="x"/>
+                                    </FormattedString> 
+                                </Label.FormattedText>
+                            </Label>
+                            <BoxView WidthRequest="1" BackgroundColor="#e3e3e3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>    
+                            <BoxView Grid.ColumnSpan="2"  HeightRequest="1" BackgroundColor="#e3e3e3" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"/>    
+                            <StackLayout Padding="0, 10" Spacing="3" Grid.Column="1">
+                            <StackLayout.GestureRecognizers>
+                               <TapGestureRecognizer CommandParameter="{Binding .}" Command="{Binding BindingContext.EditReceptRegel, Source={x:Reference ConfirmView}}"/>
+                            </StackLayout.GestureRecognizers>
+                                <Label Text="{Binding Medicijn.NMNaam}"/>
+                                <Label TextColor="#7E9EAA" FontAttributes="Bold" FontSize="12">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Dosering: "/>
+                                            <Span Text="{Binding Dosering}"/>
+                                        </FormattedString>  
+                                    </Label.FormattedText> 
+                                </Label>
+                            </StackLayout>
+                        </Grid>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+            <StackLayout
+                VerticalOptions="EndAndExpand"
+                Orientation="Horizontal"
+                HorizontalOptions="End">
+                <Button
+                    Command="{Binding CancelButtonPressedCommand}"
+                    Text="Cancel"
+                    TextColor="#1ea8de"
+                    Padding="20, 10"
+                    BorderWidth="2"
+                    FontAttributes="Bold"
+                    BorderColor="#1ea8de" />
+                <Button
+                    Text="Voorschrijven"
+                    Command="{Binding CreateNewReceptPressedCommand}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    Padding="10, 0"
+                    Background="#1ea8de"/>
+            </StackLayout>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>
