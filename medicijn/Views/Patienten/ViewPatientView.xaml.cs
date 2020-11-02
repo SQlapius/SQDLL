@@ -28,7 +28,8 @@ namespace medicijn.Views.Patienten
             {
                 FontSize = 20,
                 TextColor = Color.Black,
-                HorizontalOptions = LayoutOptions.Center
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.CenterAndExpand
             });
         }
 

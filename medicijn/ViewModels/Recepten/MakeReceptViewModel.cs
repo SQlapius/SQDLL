@@ -106,7 +106,12 @@ namespace medicijn.ViewModels.Recepten
 
         private async void SubmitRecept()
         {
-            var ok = await _receptService.SaveRecept(Recept);
+            Navigator.Instance.Add(
+                  new NavPage(
+                      $"Confirm Recept #{Recept.Id}",
+                      new ConfirmReceptView(Recept)
+                  )
+              );
         }
 
         private async void AddRegelToRecept(Medicijn medicijn, int aantal, string dosering)

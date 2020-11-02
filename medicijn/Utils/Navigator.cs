@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using medicijn.Models;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 
 namespace medicijn.Utils
@@ -28,6 +29,17 @@ namespace medicijn.Utils
             }
         }
 
+        private bool _showHeader = false;
+        public bool ShowHeader
+        {
+            get => _showHeader;
+            set
+            {
+                _showHeader = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _showBackButton = false;
         public bool ShowBackButton
         {
@@ -38,7 +50,7 @@ namespace medicijn.Utils
                 OnPropertyChanged();
             }
         }
-
+    
         private Navigator() { }
 
         static Navigator()
@@ -56,19 +68,22 @@ namespace medicijn.Utils
         public void Add(NavPage page) 
         {
             ShowBackButton = true;
+            ShowHeader = true;
             Pages.Add(page);
 
             MainView.Content = page.Content;
             CurrentTitle = page.PageTitle;
         }
 
-        public void Pop() 
+        public async void Pop() 
         {
             if(Pages.Count <= 1) 
             {
+                ShowBackButton = false;
+                ShowHeader = false;
+                await Task.Delay(100);
                 MainView.Content = MainContent;
                 CurrentTitle = "";
-                ShowBackButton = false;
             }
             else
             {
