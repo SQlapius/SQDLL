@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using GZIDAL002.Global.Models;
 using GZIDAL002.Helpers;
 using GZIDAL002.Medicijnen.Models;
+using GZIDAL002.Patienten.Models;
 using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
+using System.Linq;
 using static GZIDAL002.Config;
 
 namespace GZIDAL002.Recepten
@@ -60,10 +62,14 @@ namespace GZIDAL002.Recepten
             return recept;
         }
 
-        public async Task<bool> AddBestaandeMedicatieToRecept(Recept recept, List<int> medIds)
+        public async Task<bool> AddBestaandeMedicatieToRecept(Recept recept, List<Medicatie> medicaties)
         {
             try
             {
+                var medIds = medicaties
+                    .Select(x => x.MedId)
+                    .ToList();
+
                 var body = new Dictionary<string, dynamic>
                 {
                     { "recId", recept.RecId },
@@ -72,10 +78,36 @@ namespace GZIDAL002.Recepten
                     { "medIds", medIds },
                 };
 
+
                 var url = $"{API_URL}/zi-v0/herhaalmed";
                 var response = await _api.Post<MakeHerhaalReceptResponse>(url, body);
 
-                Debug.WriteLine(JsonConvert.SerializeObject(response));
+                var resRecept = response.Recept[0].Regels[0];
+
+                if (response.Recept[0].Status[0].StatusCode >= 0)
+                {
+                    recept.RecId = resRecept.RecId;
+                    recept.Id = resRecept.Id;
+
+                    for (int i = 0; i < response.Recept[0].Regels.Count(); i++)
+                    {
+                        var receptRegel = response.Recept[0].Regels[i];
+                        var medicijn = response.Recept[0].Regels[i].Medicijn[0];
+
+                        recept.AddRegel(new ReceptRegel()
+                        {
+                            Medicijn = medicijn,
+                            Aantal = 2,
+                            Dosering = "2",
+                            ContraIndicaties = receptRegel.ContraIndicaties ?? new List<ContraIndicatie>(),
+                            Interacties = receptRegel.Interacties ?? new List<Interactie>(),
+                            OngewensteMiddelen = receptRegel.OngewensteMiddelen ?? new List<OngewensteMiddel>()
+                        });
+                    }
+
+                }
+
+                Debug.WriteLine(JsonConvert.SerializeObject(recept));
 
                 return false;
             }

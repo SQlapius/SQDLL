@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using GZIDAL002.Medicijnen.Models;
 using GZIDAL002.Patienten.Models;
+using GZIDAL002.Global.Models;
 using Newtonsoft.Json;
 
 namespace GZIDAL002.Recepten.Models
@@ -57,10 +58,19 @@ namespace GZIDAL002.Recepten.Models
         }
     }
 
-    internal class HerhaalReceptR
+    internal class test : AddReceptRegelResponse
+    {
+        [JsonProperty("MED")]
+        public List<Medicijn> Medicijn {get; set;}
+    }
+
+    internal class HerhaalReceptRes
     {
         [JsonProperty("regels")]
-        public List<AddReceptRegelResponse> Regels {get; set;}
+        public List<test> Regels {get; set;}
+
+        [JsonProperty("status")]
+        public List<Status> Status { get; set; }
     }
 
     internal class MakeHerhaalReceptResponse
