@@ -84,7 +84,7 @@ namespace GZIDAL002.Patienten
             }
         }
 
-        public async Task<bool> GCPatient(Patient patient)
+        public async Task<bool> GCPatient(Patient patient, bool fullRemove = false)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace GZIDAL002.Patienten
                 {
                     { "vesId", patient.VesId},
                     { "patId", patient.PatId },
-                    { "action", "DESTROOI" }
+                    { "action", fullRemove ? "DESTROOI" : null } 
                 };
                 var response = await _api.Post<Status>(
                     url,

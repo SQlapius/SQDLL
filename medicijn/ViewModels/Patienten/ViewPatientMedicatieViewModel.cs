@@ -13,7 +13,10 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.Windows.Input;
 using Medicatie = medicijn.Models.Medicatie;
+using LOL = GZIDAL002.Patienten.Models.Medicatie;
 using medicijn.Utils;
+using medicijn.Views.Recepten;
+using medicijn.Models;
 
 namespace medicijn.ViewModels.Patienten
 {
@@ -92,9 +95,9 @@ namespace medicijn.ViewModels.Patienten
             Medicatie[index] = clickedMedicatie;
 
             SelectedMedicatiesCount = Medicatie
-                                        .Where(x => x.IsChecked == true)
-                                        .Select(x => x.MedId)
-                                        .ToList().Count();
+                .Where(x => x.IsChecked == true)
+                .Select(x => x)
+                .ToList().Count();
         }
 
         private async void MakeReceptPressed()
@@ -102,16 +105,20 @@ namespace medicijn.ViewModels.Patienten
             try
             { 
                 var medicaties = Medicatie
-                                .Where(x => x.IsChecked == true)
-                                .Select(x => x.MedId)
-                                .ToList();
+                    .Where(x => x.IsChecked == true)
+                    .Select(x => (LOL)x)
+                    .ToList();
 
                 var recept = new Recept(Patient, "Londy");
+                var response = await _receptService.AddBestaandeMedicatieToRecept(
+                    recept,
+                    medicaties
+                );
 
-                var response = await _receptService.AddBestaandeMedicatieToRecept(recept, medicaties);
-
-                Debug.WriteLine(JsonConvert.SerializeObject(response));
-            
+                Navigator.Instance.Add(new NavPage(
+                    $"Herhaal Recept #{recept.RecId}",
+                    new MakeReceptView(response)
+                ));
             }
             catch(Exception e)
             {

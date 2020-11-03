@@ -63,7 +63,6 @@ namespace medicijn.ViewModels.Recepten
             MedAardPressedCommand = new Command<ContraIndicatie>(ChoosePatientCIAardAction);
             CIInfoButtonPressedCommand = new Command<ContraIndicatie>(NavigateToCIInfoView);
             IAInfoButtonPressedCommand = new Command<Interactie>(NavigateToIAInfoView);
-
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()
@@ -73,6 +72,11 @@ namespace medicijn.ViewModels.Recepten
             Recept = new Recept(patient, "Londy");
         }
 
+        public MakeReceptViewModel(INavigation navigation, Recept recept) : this()
+        {
+            _navigation = navigation;
+            Recept = recept;
+        }
         private async void ChoosePatientCIAardAction(ContraIndicatie contra)
         {
             if (contra.PatCIAardActie == "B")
@@ -119,7 +123,7 @@ namespace medicijn.ViewModels.Recepten
             };
         }
 
-        private async void SubmitRecept()
+        private void SubmitRecept()
         {
             Navigator.Instance.Add(
                   new NavPage(

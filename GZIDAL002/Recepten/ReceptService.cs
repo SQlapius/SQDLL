@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using GZIDAL002.Global.Models;
 using GZIDAL002.Helpers;
 using GZIDAL002.Medicijnen.Models;
+using GZIDAL002.Patienten.Models;
 using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
+using System.Linq;
 using static GZIDAL002.Config;
 
 namespace GZIDAL002.Recepten
@@ -60,10 +62,14 @@ namespace GZIDAL002.Recepten
             return recept;
         }
 
-        public async Task<bool> AddBestaandeMedicatieToRecept(Recept recept, List<int> medIds)
+        public async Task<Recept> AddBestaandeMedicatieToRecept(Recept recept, List<Medicatie> medicaties)
         {
             try
             {
+                var medIds = medicaties
+                    .Select(x => x.MedId)
+                    .ToList();
+
                 var body = new Dictionary<string, dynamic>
                 {
                     { "recId", recept.RecId },
@@ -74,15 +80,37 @@ namespace GZIDAL002.Recepten
 
                 var url = $"{API_URL}/zi-v0/herhaalmed";
                 var response = await _api.Post<MakeHerhaalReceptResponse>(url, body);
+                var resRecept = response.Recept[0].Regels[0];
 
-                Debug.WriteLine(JsonConvert.SerializeObject(response));
+                if (response.Recept[0].Status[0].StatusCode >= 0)
+                {
+                    recept.RecId = resRecept.RecId;
+                    recept.Id = resRecept.Id;
 
-                return false;
+                    for (int i = 0; i < response.Recept[0].Regels.Count(); i++)
+                    {
+                        var receptRegel = response.Recept[0].Regels[i];
+                        var medicijn = response.Recept[0].Regels[i].Medicijn[0];
+                        var medicatie = medicaties
+                            .Where(x => x.MedId == receptRegel.PMeId)
+                            .FirstOrDefault();
+
+                        recept.AddRegel(new ReceptRegel()
+                        {
+                            Medicijn = medicijn,
+                            Aantal = 2,
+                            Dosering = medicatie?.Dosering,
+                            ContraIndicaties = receptRegel.ContraIndicaties ?? new List<ContraIndicatie>(),
+                            Interacties = receptRegel.Interacties ?? new List<Interactie>(),
+                            OngewensteMiddelen = receptRegel.OngewensteMiddelen ?? new List<OngewensteMiddel>()
+                        });
+                    }
+                }
+
+                return recept;
             }
             catch(Exception e)
             {
-                Debug.WriteLine("ok");
-
                 throw new Exception(e.ToString());
             }
         }
@@ -134,7 +162,7 @@ namespace GZIDAL002.Recepten
                 var url = $"{API_URL}/zi-v0/receptcommit";
                 var body = new Dictionary<string, dynamic>
                 {
-                    { "recId", recept.Id }
+                    { "recId", recept.Id },
                 };
                 var response = await _api.Post<Recept>(url, body);
 

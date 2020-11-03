@@ -11,6 +11,7 @@ namespace medicijn.Views.Recepten
         public ConfirmReceptView(Recept recept)
         {
             InitializeComponent();
+
             BindingContext = new ConfirmReceptViewModel(recept);
         }
     }

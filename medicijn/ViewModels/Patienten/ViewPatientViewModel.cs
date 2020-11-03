@@ -42,7 +42,7 @@ namespace medicijn.ViewModels.Patienten
 
         public async void CleanPatientData()
         {
-            var success = await _patientSerivce.GCPatient(Patient);
+            var success = await _patientSerivce.GCPatient(Patient, true);
 
             if (!success)
                 Debug.WriteLine("FAILED Garbage Collection");
