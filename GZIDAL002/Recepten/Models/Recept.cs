@@ -57,7 +57,7 @@ namespace GZIDAL002.Recepten.Models
         }
     }
 
-    internal class HerhaalReceptR
+    internal class HerhaalReceptRes
     {
         [JsonProperty("regels")]
         public List<AddReceptRegelResponse> Regels {get; set;}
