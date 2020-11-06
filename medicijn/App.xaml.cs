@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using medicijn.Views.Patienten;
 using medicijn.Views.Medicijnen;
 using medicijn.Views.Recepten;
+using medicijn.Utils;
 
 namespace medicijn
 {
@@ -16,6 +17,8 @@ namespace medicijn
             InitializeComponent();
 
             MainPage = new NavigationPage(new ZoekPatientView());
+
+            Dosering.Test("1-3D1-3T");
         }
 
         protected override async void OnStart()
