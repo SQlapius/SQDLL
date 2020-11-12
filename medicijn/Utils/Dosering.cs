@@ -1,78 +1,66 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
+using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
 
 namespace medicijn.Utils
 {
-    public static class Dosering
+    public class Dosering
     {
+        public string Frequentie { get; }
+        public string Tijdseenheid { get; } = "";
+        public string Aantal { get; }
+        public string Advieseenheid { get; } = "";
+        public string[] Info { get; }
+        public string ExtraText { get; }
 
-        public static void Test2(string dosering)
+        public Dosering(string code)
         {
-            bool isDone = false;
-            var eersteTeken = dosering[0];
-            int? freq;
-            string tijdseenheid;
-            int aantal;
-            string advieseenheid;
-            string[] info;
-
-            //for (int i = 0; ; i)
-            while(!isDone)
+            if (code[0] == ';')
             {
-
+                ExtraText = RemoveSubstring(code, ";");
+                return;
             }
-        }
 
-        public static void Test(string dosering)
-        {
+            var codearr = code.Split(';');
+
+            var dosering = codearr[0];
+
             var firstChar = dosering[0];
-            string freq;
-            string tijdseenheid;
-            string aantal;
-            string advieseenheid;
-            string[] info;
 
-            //if (firstChar != '-')
-            //{
-            // frequentie: Get all digets until 
-            freq = firstChar != '-' ? GetCharactersUntilLetter(dosering) : "-";
+            if(firstChar == ' ') {
+                Info = GetInfo(dosering);
+                return;
+            }
 
-                // remove frequentie from dosering
-                dosering = RemoveSubstring(dosering, freq.ToString());
+            Frequentie = firstChar != '-' ? GetCharactersUntilLetter(dosering) : "-";
+            dosering = RemoveSubstring(dosering, Frequentie.ToString());
 
-                //tijdenseenheid: volgende letters tot cijfer
-                tijdseenheid = GetCharactersUntilDigit(dosering);
+            Tijdseenheid = GetCharactersUntilDigit(dosering);
+            dosering = RemoveSubstring(dosering, Tijdseenheid);
 
-              
-                dosering = RemoveSubstring(dosering, tijdseenheid);
-                aantal = GetCharactersUntilLetter(dosering);
-                dosering = dosering.TrimStart(aantal.ToString().ToCharArray());
-                advieseenheid = GetCharactersUntilDigit(dosering);
-                dosering = dosering.TrimStart(advieseenheid.ToString().ToCharArray());
-                info = dosering.Trim().Split(' ');
+            Aantal = dosering != "" ? dosering[0] != ' ' ? GetCharactersUntilLetter(dosering) : " " : "";
+            dosering = dosering.TrimStart(Aantal.ToString().ToCharArray());
+            
+            Advieseenheid = GetCharactersUntilDigit(dosering);
+            dosering = dosering.TrimStart(Advieseenheid.ToString().ToCharArray());
 
-                Debug.WriteLine(freq);
-                Debug.WriteLine(tijdseenheid);
-                Debug.WriteLine(aantal);
-                Debug.WriteLine(advieseenheid);
-                Debug.WriteLine(JsonConvert.SerializeObject(info));
-            //}
+            Info = dosering != "" ? dosering.Trim().Split(' ') : null;
+
+            ExtraText = codearr.Length > 1 ? codearr[1] : "";
         }
 
-
-        private static string RemoveSubstring(string inputString, string removeString)
+        private string RemoveSubstring(string inputString, string removeString)
         {
             return inputString.TrimStart(removeString.ToCharArray());
         }
 
-        private static string GetCharactersUntilDigit(string dosering)
+        private string GetCharactersUntilDigit(string dosering)
         {
             return new string(dosering.TakeWhile(char.IsLetter).ToArray());
         }
 
-        private static string GetCharactersUntilLetter(string dosering)
+        private string GetCharactersUntilLetter(string dosering)
         {
             return new string(dosering.TakeWhile(c =>
                 char.IsDigit(c) ||
@@ -81,21 +69,32 @@ namespace medicijn.Utils
             ).ToArray());
         }
 
-        //private bool
-
-        public static string ConvertCodeToString(
-            int freq,
-            string tijdseenheid,
-            int aantal,
-            string advieseenheid,
-            params string[] info
-        )
+        private string[] GetInfo(string dosering)
         {
-            //var tijseenheidText = DBNull.getBla(tijdseenheid);
+            return dosering.Trim().Split(' ');
+        }
 
-            //return freq + tijseenheidText + aantal + ;
+        public string ConvertCodeToString(DoseringTabellen _doseringTabellen)
+        {
+            var tijdseenheid = Tijdseenheid != "" ? 
+                _doseringTabellen.TijdsEenheden.Where(x => x.Kode == Tijdseenheid)
+                .FirstOrDefault()?.Omschrijving ?? "" : "";
 
-            return "";
+            var gebruikseenheid = Advieseenheid != "" ?
+                _doseringTabellen.GebruiksEenheden.Where(x => x.Kode == Advieseenheid)
+                .FirstOrDefault()?.Omschrijving ?? "" : "";
+
+            string infostring = "";
+
+            if(Info != null && Info.Length > 0)
+            {
+                foreach (string s in Info)
+                    infostring += (_doseringTabellen.AanvullendeTeksten
+                        .Where(x => x.Kode == s).FirstOrDefault()?
+                        .Omschrijving ?? "") + "; ";
+            }
+
+            return $"{Frequentie}x {tijdseenheid} {Aantal} {gebruikseenheid} info: {infostring} extratext: {ExtraText}";
         }
     }
 }

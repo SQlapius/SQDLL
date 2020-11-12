@@ -43,6 +43,8 @@
     <Compile Include="Recepten\Models\Interacties.cs" />
     <Compile Include="Global\BaseViewModel.cs" />
     <Compile Include="Recepten\Models\OngewensteMiddel.cs" />
+    <Compile Include="Recepten\Models\DoseringTabellen.cs" />
+    <Compile Include="Recepten\Models\Dosering.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patienten\" />

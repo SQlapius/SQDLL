@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage 
+    NavigationPage.HasNavigationBar="False" 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:converters="clr-namespace:medicijn.Converters" 
+    xmlns:sq_uikit="clr-namespace:Plugin.SQ_UIKit;assembly=Plugin.SQ_UIKit"
+    x:Class="medicijn.Views.Auth.LoginView">
+    <ContentPage.Content>
+        <StackLayout Padding="0, 20">
+            <StackLayout IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
+                <sq_uikit:MaterialEntry 
+                    Icon="User" 
+                    Text="{Binding Username}"
+                    IconType="Regular" 
+                    Placeholder="Username"/>                
+
+                <sq_uikit:MaterialEntry 
+                    Icon="Key" 
+                    IsPassword="True"
+                    Text="{Binding Password}"
+                    IconType="Regular" 
+                    Placeholder="Username"/>                
+                <Button Text="Login" Command="{Binding LoginButtonPressedCommand}"/>
+            </StackLayout>
+            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsLoading}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

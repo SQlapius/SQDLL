@@ -19,7 +19,7 @@ namespace GZIDAL002.Helpers
             return JsonConvert.DeserializeObject<TResponse>(content);
         }
 
-        public async Task<TResponse> Post<TResponse>(string url, Dictionary<string, dynamic> body, object headers = null)
+        public async Task<TResponse> Post<TResponse>(string url, Dictionary<string, dynamic> body = null, object headers = null)
         {
             var content = new StringContent(JsonConvert.SerializeObject(body));
             var response = await _httpClient.PostAsync(url, content);

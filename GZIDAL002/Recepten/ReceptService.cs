@@ -174,5 +174,24 @@ namespace GZIDAL002.Recepten
                 return null;
             }
         }
+
+        public async Task<DoseringTabellen> GetDoseringTables()
+        {
+            try
+            {
+                var body = new Dictionary<string, dynamic>
+                {
+                    { "recId", "lol" },
+                };
+                var url = $"{API_URL}/zi-v0/doseringlov";
+                var response = await _api.Post<GetDoseringResponse>(url, body);
+
+                return response.DoseringTabellen[0];
+            }
+            catch
+            {
+                return default;
+            }
+        }
     }
 }

@@ -11,14 +11,14 @@ namespace medicijn.Models
 
         public Medicatie(Med med)
         {
-            base.MedId = med.MedId;
-            base.Naam = med.Naam;
-            base.LastRecDt = med.LastRecDt;
-            base.Passport = med.Passport;
-            base.PrKode = med.PrKode;
-            base.Telrec = med.Telrec;
-            base.VasteMedicatie = med.VasteMedicatie;
-            base.Dosering = med.Dosering;
+            MedId = med.MedId;
+            Naam = med.Naam;
+            LastRecDt = med.LastRecDt;
+            Passport = med.Passport;
+            PrKode = med.PrKode;
+            Telrec = med.Telrec;
+            VasteMedicatie = med.VasteMedicatie;
+            Dosering = med.Dosering;
         }
     }
 }

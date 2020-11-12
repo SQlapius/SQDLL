@@ -45,6 +45,8 @@
     <Folder Include="Converters\" />
     <Folder Include="Renderers\" />
     <Folder Include="Databases\" />
+    <Folder Include="ViewModels\Auth\" />
+    <Folder Include="Views\Auth\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">

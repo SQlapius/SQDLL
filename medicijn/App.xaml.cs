@@ -7,6 +7,7 @@ using medicijn.Views.Patienten;
 using medicijn.Views.Medicijnen;
 using medicijn.Views.Recepten;
 using medicijn.Utils;
+using medicijn.Views.Auth;
 
 namespace medicijn
 {
@@ -16,9 +17,8 @@ namespace medicijn
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ZoekPatientView());
+            MainPage = new NavigationPage(new LoginView());
 
-            Dosering.Test("1-3D1-3T");
         }
 
         protected override async void OnStart()
@@ -34,3 +34,10 @@ namespace medicijn
         }
     }
 }
+
+
+
+
+
+
+

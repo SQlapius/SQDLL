@@ -17,6 +17,7 @@
                         <Label FontAttributes="Bold" FontSize="11" Text="Dosering"/>
                         <Entry Text="{Binding ReceptRegel.Dosering}"/>
                     </StackLayout>
+                    <Label Text="{Binding DoseringString}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="EndAndExpand">
                     <Button
