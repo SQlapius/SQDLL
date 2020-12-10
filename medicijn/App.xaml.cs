@@ -18,7 +18,6 @@ namespace medicijn
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginView());
-
         }
 
         protected override async void OnStart()

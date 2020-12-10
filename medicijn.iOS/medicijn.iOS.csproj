@@ -147,6 +147,24 @@
     <BundleResource Include="Resources\FontAwesome5Brands-Regular.otf" />
     <BundleResource Include="Resources\FontAwesome5Pro-Solid.otf" />
     <BundleResource Include="Resources\SearchIcon.jpg" />
+    <BundleResource Include="Resources\Poppins-BlackItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-Black.ttf" />
+    <BundleResource Include="Resources\Poppins-ExtraBoldItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-ExtraBold.ttf" />
+    <BundleResource Include="Resources\Poppins-BoldItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-Bold.ttf" />
+    <BundleResource Include="Resources\Poppins-SemiBoldItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-SemiBold.ttf" />
+    <BundleResource Include="Resources\Poppins-MediumItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-Medium.ttf" />
+    <BundleResource Include="Resources\Poppins-Italic.ttf" />
+    <BundleResource Include="Resources\Poppins-Regular.ttf" />
+    <BundleResource Include="Resources\Poppins-LightItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-Light.ttf" />
+    <BundleResource Include="Resources\Poppins-ExtraLightItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-ExtraLight.ttf" />
+    <BundleResource Include="Resources\Poppins-ThinItalic.ttf" />
+    <BundleResource Include="Resources\Poppins-Thin.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Renderers\" />

@@ -3,20 +3,46 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:renderers="clr-namespace:medicijn.Renderers" 
     ios:Page.UseSafeArea="True"
+    NavigationPage.HasNavigationBar="False"
     x:Class="medicijn.Views.Patienten.ZoekPatientView">
     <ContentPage.Content>
-        <StackLayout Padding="20">
-            <StackLayout Orientation="Horizontal">
-                <Entry
+        <StackLayout Padding="80, 40">
+            <StackLayout>
+                <Label
+                    FontSize="35"
+                    Text="Zoek Patient"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    TextColor="{StaticResource Green}"/>
+                <StackLayout
+                    HeightRequest="1"
                     HorizontalOptions="FillAndExpand"
-                    Text="{Binding SearchValue}"
-                   />
+                    Margin="0, 15, 0, 25"
+                    BackgroundColor="{StaticResource LightLightGray}"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Frame HasShadow="False" HorizontalOptions="FillAndExpand" BackgroundColor="#F5F6F7">
+                    <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                        <Label
+                            FontFamily="{StaticResource FontAwesomeSolid}"
+                            VerticalOptions="CenterAndExpand"
+                            Text="&#xf484;" />
+                        <renderers:PaddingEntryRenderer
+                            HorizontalOptions="FillAndExpand"
+                            FontSize="20"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            Placeholder="Enter Name..."
+                            Background="Transparent" />
+                                
+                    </StackLayout>
+                </Frame>
                 <Button
                     Text="Zoek"
                     Command="{Binding SearchButtonPressedCommand}"/>
             </StackLayout>
-            <ListView
+            <!--<ListView
                 ItemsSource="{Binding Patients}"
                 SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"
                 HasUnevenRows="True">
@@ -32,7 +58,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

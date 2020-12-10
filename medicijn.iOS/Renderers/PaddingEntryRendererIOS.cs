@@ -20,6 +20,10 @@ namespace medicijn.iOS.Renderers
                 // do whatever you want to the UITextField here!
                 Control.RightView = new UIView(new CGRect(0, 0, 25, 0));
                 Control.RightViewMode = UITextFieldViewMode.Always;
+                Control.LeftView = new UIView(new CGRect(0, 0, 15, 0));
+                Control.LeftViewMode = UITextFieldViewMode.Always;
+                Control.Layer.BorderWidth = 0;
+                Control.BorderStyle = UITextBorderStyle.None;
             }
         }
     }
