@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="medicijn.Components.Loader">
+    <ContentView.Content>
+        <StackLayout Spacing="35">
+            <StackLayout 
+                x:Name="Container" 
+                Orientation="Horizontal" 
+                HorizontalOptions="Start" 
+                Spacing="25">
+                <Frame 
+                    BackgroundColor="{StaticResource Green}"  
+                    HasShadow="False"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="Start"
+                    CornerRadius="7.5"
+                    WidthRequest="15" 
+                    Padding="0"
+                    HeightRequest="15"/>
+                <Frame 
+                    BackgroundColor="{StaticResource Blue}" 
+                    Padding="0"
+                    VerticalOptions="CenterAndExpand"
+                    CornerRadius="7.5"
+                    HorizontalOptions="Start"
+                    HasShadow="False"
+                    WidthRequest="15" 
+                    HeightRequest="15"/>
+            </StackLayout>
+            <Label 
+                Text="Loading..." 
+                FontSize="12" 
+                HorizontalOptions="CenterAndExpand" 
+                FontFamily="{StaticResource PoppinsBold}"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

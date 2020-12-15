@@ -24,6 +24,7 @@ namespace medicijn.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Plugin.SQ_UIKit.iOS.RendererInitializer.Init();
+            XamEffects.iOS.Effects.Init();
 
             LoadApplication(new App());
 

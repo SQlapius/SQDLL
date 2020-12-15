@@ -22,6 +22,7 @@
     <PackageReference Include="Plugin.SQ_UIKit" Version="1.5.4.9" />
     <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="XamEffects" Version="1.6.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GZIDAL002\GZIDAL002.csproj" />
@@ -47,10 +48,29 @@
     <Folder Include="Databases\" />
     <Folder Include="ViewModels\Auth\" />
     <Folder Include="Views\Auth\" />
+    <Folder Include="Fonts\" />
+    <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">
       <DependentUpon>ZoekMedicijnView.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Fonts\FontAwesome5Brands-Regular.otf" />
+    <None Remove="Fonts\FontAwesome5Pro-Light.otf" />
+    <None Remove="Fonts\FontAwesome5Pro-Regular.otf" />
+    <None Remove="Fonts\FontAwesome5Pro-Solid.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\FontAwesome5Pro-Solid.otf" />
+    <EmbeddedResource Include="Fonts\FontAwesome5Pro-Regular.otf" />
+    <EmbeddedResource Include="Fonts\FontAwesome5Pro-Light.otf" />
+    <EmbeddedResource Include="Fonts\FontAwesome5Brands-Regular.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Components\IconButton.xaml">
+      <DependentUpon>IconButton.xaml</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

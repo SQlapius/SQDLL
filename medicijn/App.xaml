@@ -28,6 +28,10 @@
             <On Platform="iOS" Value="FontAwesome5Free-Regular" /> 
         </OnPlatform>
 
+        <OnPlatform x:TypeArguments="x:String" x:Key="FaSolid">
+            <On Platform="iOS" Value="FontAwesomeSolid" />
+        </OnPlatform>
+
         <!-- Fonts Poppins -->
         <OnPlatform x:TypeArguments="x:String" x:Key="PoppinsBold">
             <On Platform="iOS" Value="Poppins-Bold" />

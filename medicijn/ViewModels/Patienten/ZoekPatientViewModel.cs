@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Input;
 using GZIDAL002.Patienten;
 using GZIDAL002.Patienten.Models;
+using medicijn.Models;
 using medicijn.Views.Patienten;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -16,6 +19,8 @@ namespace medicijn.ViewModels.Patienten
         PatientService _patientService;
 
         public ICommand SearchButtonPressedCommand { get; }
+        public ICommand ChangeSearchFilterCommand { get; }
+        public ICommand ClickedOnFilterItemCommand { get; }
 
         public string SearchValue { get; set; }
 
@@ -42,11 +47,82 @@ namespace medicijn.ViewModels.Patienten
             }
         }
 
+        private IList<DropdownItem> _dropdownItems;
+        public IList<DropdownItem> DropdownItems
+        {
+            get => _dropdownItems;
+            set
+            {
+                _dropdownItems = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _dropdownIsOpen;
+        public bool DropdownIsOpen
+        {
+            get => _dropdownIsOpen;
+            set
+            {
+                _dropdownIsOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private DropdownItem _selectedFilterItem;
+        public DropdownItem SelectedFilterItem
+        {
+            get => _selectedFilterItem;
+            set
+            {
+                _selectedFilterItem = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isLoading;
+        public bool IsLoading
+        {
+            get => _isLoading;
+            set
+            {
+                _isLoading = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ZoekPatientViewModel()
         {
             _patientService = new PatientService();
 
+            DropdownItems = new List<DropdownItem>
+            {
+                new DropdownItem()
+                {
+                    Naam = "Naam",
+                    Icon = "\uf007",
+                    Id = 0
+                },
+                new DropdownItem()
+                {
+                    Naam = "Sedula",
+                    Icon = "\uf2c2",
+                    Id = 1
+                },
+                new DropdownItem()
+                {
+                    Naam = "Geboortedatum",
+                    Icon = "\uf1fd",
+                    Id = 2
+                }
+            };
+
+
+            SelectedFilterItem = DropdownItems[1];
+
             SearchButtonPressedCommand = new Command(SearchPatient);
+            ChangeSearchFilterCommand = new Command(() => DropdownIsOpen = !DropdownIsOpen);
+            ClickedOnFilterItemCommand = new Command<int>(ClickedOnFilterItem);
         }
 
         public ZoekPatientViewModel(INavigation navigation) : this()
@@ -56,15 +132,29 @@ namespace medicijn.ViewModels.Patienten
 
         private async void SearchPatient()
         {
+            IsLoading = true;
+
             Patients = new ObservableCollection<Patient>(
                 await _patientService.ZoekPatient(119, SearchValue)
             );
+
+            IsLoading = false;
         }
 
         private async void NavigateToPatientView(Patient patient)
         {
+            IsLoading = true;
+
             var pat = await _patientService.GetPatientDetailed(patient.VesId, patient.PatId);
             await _navigation.PushAsync(new ViewPatientView(pat));
+
+            IsLoading = false;
+        }
+
+        private void ClickedOnFilterItem(int id)
+        {
+            DropdownIsOpen = false;
+            SelectedFilterItem = DropdownItems.Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }

@@ -24,6 +24,7 @@ namespace medicijn.Views.Patienten
             Overlay.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
             Navigator.Instance.SetMainPage(ok);
 
+
             BackButton.Children.Insert(0, new IconLabel(IconLabel.Icon.Chevron_Left, IconLabel.Type.Solid)
             {
                 FontSize = 20,
@@ -36,6 +37,8 @@ namespace medicijn.Views.Patienten
         public ViewPatientView(Patient patient) : this()
         {
             BindingContext = new ViewPatientViewModel(patient);
+
+            Navigator.Instance.Add(new Models.NavPage("", new PatientDossierView(patient)));
         }
 
         async void Overlay_PropertyChanged(System.Object sender, PropertyChangedEventArgs e)

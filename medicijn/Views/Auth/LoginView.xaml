@@ -4,26 +4,87 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:converters="clr-namespace:medicijn.Converters" 
-    xmlns:sq_uikit="clr-namespace:Plugin.SQ_UIKit;assembly=Plugin.SQ_UIKit"
+    xmlns:sq_uikit="clr-namespace:Plugin.SQ_UIKit;assembly=Plugin.SQ_UIKit" xmlns:renderers="clr-namespace:medicijn.Renderers"
     x:Class="medicijn.Views.Auth.LoginView">
     <ContentPage.Content>
-        <StackLayout Padding="0, 20">
-            <StackLayout IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
-                <sq_uikit:MaterialEntry 
-                    Icon="User" 
-                    Text="{Binding Username}"
-                    IconType="Regular" 
-                    Placeholder="Username"/>                
-
-                <sq_uikit:MaterialEntry 
-                    Icon="Key" 
-                    IsPassword="True"
-                    Text="{Binding Password}"
-                    IconType="Regular" 
-                    Placeholder="Username"/>                
-                <Button Text="Login" Command="{Binding LoginButtonPressedCommand}"/>
+        <StackLayout>
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="Center" IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
+                    <StackLayout WidthRequest="450" Spacing="40">
+                        <Label
+                            TextColor="#324A53"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            FontSize="32" >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span 
+                                        Text="Welcome Back, "/> 
+                                    <Span 
+                                        TextColor="#019999"
+                                        Text="Londy"/> 
+                                    <Span 
+                                        Text="!"/> 
+                                </FormattedString> 
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame HasShadow="False" HeightRequest="16" HorizontalOptions="FillAndExpand" BackgroundColor="#F5F6F7">
+                            <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                                <Label
+                                    FontFamily="FaSolid"
+                                    VerticalOptions="CenterAndExpand"
+                                    Text="&#xf007;" />
+                                <renderers:PaddingEntryRenderer
+                                    HorizontalOptions="FillAndExpand"
+                                    FontSize="14"
+                                    FontFamily="{StaticResource PoppinsBold}"
+                                    Placeholder="Enter Username..."
+                                    Background="Transparent" />
+                            </StackLayout>
+                        </Frame>
+                        <Frame HasShadow="False" HeightRequest="16" HorizontalOptions="FillAndExpand" BackgroundColor="#F5F6F7">
+                            <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                                <Label
+                                    FontFamily="FaSolid"
+                                    VerticalOptions="CenterAndExpand"
+                                    Text="&#xf084;" />
+                                <renderers:PaddingEntryRenderer
+                                    HorizontalOptions="FillAndExpand"
+                                    IsPassword="True"
+                                    FontFamily="{StaticResource PoppinsBold}"
+                                    Placeholder="**********"
+                                    Background="Transparent" />
+                            </StackLayout>
+                        </Frame>
+                        <Button 
+                            TextColor="White" 
+                            Padding="0, 15"
+                            BackgroundColor="{StaticResource Green}" 
+                            FontFamily="{StaticResource PoppinsBold}"
+                            Text="Login" 
+                            Command="{Binding LoginButtonPressedCommand}"/>
+                    </StackLayout>
+                    <Label
+                        Margin="0, 5, 0, 0"
+                        TextColor="#324A53"
+                        FontFamily="{StaticResource PoppinsSemiBold}"
+                        FontSize="14" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span 
+                                    Text="Trouble logging in? "/> 
+                                <Span 
+                                    TextColor="{StaticResource Green}"
+                                    Text="Click Here!"/> 
+                                <Span 
+                                    Text="!"/> 
+                            </FormattedString> 
+                        </Label.FormattedText>
+                    </Label>
             </StackLayout>
-            <ActivityIndicator IsRunning="True" IsVisible="{Binding IsLoading}"/>
+            <ActivityIndicator 
+                IsRunning="True" 
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand" 
+                IsVisible="{Binding IsLoading}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

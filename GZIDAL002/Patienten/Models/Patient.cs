@@ -23,6 +23,8 @@ namespace GZIDAL002.Patienten.Models
         [JsonProperty("sex")]
         public string Sex { get; set; }
 
+        public string SexFull => Sex == "V" ? "Female" : "Male";
+
         [JsonProperty("vesId")]
         public int VesId { get; set; }
 

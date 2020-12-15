@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+    x:Class="medicijn.Components.IconButton"
+    VerticalOptions="Start"
+    HorizontalOptions="Start">
+    <ContentView.Content>
+        <xe:BorderView x:Name="ok" CornerRadius="8"  xe:TouchEffect.Color="Black">
+            <xe:BorderView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </xe:BorderView.GestureRecognizers>
+            <Frame
+                x:Name="buttonContainer"
+                Padding="15, 8"
+                BackgroundColor="Transparent"
+                HasShadow="False"
+                BorderColor="Black"
+                CornerRadius="8">
+                <StackLayout Spacing="8" Orientation="Horizontal">
+                    <Label
+                        x:Name="buttonIcon"
+                        FontFamily="FaSolid"
+                        Text="{Binding Icon}"
+                        VerticalOptions="CenterAndExpand"
+                        TextColor="Black" />
+                    <Label
+                        VerticalOptions="CenterAndExpand"
+                        x:Name="buttonText"
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontAttributes="Bold"
+                        FontSize="16" />
+                </StackLayout>
+            </Frame>
+        </xe:BorderView>
+    </ContentView.Content>
+</ContentView>

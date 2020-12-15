@@ -9,6 +9,11 @@ using medicijn.Views.Recepten;
 using medicijn.Utils;
 using medicijn.Views.Auth;
 
+[assembly: ExportFont("FontAwesome5Pro-Light.otf", Alias = "FaLight")]
+[assembly: ExportFont("FontAwesome5Pro-Regular.otf", Alias = "FaRegular")]
+[assembly: ExportFont("FontAwesome5Pro-Solid.otf", Alias = "FaSolid")]
+[assembly: ExportFont("FontAwesome5Brands-Regular.otf", Alias = "FaBrands")]
+
 namespace medicijn
 {
     public partial class App : Application
