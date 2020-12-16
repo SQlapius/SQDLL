@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using medicijn.Views.Main;
 using medicijn.Views.Patienten;
 using Xamarin.Forms;
 
@@ -35,7 +36,7 @@ namespace medicijn.ViewModels.Auth
         {
             IsLoading = true;
             await Task.Delay(2000);
-            Application.Current.MainPage = new NavigationPage(new ZoekPatientView());
+            Application.Current.MainPage = new NavigationPage(new HomeView());
             IsLoading = false;
         }
     }

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+    xmlns:components="clr-namespace:medicijn.Components"
+    xmlns:converters="clr-namespace:medicijn.Converters"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="medicijn.Views.Main.HomeView">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!-- Upper Right Circle -->
+            <Frame
+                Padding="0"
+                WidthRequest="300"
+                HeightRequest="300"
+                HasShadow="False"
+                CornerRadius="150"
+                AbsoluteLayout.LayoutBounds="1.19, -0.25, AutoSize, AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="{StaticResource Green}"
+                Opacity="0.85"/>
+
+            <!-- Bottom Left CIrcle-->
+            <Frame
+                Padding="0"
+                WidthRequest="100"
+                HeightRequest="100"
+                HasShadow="False"
+                CornerRadius="50"
+                AbsoluteLayout.LayoutBounds="-0.05, 1.07, AutoSize, AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BackgroundColor="{StaticResource Blue}"
+                Opacity="0.80"/>
+
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                Padding="100, 100, 100, 50">
+                <Label
+                    FontSize="45"
+                    FontFamily="{StaticResource PoppinsBold}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Welcome" />
+                            <Span Text=" " />
+                            <Span TextColor="{StaticResource Green}" Text="Londy" />
+                            <Span TextColor="{StaticResource Green}" Text="," />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label
+                    Text="Actions"
+                    Margin="0, 25, 0, 10"
+                    FontSize="20"
+                    FontFamily="{StaticResource PoppinsBold}" />
+                <StackLayout
+                    BindableLayout.ItemsSource="{Binding ActionItems}"
+                    HeightRequest="500"
+                    Spacing="30"
+                    Orientation="Horizontal">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                                <components:CostumFrame
+                                    ShadowOpacity="0.5"
+                                    Elevation="10"
+                                    WidthRequest="115"
+                                    HeightRequest="105"
+                                    CornerRadius="8"
+                                    Padding="0">
+                                    <xe:BorderView
+                                        BackgroundColor="{Binding Color}"
+                                        xe:Commands.Tap="{Binding Command}"
+                                        CornerRadius="8"
+                                        xe:TouchEffect.Color="Black">
+                                        <StackLayout
+                                            Spacing="8"
+                                            Padding="10">
+                                            <StackLayout Spacing="10" VerticalOptions="CenterAndExpand">
+                                                <Label
+                                                    HorizontalTextAlignment="Center"
+                                                    FontFamily="FaSolid"
+                                                    FontSize="30"
+                                                    Text="{Binding Icon}"
+                                                    VerticalOptions="Center"
+                                                    TextColor="White" />
+                                                <Label
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HorizontalTextAlignment="Center"
+                                                    Text="{Binding Title}"
+                                                    TextColor="White"
+                                                    FontFamily="{StaticResource PoppinsBold}"
+                                                    FontAttributes="Bold"
+                                                    FontSize="14" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </xe:BorderView>
+                                </components:CostumFrame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Label
+                    Text="Recente Patienten"
+                    Margin="0, 25, 0, 10"
+                    FontSize="20"
+                    FontFamily="{StaticResource PoppinsBold}" />
+                <ListView
+                    x:Name="PatientsList"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding RecentPatients}"
+                    SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout 
+                                            VerticalOptions="FillAndExpand"
+                                            WidthRequest="3.5" 
+                                            BackgroundColor="{Binding ., Converter={converters:BackgroundColorConverter}, ConverterParameter={x:Reference PatientsList}}"/>
+                                        <StackLayout Padding="8" Spacing="3">
+                                            <StackLayout VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                                <Label
+                                                    FontFamily="{StaticResource PoppinsBold}"
+                                                    VerticalTextAlignment="Center"
+                                                    Text="{Binding Naam}"  />
+                                                <Label 
+                                                    VerticalTextAlignment="Center"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    TextColor="{StaticResource Green}"
+                                                    FontFamily="{StaticResource PoppinsMedium}"
+                                                    FontSize="12"
+                                                    Text="{Binding Sedula}" />
+                                            </StackLayout>
+                                            <Label 
+                                                TextColor="{StaticResource Green}"
+                                                FontSize="12"
+                                                FontFamily="{StaticResource PoppinsSemiBold}"
+                                                Text="{Binding SexFull}"/>
+                                            <Label 
+                                                TextColor="{StaticResource LightGray}"
+                                                FontSize="12"
+                                                FontFamily="{StaticResource PoppinsMedium}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="SQpatId: "/> 
+                                                        <Span Text="{Binding SqPatId}"/> 
+                                                    </FormattedString> 
+                                                </Label.FormattedText> 
+                                            </Label>
+                                        </StackLayout>
+                                        <Label
+                                            Text="&#xf054;"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            FontFamily="FaSolid" />
+                                    </StackLayout>
+                                    <StackLayout 
+                                        HeightRequest="1" 
+                                        Margin="0, 6"
+                                        HorizontalOptions="FillAndExpand" 
+                                        BackgroundColor="{StaticResource LightLightGray}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

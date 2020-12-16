@@ -50,6 +50,8 @@
     <Folder Include="Views\Auth\" />
     <Folder Include="Fonts\" />
     <Folder Include="Components\" />
+    <Folder Include="Views\Main\" />
+    <Folder Include="ViewModels\Main\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">

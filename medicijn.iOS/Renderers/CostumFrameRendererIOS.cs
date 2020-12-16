@@ -38,7 +38,7 @@ namespace medicijn.iOS.Renderers
         {
             var costumFrame = (CostumFrame)Element;
             Layer.ShadowColor = UIColor.DarkGray.CGColor;
-            Layer.ShadowOpacity = 0.2f;
+            Layer.ShadowOpacity = costumFrame.ShadowOpacity;
             Layer.ShadowRadius = costumFrame.Elevation;
             Layer.ShadowOffset = new SizeF(3, 5);
 
