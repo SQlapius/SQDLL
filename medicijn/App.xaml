@@ -8,6 +8,7 @@
         <Color x:Key="DarkBlue">#324A53</Color>
         <Color x:Key="LightGray">#B2B2B2</Color>
         <Color x:Key="DarkGray">#707070</Color>
+        <Color x:Key="Red">#E52828</Color>
         <Color x:Key="Blue">#1EA8dE</Color>
         <Color x:Key="LightLightGray">#F8F8F8</Color>
         <Color x:Key="Green">#019999</Color>

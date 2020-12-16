@@ -76,35 +76,6 @@
             </ScrollView>
             <Frame Grid.Row="1" BackgroundColor="White" CornerRadius="15" HasShadow="False" Grid.Column="1">
                 <StackLayout>
-                    <StackLayout IsVisible="{Binding Source={x:Static local:Navigator.Instance}, Path=ShowHeader}" Margin="0, 0, 0, 15">
-                        <!--<StackLayout.Triggers>
-                            <DataTrigger 
-                                TargetType="StackLayout" 
-                                Value=""
-                                Binding="{Binding Source={x:Static local:Navigator.Instance}, Path=CurrentTitle}"> 
-                                <Setter Property="IsVisible" Value="False"/>
-                                </DataTrigger>
-                        </StackLayout.Triggers>-->
-                        <StackLayout Orientation="Horizontal" Margin="0, 15">
-                            <StackLayout
-                                WidthRequest="40"
-                                IsVisible="{Binding Source={x:Static local:Navigator.Instance}, Path=ShowBackButton}"
-                                HeightRequest="40" 
-                                x:Name="BackButton"
-                                VerticalOptions="CenterAndExpand" 
-                                HorizontalOptions="Start">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding PressedBackButton}" />
-                                </StackLayout.GestureRecognizers>
-                            </StackLayout>
-                            <Label 
-                                FontSize="25" 
-                                VerticalTextAlignment="Center"
-                                FontAttributes="Bold" 
-                                Text="{Binding Source={x:Static local:Navigator.Instance}, Path=CurrentTitle}"/>
-                        </StackLayout>
-                        <BoxView HeightRequest="1" HorizontalOptions="FillAndExpand" Color="#D3D3D3"/>
-                    </StackLayout>
                     <ContentView VerticalOptions="FillAndExpand" x:Name="ok">
                         <StackLayout>
                             <StackLayout Orientation="Horizontal">

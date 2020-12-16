@@ -23,15 +23,6 @@ namespace medicijn.Views.Patienten
             InitializeComponent();
             Overlay.BackgroundColor = Color.FromRgba(0, 0, 0, 0.5);
             Navigator.Instance.SetMainPage(ok);
-
-
-            BackButton.Children.Insert(0, new IconLabel(IconLabel.Icon.Chevron_Left, IconLabel.Type.Solid)
-            {
-                FontSize = 20,
-                TextColor = Color.Black,
-                HorizontalOptions = LayoutOptions.Center,
-                VerticalOptions = LayoutOptions.CenterAndExpand
-            });
         }
 
         public ViewPatientView(Patient patient) : this()
@@ -41,7 +32,7 @@ namespace medicijn.Views.Patienten
             Navigator.Instance.Add(new Models.NavPage("", new PatientDossierView(patient)));
         }
 
-        async void Overlay_PropertyChanged(System.Object sender, PropertyChangedEventArgs e)
+        async void Overlay_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if(e.PropertyName == "IsVisible") {
                 if(Modal.Instance.IsVisible)
