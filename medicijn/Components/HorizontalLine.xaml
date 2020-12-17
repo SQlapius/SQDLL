@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="medicijn.Components.HorizontalLine">
+    <ContentView.Content>
+        <BoxView
+            HeightRequest="1"
+            BackgroundColor="{StaticResource LightLightGray}"
+            HorizontalOptions="FillAndExpand"/>
+    </ContentView.Content>
+</ContentView>

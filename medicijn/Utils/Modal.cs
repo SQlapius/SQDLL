@@ -7,7 +7,6 @@ namespace medicijn.Utils
 
         public static Modal Instance { get; private set; }
 
-
         private bool _isVisible;
         public bool IsVisible
         {
@@ -30,8 +29,6 @@ namespace medicijn.Utils
             }
         }
 
-
-
         private Modal()
         {
         }
@@ -39,6 +36,17 @@ namespace medicijn.Utils
         static Modal() 
         { 
             Instance = new Modal(); 
+        }
+
+        public void OpenModal(ContentView view)
+        {
+            IsVisible = true;
+            Content = view;
+        }
+
+        public void CloseModal()
+        {
+            IsVisible = false;
         }
     }
 }

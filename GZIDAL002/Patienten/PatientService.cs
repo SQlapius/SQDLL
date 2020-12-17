@@ -22,12 +22,22 @@ namespace GZIDAL002.Patienten
             _api = new APIHelper();
         }
 
-        public async Task<List<Patient>> ZoekPatient(int vesId, string sedula)
+        public async Task<List<Patient>> ZoekPatient(int vesId, string zoek, int soort)
         {
             try
             {
-                var url = $"{API_URL}/sqz-v0/patient/{vesId:D4}{sedula}";
-                var response = await _api.Get<ZoekPatientResponse>(url);
+                var url = $"{API_URL}/sqz-v2/patient";
+                var data = new Dictionary<string, dynamic>()
+                {
+                    { "vesId", vesId },
+                    { "zoek", zoek },
+                    { "soort", soort }
+                };
+                Debug.WriteLine(JsonConvert.SerializeObject(data));
+                var response = await _api.Post<ZoekPatientResponse>(
+                    url,
+                    data
+                );
 
                 return response.Patienten;
             }

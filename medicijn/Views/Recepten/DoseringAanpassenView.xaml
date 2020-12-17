@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:components="clr-namespace:medicijn.Components"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="medicijn.Views.Recepten.DoseringAanpassenView">
+    <ContentView.Content>
+        <Frame
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            HeightRequest="650"
+            WidthRequest="850">
+            <StackLayout Padding="{StaticResource DefaultPagePadding}" Spacing="0">
+                <Label 
+                    FontFamily="{StaticResource PoppinsBold}"
+                    FontSize="{StaticResource TitleFontSize}"
+                    TextColor="{StaticResource Green}"
+                    Text="Dossering Aanpassen" />
+                <StackLayout Margin="0, 0, 5, 0" Orientation="Horizontal">
+                    <Label
+                        Text="Patient: "
+                        FontSize="16"
+                        FontFamily="{StaticResource PoppinsBold}" />
+                    <Label
+                        FontFamily="{StaticResource PoppinsSemiBold}"
+                        FontSize="16"
+                        TextColor="{StaticResource DarkGray}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Patient.Naam, StringFormat='{0:N}, '}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding Patient.SexFull, StringFormat='{0:N},'}" />
+                                <Span Text=" " />
+                                <Span
+                                    TextColor="{StaticResource Blue}"
+                                    Text="{Binding Patient.Sedula, StringFormat='#{0:N}'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <components:HorizontalLine Margin="0, 15" />
+                <Label
+                    Text="Geneesmiddel:"
+                    FontSize="21"
+                    FontFamily="{StaticResource PoppinsBold}" />
+                <Label
+                    FontFamily="{StaticResource PoppinsMedium}"
+                    FontSize="13"
+                    Text="Ibuprofren Teve tablet  200mg"
+                    TextColor="{StaticResource DarkGray}"/>
+                <Label
+                    FontFamily="{StaticResource PoppinsMedium}"
+                    Text="#1234567"
+                    FontSize="12"
+                    TextColor="{StaticResource Green}"/>
+                <components:HorizontalLine Margin="0, 15, 0, 0" />
+                <StackLayout Padding="0, 10" Orientation="Horizontal" Spacing="0">
+                    <Label 
+                        VerticalOptions="CenterAndExpand" 
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        WidthRequest="150" 
+                        Text="Gebruiksadvies:"/> 
+                    <Label 
+                        VerticalOptions="CenterAndExpand" 
+                        TextColor="{StaticResource DarkBlue}"
+                        FontFamily="{StaticResource PoppinsMedium}"
+                        FontSize="12"
+                        Text="Kaya San Hose 3"/> 
+                </StackLayout>
+                <components:HorizontalLine />
+                <StackLayout Padding="0, 10" Orientation="Horizontal" Spacing="0">
+                    <Label 
+                        VerticalOptions="CenterAndExpand" 
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        WidthRequest="150" 
+                        Text="Doserings advies:"/> 
+                    <Label 
+                        VerticalOptions="CenterAndExpand" 
+                        TextColor="{StaticResource DarkBlue}"
+                        FontFamily="{StaticResource PoppinsMedium}"
+                        FontSize="12"
+                        Text="Kaya San Hose 3"/> 
+                </StackLayout>
+                <components:HorizontalLine />
+                <StackLayout Padding="0, 10" Orientation="Horizontal" Spacing="0">
+                    <Label 
+                        VerticalOptions="CenterAndExpand" 
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        WidthRequest="150" 
+                        Text="Vorige advies:"/> 
+                    <Label 
+                        VerticalOptions="CenterAndExpand" 
+                        TextColor="{StaticResource DarkBlue}"
+                        FontFamily="{StaticResource PoppinsMedium}"
+                        FontSize="12"
+                        Text="Kaya San Hose 3"/> 
+                </StackLayout>
+                <components:HorizontalLine Margin="0, 0, 0, 15" />
+                <Label
+                    Text="Dosering"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    FontSize="14"/>
+                <StackLayout Spacing="20" Orientation="Horizontal">
+                    <Frame
+                        HasShadow="False"
+                        Padding="0"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        CornerRadius="10"
+                        BackgroundColor="#F8F8F8">
+                        <Label
+                            VerticalOptions="FillAndExpand"
+                            FontSize="14"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            TextColor="{StaticResource DarkGray}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="-" />
+                    </Frame>
+                    <Label
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        Text="1 Tablet" />
+                    <Frame
+                        HasShadow="False"
+                        Padding="0"
+                        WidthRequest="20"
+                        HeightRequest="20"
+                        CornerRadius="10"
+                        BackgroundColor="#F8F8F8">
+                        <Label
+                            VerticalOptions="FillAndExpand"
+                            FontSize="14"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            TextColor="{StaticResource DarkGray}"
+                            HorizontalOptions="FillAndExpand"
+                            Text="+" />
+                    </Frame>
+                </StackLayout>
+                <Label
+                    Text="Herhaald"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    FontSize="14"/>
+                <components:SelectBoxGroup Options="{Binding Options}" SelectedId="{Binding SelectedId}"  />
+                <Frame
+                    Padding="15, 10"
+                    CornerRadius="20"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    HasShadow="False" BackgroundColor="{StaticResource LightLightGray}">
+                    <Label
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        TextColor="#B2B2B2"
+                        Text="Elke Dag" />
+                </Frame>
+                 <Frame
+                    Padding="15, 10"
+                    CornerRadius="20"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    HasShadow="False" BackgroundColor="{StaticResource LightLightGray}">
+                    <Label
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        TextColor="#B2B2B2"
+                        Text="Om De Dag" />
+                </Frame>
+                 <Frame
+                    Padding="15, 10"
+                    CornerRadius="20"
+                    VerticalOptions="Start"
+                    HorizontalOptions="Start"
+                    HasShadow="False" BackgroundColor="{StaticResource LightLightGray}">
+                    <Label
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        TextColor="#B2B2B2"
+                        Text="Specifieke Dagen" />
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

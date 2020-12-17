@@ -36,6 +36,7 @@
                             <renderers:PaddingEntryRenderer
                                 HorizontalOptions="FillAndExpand"
                                 FontSize="14"
+                                Text="{Binding SearchValue}"
                                 FontFamily="{StaticResource PoppinsBold}"
                                 Placeholder="Enter Name..."
                                 Background="Transparent" />

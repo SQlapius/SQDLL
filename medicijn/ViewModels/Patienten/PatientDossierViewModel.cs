@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Windows.Input;
 using GZIDAL002.Patienten.Models;
 using medicijn.Utils;
+using medicijn.Views.Recepten;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 
@@ -26,6 +27,8 @@ namespace medicijn.ViewModels.Patienten
         public PatientDossierViewModel()
         {
             BackButtonPressedCommand = new Command(BackButtonPressed);
+
+            //Modal.Instance.OpenModal(new DoseringAanpassenView());
         }
 
         public PatientDossierViewModel(Patient patient) : this()
