@@ -102,25 +102,6 @@ namespace medicijn.ViewModels.Recepten
             CIInfoButtonPressedCommand = new Command<ContraIndicatie>(NavigateToCIInfoView);
             IAInfoButtonPressedCommand = new Command<Interactie>(NavigateToIAInfoView);
             AddButtonPressedCommand = new Command(AddButtonPressed);
-
-            Hi = new List<string>()
-            {
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-            };
-
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()
