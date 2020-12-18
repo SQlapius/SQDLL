@@ -53,10 +53,11 @@ namespace GZIDAL002.Recepten
                     Medicijn = medicijn,
                     Aantal = aantal,
                     Dosering = dosering,
+                    Id = recept.ReceptRegels.Count() + 1,
                     ContraIndicaties = regel.ContraIndicaties ?? new List<ContraIndicatie>(),
                     Interacties = regel.Interacties ?? new List<Interactie>(),
                     OngewensteMiddelen = regel.OngewensteMiddelen ?? new List<OngewensteMiddel>()
-                });
+                }); ;
             }
 
             return recept;

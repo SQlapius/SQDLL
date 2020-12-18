@@ -29,7 +29,7 @@ namespace medicijn.Views.Patienten
         {
             BindingContext = new ViewPatientViewModel(patient);
 
-            Navigator.Instance.Add(new Models.NavPage("", new PatientDossierView(patient)));
+            Navigator.Instance.Add(new Models.NavPage("", new MakeReceptView(patient)));
         }
 
         async void Overlay_PropertyChanged(object sender, PropertyChangedEventArgs e)
