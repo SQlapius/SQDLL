@@ -99,24 +99,23 @@ namespace medicijn.ViewModels.Patienten
             {
                 new DropdownItem()
                 {
+                    Naam = "PatId",
+                    Icon = "\uf1fd",
+                    Id = 1
+                },
+                new DropdownItem()
+                {
                     Naam = "Naam",
                     Icon = "\uf007",
-                    Id = 0
+                    Id = 2,
                 },
                 new DropdownItem()
                 {
                     Naam = "Sedula",
                     Icon = "\uf2c2",
-                    Id = 1
-                },
-                new DropdownItem()
-                {
-                    Naam = "Geboortedatum",
-                    Icon = "\uf1fd",
-                    Id = 2
+                    Id = 3
                 }
             };
-
 
             SelectedFilterItem = DropdownItems[1];
 
@@ -135,7 +134,11 @@ namespace medicijn.ViewModels.Patienten
             IsLoading = true;
 
             Patients = new ObservableCollection<Patient>(
-                await _patientService.ZoekPatient(119, SearchValue)
+                await _patientService.ZoekPatient(
+                    119,
+                    SearchValue,
+                    SelectedFilterItem.Id
+                )
             );
 
             IsLoading = false;

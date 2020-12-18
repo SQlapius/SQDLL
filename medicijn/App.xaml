@@ -4,6 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="medicijn.App">
     <Application.Resources>
+
+        <!-- Default Sizes -->
+        <x:Double x:Key="TitleFontSize">35</x:Double>
+        <Thickness x:Key="DefaultPagePadding">10,16</Thickness>
+
         <!-- Colors -->
         <Color x:Key="DarkBlue">#324A53</Color>
         <Color x:Key="LightGray">#B2B2B2</Color>
