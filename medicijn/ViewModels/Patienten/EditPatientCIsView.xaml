@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:medicijn.Components"
+    xmlns:renderers="clr-namespace:medicijn.Renderers"
+    xmlns:converters="clr-namespace:medicijn.Converters"
+    x:Class="medicijn.ViewModels.Patienten.EditPatientCIsView">
+    <ContentView.Content>
+        <Frame
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand"
+            HeightRequest="650"
+            WidthRequest="850">
+            <StackLayout Padding="{StaticResource DefaultPagePadding}" Spacing="0">
+                <Label 
+                    FontFamily="{StaticResource PoppinsBold}"
+                    FontSize="{StaticResource TitleFontSize}"
+                    TextColor="{StaticResource Green}"
+                    Text="Aandoeningen(CIs) Aanpassen" />
+                <StackLayout Margin="0, 0, 5, 0" Orientation="Horizontal">
+                    <Label
+                        Text="Patient: "
+                        FontSize="16"
+                        FontFamily="{StaticResource PoppinsBold}" />
+                    <Label
+                        FontFamily="{StaticResource PoppinsSemiBold}"
+                        FontSize="16"
+                        TextColor="{StaticResource DarkGray}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Patient.Naam, StringFormat='{0:N}, '}" />
+                                <Span Text=" " />
+                                <Span Text="{Binding Patient.SexFull, StringFormat='{0:N},'}" />
+                                <Span Text=" " />
+                                <Span
+                                    TextColor="{StaticResource Blue}"
+                                    Text="{Binding Patient.Sedula, StringFormat='#{0:N}'}" />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <components:HorizontalLine Margin="0, 15" />
+                
+                <StackLayout Orientation="Horizontal">
+                    <Frame HasShadow="False" HeightRequest="16" HorizontalOptions="FillAndExpand" BackgroundColor="#F5F6F7">
+                        <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                            <Label
+                                FontFamily="FaSolid"
+                                VerticalOptions="CenterAndExpand"
+                                Text="&#xf002;" />
+                            <renderers:PaddingEntryRenderer
+                                HorizontalOptions="FillAndExpand"
+                                FontSize="14"
+                                Text="{Binding SearchValue}"
+                                FontFamily="{StaticResource PoppinsBold}"
+                                Placeholder="Enter Name..."
+                                Background="Transparent" />
+                        </StackLayout>
+                    </Frame>
+                    <components:IconButton
+                        Icon="&#xf002;"
+                        ButtonPadding="35, 0"
+                        Fill="{StaticResource Blue}"
+                        VerticalOptions="FillAndExpand"
+                        Text="Zoek"
+                        Command="{Binding SearchButtonPressedCommand}"/>
+                </StackLayout>
+
+                <Label 
+                    FontFamily="{StaticResource PoppinsMedium}"
+                    Margin="0, 27">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Patients.Count}"/> 
+                            <Span Text="Actieve Aandoeningen"/> 
+                        </FormattedString> 
+                    </Label.FormattedText> 
+                </Label>
+
+                <ListView
+                    x:Name="PatientsList"
+                    IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}"
+                    SeparatorVisibility="None"
+                    ItemsSource="{Binding Patients}"
+                    SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"
+                    HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <StackLayout 
+                                            VerticalOptions="FillAndExpand"
+                                            WidthRequest="3.5" 
+                                            BackgroundColor="{Binding ., Converter={converters:BackgroundColorConverter}, ConverterParameter={x:Reference PatientsList}}"/>
+                                        <StackLayout Padding="8" Spacing="3">
+                                            <StackLayout VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                                <Label
+                                                    FontFamily="{StaticResource PoppinsBold}"
+                                                    VerticalTextAlignment="Center"
+                                                    Text="{Binding Naam}"  />
+                                                <Label 
+                                                    VerticalTextAlignment="Center"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    TextColor="{StaticResource Green}"
+                                                    FontFamily="{StaticResource PoppinsMedium}"
+                                                    FontSize="12"
+                                                    Text="{Binding Sedula}" />
+                                            </StackLayout>
+                                            <Label 
+                                                TextColor="{StaticResource Green}"
+                                                FontSize="12"
+                                                FontFamily="{StaticResource PoppinsSemiBold}"
+                                                Text="{Binding SexFull}"/>
+                                            <Label 
+                                                TextColor="{StaticResource LightGray}"
+                                                FontSize="12"
+                                                FontFamily="{StaticResource PoppinsMedium}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="SQpatId: "/> 
+                                                        <Span Text="{Binding SqPatId}"/> 
+                                                    </FormattedString> 
+                                                </Label.FormattedText> 
+                                            </Label>
+                                        </StackLayout>
+                                        <Label
+                                            Text="&#xf054;"
+                                            HorizontalOptions="EndAndExpand"
+                                            VerticalOptions="CenterAndExpand"
+                                            FontFamily="FaSolid" />
+                                    </StackLayout>
+                                    <StackLayout 
+                                        HeightRequest="1" 
+                                        Margin="0, 6"
+                                        HorizontalOptions="FillAndExpand" 
+                                        BackgroundColor="{StaticResource LightLightGray}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

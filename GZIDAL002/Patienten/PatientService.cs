@@ -33,7 +33,6 @@ namespace GZIDAL002.Patienten
                     { "zoek", zoek },
                     { "soort", soort }
                 };
-                Debug.WriteLine(JsonConvert.SerializeObject(data));
                 var response = await _api.Post<ZoekPatientResponse>(
                     url,
                     data

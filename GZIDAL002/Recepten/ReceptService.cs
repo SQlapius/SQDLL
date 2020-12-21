@@ -116,6 +116,27 @@ namespace GZIDAL002.Recepten
             }
         }
 
+        public async Task<bool> GetAllCI()
+        {
+            try
+            {
+                var url = $"{API_URL}/sqz-v2/lov";
+                var body = new Dictionary<string, dynamic>
+                {
+                    { "soort", 1 }
+                };
+
+                var response = await _api.Post<GetCIInfoTekstResponse>(url, body);
+
+                return false;
+
+            }
+            catch (Exception _)
+            {
+                return false;
+            }
+        }
+
         public async Task<string> GetCIInfoTekst(int CICode)
         {
             try
