@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 using GZIDAL002.Patienten.Models;
+using GZIDAL002.Recepten;
 using medicijn.Utils;
 using medicijn.Views.Recepten;
 using Newtonsoft.Json;
@@ -11,7 +12,10 @@ namespace medicijn.ViewModels.Patienten
 {
     public class PatientDossierViewModel : BaseViewModel
     {
+        ReceptService _receptService;
+
         public ICommand BackButtonPressedCommand { get; }
+        public ICommand EditCIsButtonPressedCommand { get; }
 
         private Patient _patient;
         public Patient Patient 
@@ -27,6 +31,9 @@ namespace medicijn.ViewModels.Patienten
         public PatientDossierViewModel()
         {
             BackButtonPressedCommand = new Command(BackButtonPressed);
+            EditCIsButtonPressedCommand = new Command(OpenEditCIsModal);
+
+            _receptService = new ReceptService();
 
             //Modal.Instance.OpenModal(new DoseringAanpassenView());
         }
@@ -36,7 +43,12 @@ namespace medicijn.ViewModels.Patienten
             Patient = patient;
         }
 
-        public void BackButtonPressed() 
+        private async void OpenEditCIsModal()
+        {
+            Modal.Instance.OpenModal(new EditPatientCIsView());
+        }
+
+        private void BackButtonPressed() 
         {
             Navigator.Instance.Pop();
         }

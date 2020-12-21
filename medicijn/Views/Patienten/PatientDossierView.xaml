@@ -197,6 +197,15 @@
                                 </StackLayout>
                             </FlexLayout>
                         <StackLayout VerticalOptions="Start" HorizontalOptions="FillAndExpand">
+                            <Label
+                                FontFamily="FaSolid"
+                                TextColor="{StaticResource DarkGray}"
+                                VerticalOptions="CenterAndExpand"
+                                Text="&#xf303;">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditCIsButtonPressedCommand}" />
+                                </Label.GestureRecognizers>
+                            </Label>
                             <FlexLayout 
                                 HorizontalOptions="FillAndExpand"
                                 JustifyContent="Start"
