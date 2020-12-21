@@ -83,10 +83,9 @@
                 <StackLayout>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="250"/>
-                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="290"/>
+                            <ColumnDefinition Width="140"/>
                             <ColumnDefinition Width="80"/>
-                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>    
                         <Grid.RowDefinitions>
@@ -104,30 +103,24 @@
                             FontFamily="{StaticResource PoppinsBold}"
                             />
                         <Label 
-                            Text="Start"
+                            Text="Gewijzigd"
                             Grid.Column="2"
-                            FontSize="12"
-                            FontFamily="{StaticResource PoppinsBold}"
-                            />
-                        <Label 
-                            Text="Unico"
-                            Grid.Column="3"
                             FontSize="12"
                             FontFamily="{StaticResource PoppinsBold}"
                             />
                         <Label 
                             Text="Action"
                             HorizontalTextAlignment="End"
-                            Grid.Column="4"
+                            Grid.Column="3"
                             FontSize="12"
                             FontFamily="{StaticResource PoppinsBold}"
                             />
                     </Grid>
                 </StackLayout>
-                <ActivityIndicator
+                <components:Loader
                     VerticalOptions="CenterAndExpand" 
                     HorizontalOptions="CenterAndExpand" 
-                    IsRunning="True"
+                    IsSpinning="True"
                     IsVisible="{Binding IsLoading}"/>
                 <ScrollView 
                     x:Name="scrollview" 
@@ -139,12 +132,11 @@
                          <StackLayout x:Name="container" BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid>
+                                    <Grid BackgroundColor="AliceBlue">
                                         <Grid.ColumnDefinitions> 
-                                            <ColumnDefinition Width="250"/>
-                                            <ColumnDefinition Width="150"/>
-                                            <ColumnDefinition Width="80"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="290"/>
+                                            <ColumnDefinition Width="140"/>
+                                            <ColumnDefinition Width="90"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>    
                                         <Grid.RowDefinitions >
@@ -156,6 +148,7 @@
                                             LineBreakMode="TailTruncation"
                                             VerticalTextAlignment="Center"
                                             FontSize="12"
+                                            TextColor="{StaticResource DarkBlue}"
                                             FontFamily="{StaticResource PoppinsMedium}"
                                             />
                                         <Label 
@@ -163,26 +156,22 @@
                                             Grid.Column="1"
                                             VerticalTextAlignment="Center"
                                             FontSize="12"
+                                            TextColor="{StaticResource DarkBlue}"
                                             FontFamily="{StaticResource PoppinsMedium}"
                                             />
                                         <Label 
-                                            Text="31/12/2020"
+                                            Text="21/01/2020"
                                             Grid.Column="2"
-                                            VerticalTextAlignment="Center"
-                                            FontSize="12"
-                                            FontFamily="{StaticResource PoppinsMedium}"
-                                            />
-                                        <Label 
-                                            Text="4353"
-                                            Grid.Column="3"
                                             FontSize="12"
                                             VerticalTextAlignment="Center"
+                                            TextColor="{StaticResource DarkBlue}"
                                             FontFamily="{StaticResource PoppinsMedium}"
                                             />
                                         <Button 
                                             Text="&#xf303;"
-                                            Grid.Column="4"
-                                            VerticalOptions="Center"
+                                            Grid.Column="3"
+                                            TextColor="{StaticResource DarkBlue}"
+                                            HorizontalOptions="EndAndExpand"
                                             FontSize="12"
                                             Clicked="Button_Clicked"
                                             BindingContext="{Binding Id}"

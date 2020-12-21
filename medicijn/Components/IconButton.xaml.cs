@@ -145,6 +145,50 @@ namespace medicijn.Components
             }
         }
 
+        public static readonly BindableProperty FontFamilyProperty
+            = BindableProperty.Create(
+                nameof(FontFamily),
+                typeof(string),
+                typeof(IconButton),
+                propertyChanged: FontFamilyPropertyChanged);
+
+        public string FontFamily
+        {
+            get => (string)GetValue(FontFamilyProperty);
+            set
+            {
+                SetValue(FontFamilyProperty, value);
+            }
+        }
+
+        private static void FontFamilyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((IconButton)bindable).buttonText.FontFamily = newValue as string;
+        }
+
+        public static readonly BindableProperty FontSizeProperty
+            = BindableProperty.Create(
+                nameof(FontSize),
+                typeof(double),
+                typeof(IconButton),
+                propertyChanged: FontSizePropertyChanged);
+
+        public double FontSize
+        {
+            get => (double)GetValue(FontSizeProperty);
+            set
+            {
+                SetValue(FontSizeProperty, value);
+            }
+        }
+
+        private static void FontSizePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((IconButton)bindable).buttonText.FontSize = (double)newValue;
+            ((IconButton)bindable).buttonIcon.FontSize = (double)newValue;
+        }
+
+
         public IconButton()
         {
             InitializeComponent();

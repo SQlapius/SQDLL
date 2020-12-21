@@ -27,7 +27,7 @@ namespace medicijn.ViewModels.Patienten
         public PatientDossierViewModel()
         {
             BackButtonPressedCommand = new Command(BackButtonPressed);
-
+            
             //Modal.Instance.OpenModal(new DoseringAanpassenView());
         }
 

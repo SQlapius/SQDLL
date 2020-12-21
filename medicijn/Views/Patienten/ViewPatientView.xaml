@@ -5,11 +5,12 @@
     BackgroundColor="#F8F8F8"
     NavigationPage.HasNavigationBar="False"
     xmlns:local="clr-namespace:medicijn.Utils"
+    xmlns:components="clr-namespace:medicijn.Components"
     x:Class="medicijn.Views.Patienten.ViewPatientView">
     <AbsoluteLayout>
         <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" ColumnSpacing="10" Padding="20, 40, 20, 20">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="330"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -23,37 +24,139 @@
             <ScrollView Grid.Column="0" Grid.Row="1">
                 <StackLayout VerticalOptions="FillAndExpand" Spacing="10">
                     <Frame HasShadow="False" CornerRadius="15" BackgroundColor="White" VerticalOptions="Fill">
-                        <StackLayout HorizontalOptions="FillAndExpand" Padding="10">
-                            <Label FontAttributes="Bold" Text="Information" Margin="0, 0, 0, 20"/> 
-                            <StackLayout Spacing="20">
+                        <StackLayout HorizontalOptions="FillAndExpand" Padding="8">
+                            <StackLayout Orientation="Horizontal">
+                                <Label 
+                                    FontFamily="{StaticResource PoppinsMedium}" 
+                                    Text="Patient Information" 
+                                    Margin="0, 0, 0, 20"/> 
+                                <Label 
+                                    HorizontalOptions="EndAndExpand" 
+                                    TextColor="{StaticResource TextColor}"
+                                    FontFamily="FaSolid" 
+                                    Text="&#xf06e;" 
+                                    Margin="0, 0, 0, 20"> 
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ViewPatientDossierCmmmand}"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </StackLayout>
+                            <StackLayout Spacing="15">
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Naam:"/> 
-                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Naam}"/> 
+                                    <Label 
+                                        TextColor="{StaticResource TextColor}" 
+                                        FontFamily="{StaticResource PoppinsBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand" 
+                                        Text="Naam:"/> 
+                                    <Label 
+                                        TextColor="{StaticResource DarkBlue}" 
+                                        FontFamily="{StaticResource PoppinsMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="EndAndExpand" 
+                                        Text="{Binding Patient.Naam}"/> 
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Sedula:"/> 
-                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Sedula}"/> 
+                                    <Label 
+                                        TextColor="{StaticResource TextColor}" 
+                                        FontFamily="{StaticResource PoppinsBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand" 
+                                        Text="Verzekering:"/> 
+                                    <Label 
+                                        TextColor="{StaticResource DarkBlue}" 
+                                        FontFamily="{StaticResource PoppinsMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="EndAndExpand" 
+                                        Text="S.V.B"/> 
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Gender:"/> 
-                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Sex}"/> 
+                                    <Label 
+                                        TextColor="{StaticResource TextColor}" 
+                                        FontFamily="{StaticResource PoppinsBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand" 
+                                        Text="Adress:"/> 
+                                    <Label 
+                                        TextColor="{StaticResource DarkBlue}" 
+                                        FontFamily="{StaticResource PoppinsMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="EndAndExpand" 
+                                        Text="Kaya San Hose 3"/> 
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Day Of Birth:"/> 
-                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.Dob, StringFormat='{0:dd MMM yyyy}'}"/> 
+                                    <Label 
+                                        TextColor="{StaticResource TextColor}" 
+                                        FontFamily="{StaticResource PoppinsBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand" 
+                                        Text="Telefoonnummer:"/> 
+                                    <Label 
+                                        TextColor="{StaticResource DarkBlue}" 
+                                        FontFamily="{StaticResource PoppinsMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="EndAndExpand" 
+                                        Text="+599 566 7527"/> 
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Patient ID:"/> 
-                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.PatId}"/> 
+                                    <Label 
+                                        TextColor="{StaticResource TextColor}" 
+                                        FontFamily="{StaticResource PoppinsBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand" 
+                                        Text="HuisArts:"/> 
+                                    <Label 
+                                        TextColor="{StaticResource DarkBlue}" 
+                                        FontFamily="{StaticResource PoppinsMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="EndAndExpand" 
+                                        Text="A.Perez"/> 
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Ves ID:"/> 
-                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="{Binding Patient.VesId}"/> 
+                                    <Label 
+                                        TextColor="{StaticResource TextColor}" 
+                                        FontFamily="{StaticResource PoppinsBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand" 
+                                        Text="HuisApotheek:"/> 
+                                    <Label 
+                                        TextColor="{StaticResource DarkBlue}" 
+                                        FontFamily="{StaticResource PoppinsMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="EndAndExpand" 
+                                        LineBreakMode="MiddleTruncation"
+                                        Text="Muizenberg"/> 
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                    <Label TextColor="#053B50" HorizontalOptions="StartAndExpand" FontAttributes="Bold" Text="Last visit"/> 
-                                    <Label TextColor="#7E9EAA" HorizontalOptions="EndAndExpand" Text="25 aug 2020"/> 
+                                    <Label 
+                                        TextColor="{StaticResource TextColor}" 
+                                        FontFamily="{StaticResource PoppinsBold}"
+                                        FontSize="14"
+                                        HorizontalOptions="StartAndExpand" 
+                                        Text="Notes:"/> 
+                                    <Label 
+                                        TextColor="{StaticResource DarkBlue}" 
+                                        FontFamily="{StaticResource PoppinsMedium}"
+                                        FontSize="14"
+                                        HorizontalOptions="EndAndExpand" 
+                                        LineBreakMode="MiddleTruncation"
+                                        Text="Opmerking van arts"/> 
                                 </StackLayout>
+                            </StackLayout>
+                            <StackLayout VerticalOptions="FillAndExpand" Orientation="Horizontal">
+                                <components:IconButton 
+                                    Color="#019999"
+                                    FontFamily="{StaticResource PoppinsBold}"
+                                    FontSize="11"
+                                    Icon="&#xf484;"
+                                    Text="Medicatie"/>
+                                <components:IconButton 
+                                    HorizontalOptions="EndAndExpand"
+                                    Color="#1EA8dE"
+                                    FontFamily="{StaticResource PoppinsBold}"
+                                    FontSize="11"
+                                    Icon="&#xf1eb;"
+                                    Text="Therapiesignalen"/>
                             </StackLayout>
                         </StackLayout>
                     </Frame>  

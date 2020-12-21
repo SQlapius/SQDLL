@@ -67,6 +67,11 @@ namespace medicijn.Utils
 
         public void Add(NavPage page) 
         {
+            if(CurrentTitle == page.PageTitle) 
+            {
+                return;
+            }
+
             ShowBackButton = true;
             ShowHeader = true;
             Pages.Add(page);

@@ -12,6 +12,7 @@
         <!-- Colors -->
         <Color x:Key="DarkBlue">#324A53</Color>
         <Color x:Key="LightGray">#B2B2B2</Color>
+        <Color x:Key="TextColor">#292929</Color>
         <Color x:Key="DarkGray">#707070</Color>
         <Color x:Key="Red">#E52828</Color>
         <Color x:Key="Blue">#1EA8dE</Color>

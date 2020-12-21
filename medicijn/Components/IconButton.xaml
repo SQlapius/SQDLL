@@ -22,7 +22,6 @@
                     <Label
                         x:Name="buttonIcon"
                         FontFamily="FaSolid"
-                        Text="{Binding Icon}"
                         VerticalOptions="CenterAndExpand"
                         TextColor="Black" />
                     <Label

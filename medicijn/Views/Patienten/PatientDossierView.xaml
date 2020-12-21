@@ -215,8 +215,9 @@
                                     <Label 
                                         FontSize="10"
                                         FontFamily="{StaticResource PoppinsMedium}"
+                                        HorizontalTextAlignment="Center"
                                         TextColor="white" 
-                                        Text="Borstvoeding"/>
+                                        Text="asthma"/>
                                 </Frame>
                                 <Frame 
                                     FlexLayout.Basis="100" 
@@ -229,32 +230,7 @@
                                         FontSize="10"
                                         FontFamily="{StaticResource PoppinsMedium}"
                                         TextColor="white" 
-                                        Text="Borstvoeding"/>
-                                </Frame>
-                                <Frame 
-                                    FlexLayout.Basis="100" 
-                                    HasShadow="False" 
-                                    HeightRequest="15"
-                                    Margin="0, 0, 10, 10"
-                                    Padding="13, 6" 
-                                    BackgroundColor="{StaticResource Blue}">    
-                                    <Label 
-                                        FontSize="10"
-                                        FontFamily="{StaticResource PoppinsMedium}"
-                                        TextColor="white" 
-                                        Text="Borstvoeding"/>
-                                </Frame>
-                                <Frame 
-                                    FlexLayout.Basis="100" 
-                                    HasShadow="False" 
-                                    Margin="0, 0, 10, 10"
-                                    HeightRequest="15"
-                                    Padding="13, 6" 
-                                    BackgroundColor="{StaticResource Blue}">    
-                                    <Label 
-                                        FontSize="10"
-                                        FontFamily="{StaticResource PoppinsMedium}"
-                                        TextColor="white" 
+                                        LineBreakMode="TailTruncation"
                                         Text="Borstvoeding"/>
                                 </Frame>
                                 <Frame 
@@ -268,46 +244,7 @@
                                         FontSize="10"
                                         FontFamily="{StaticResource PoppinsMedium}"
                                         TextColor="white" 
-                                        Text="Borstvoeding"/>
-                                </Frame>
-                                <Frame 
-                                    FlexLayout.Basis="100" 
-                                    HasShadow="False" 
-                                    Margin="0, 0, 10, 10"
-                                    HeightRequest="15"
-                                    Padding="13, 6" 
-                                    BackgroundColor="{StaticResource Blue}">    
-                                    <Label 
-                                        FontSize="10"
-                                        FontFamily="{StaticResource PoppinsMedium}"
-                                        TextColor="white" 
-                                        Text="Borstvoeding"/>
-                                </Frame>
-                                <Frame 
-                                    FlexLayout.Basis="100" 
-                                    HasShadow="False" 
-                                    HeightRequest="15"
-                                    Margin="0, 0, 10, 10"
-                                    Padding="13, 6" 
-                                    BackgroundColor="{StaticResource Blue}">    
-                                    <Label 
-                                        FontSize="10"
-                                        FontFamily="{StaticResource PoppinsMedium}"
-                                        TextColor="white" 
-                                        Text="Borstvoeding"/>
-                                </Frame>
-                                <Frame 
-                                    FlexLayout.Basis="100" 
-                                    HasShadow="False" 
-                                    Margin="0, 0, 10, 10"
-                                    HeightRequest="15"
-                                    Padding="13, 6" 
-                                    BackgroundColor="{StaticResource Blue}">    
-                                    <Label 
-                                        FontSize="10"
-                                        FontFamily="{StaticResource PoppinsMedium}"
-                                        TextColor="white" 
-                                        Text="Borstvoeding"/>
+                                        Text="suikKerziekte"/>
                                 </Frame>
                             </FlexLayout> 
                         </StackLayout>
@@ -316,8 +253,8 @@
                             HeightRequest="1" 
                             FlexLayout.AlignSelf="end"
                             BackgroundColor="{StaticResource LightLightGray}"/>
-                            </StackLayout>
-                    </FlexLayout>
+                    </StackLayout>
+                </FlexLayout>
 
                 <StackLayout Orientation="Vertical" Spacing="0">
                     <StackLayout HeightRequest="45" Orientation="Horizontal">

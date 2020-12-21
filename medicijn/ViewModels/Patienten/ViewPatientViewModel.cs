@@ -21,6 +21,7 @@ namespace medicijn.ViewModels.Patienten
         public ICommand CreateNewReceptPressedCommand { get; }
         public ICommand PressedBackButton { get; }
         public ICommand GCButtonPressedCommand { get; }
+        public ICommand ViewPatientDossierCmmmand { get; }
 
         public Patient Patient { get; set; }
 
@@ -33,6 +34,7 @@ namespace medicijn.ViewModels.Patienten
             CreateNewReceptPressedCommand = new Command(NavigateToCreateNewRecept);
             PressedBackButton = new Command(GoBack);
             GCButtonPressedCommand = new Command(CleanPatientData);
+            ViewPatientDossierCmmmand = new Command(NavigateToViewPatientDossier);
         }
 
         public ViewPatientViewModel(Patient patient) : this()
@@ -61,6 +63,16 @@ namespace medicijn.ViewModels.Patienten
                  new NavPage(
                      "Actieve Medicatie",
                      new ViewPatientMedicatieView(Patient)
+                )
+            );
+        }
+
+        public void NavigateToViewPatientDossier()
+        {
+            Navigator.Instance.Add(
+                 new NavPage(
+                     "View Patient Dossier",
+                     new PatientDossierView(Patient)
                 )
             );
         }
