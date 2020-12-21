@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:converters="clr-namespace:medicijn.Converters" 
+    xmlns:components="clr-namespace:medicijn.Components" 
     xmlns:sq_uikit="clr-namespace:Plugin.SQ_UIKit;assembly=Plugin.SQ_UIKit" xmlns:renderers="clr-namespace:medicijn.Renderers"
     x:Class="medicijn.Views.Auth.LoginView">
     <ContentPage.Content>
@@ -80,11 +81,16 @@
                         </Label.FormattedText>
                     </Label>
             </StackLayout>
-            <ActivityIndicator 
-                IsRunning="True" 
+            <components:Loader 
+                IsSpinning="True"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand" 
                 IsVisible="{Binding IsLoading}"/>
+            <!--<ActivityIndicator 
+                IsRunning="True" 
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand" 
+                IsVisible="{Binding IsLoading}"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

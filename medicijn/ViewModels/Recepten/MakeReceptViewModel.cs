@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using GZIDAL002.Patienten;
 using medicijn.Views.Recepten;
 using medicijn.Models;
+using System.Collections.Generic;
 
 namespace medicijn.ViewModels.Recepten
 {
@@ -22,6 +23,7 @@ namespace medicijn.ViewModels.Recepten
         PatientService _patientService;
 
         public ICommand NewReceptLinePressedCommand { get; }
+        public ICommand AddButtonPressedCommand { get; }
         public ICommand CancelButtonPressedCommand { get; }
         public ICommand MedAardPressedCommand { get; }
         public ICommand CreateNewReceptPressedCommand { get; }
@@ -39,6 +41,28 @@ namespace medicijn.ViewModels.Recepten
             }
         }
 
+        private bool _addMenuDropdownIsOpen = false;
+        public bool AddMenuDropdownIsOpen
+        {
+            get => _addMenuDropdownIsOpen;
+            set
+            {
+                _addMenuDropdownIsOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _receptRegelMenuIsOpen = false;
+        public bool ReceptRegelMenuIsOpen
+        {
+            get => _receptRegelMenuIsOpen;
+            set
+            {
+                _receptRegelMenuIsOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
         private Recept _recept;
         public Recept Recept
         {
@@ -49,6 +73,20 @@ namespace medicijn.ViewModels.Recepten
                 OnPropertyChanged();
             }
         }
+
+        private IList<string> _hi;
+        public IList<string> Hi
+        {
+            get => _hi;
+            set
+            {
+                _hi = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private int? _selectedReceptRegel;
 
         public Patient Patient { get; set; }
 
@@ -63,6 +101,7 @@ namespace medicijn.ViewModels.Recepten
             MedAardPressedCommand = new Command<ContraIndicatie>(ChoosePatientCIAardAction);
             CIInfoButtonPressedCommand = new Command<ContraIndicatie>(NavigateToCIInfoView);
             IAInfoButtonPressedCommand = new Command<Interactie>(NavigateToIAInfoView);
+            AddButtonPressedCommand = new Command(AddButtonPressed);
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()
@@ -182,8 +221,27 @@ namespace medicijn.ViewModels.Recepten
 
         private void OpenMedicinePicker()
         {
+            AddMenuDropdownIsOpen = false;
             Modal.Instance.Content = new ZoekMedicijnView(AddRegelToRecept);
             Modal.Instance.IsVisible = true;
+        }
+
+        private void AddButtonPressed()
+        {
+            AddMenuDropdownIsOpen = !AddMenuDropdownIsOpen;
+        }
+
+        public void ClickedReceptRegelMenu(int id)
+        {
+            if(_selectedReceptRegel == id) 
+            {
+                ReceptRegelMenuIsOpen = false;
+                _selectedReceptRegel = null;
+                return;
+            }
+
+            ReceptRegelMenuIsOpen = true;
+            _selectedReceptRegel = id;
         }
 
         private void NavigateBack()

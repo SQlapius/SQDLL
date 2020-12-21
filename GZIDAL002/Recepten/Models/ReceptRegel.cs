@@ -10,6 +10,8 @@ namespace GZIDAL002.Recepten.Models
     {
         public Medicijn Medicijn { get; set; }
 
+        public int Id { get; set; }
+
         public int Aantal { get; set; }
 
         public string Dosering { get; set; }

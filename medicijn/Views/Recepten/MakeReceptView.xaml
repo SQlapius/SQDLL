@@ -3,185 +3,294 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:converters="clr-namespace:medicijn.Converters"
+    xmlns:components="clr-namespace:medicijn.Components"
     x:Name="MakeReceptPage"
     x:Class="medicijn.Views.Recepten.MakeReceptView">
     <ContentView.Content>
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Button
-                    Margin="0"
-                    Padding="0"
-                    HeightRequest="20"
-                    BackgroundColor="Transparent"
-                    HorizontalOptions="EndAndExpand"
-                    Command="{Binding NewReceptLinePressedCommand}"
-                    Text="Add Regel" />
-            </StackLayout>
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <ActivityIndicator
-                    IsVisible="{Binding IsLoading}"
-                    IsEnabled="{Binding IsLoading}"
-                    IsRunning="{Binding IsLoading}"
-                    VerticalOptions="CenterAndExpand"
-                    HorizontalOptions="CenterAndExpand"/>
-                <ScrollView  IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
-                     <StackLayout BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Padding="0, 10">
-                                    <Label
-                                        FontSize="20"
-                                        FontAttributes="Bold">
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span FontAttributes="Bold" FontSize="25" Text="{Binding Aantal, StringFormat='{0}x'}" />
-                                                <Span Text=" " />
-                                                <Span
-                                                    FontAttributes="Bold, Italic"
-                                                    Text="{Binding Medicijn.Naam}" />
-                                                <Span Text=" - " />
-                                                <Span Text="{Binding Dosering}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                    <StackLayout>
-                                        <StackLayout.Triggers>
-                                            <DataTrigger
-                                                TargetType="StackLayout"
-                                                Binding="{Binding ContraIndicaties.Count}"
-                                                Value="0">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                        </StackLayout.Triggers>
-                                        <Label
-                                            FontAttributes="Bold"
-                                            Text="Contra Indicaties"
-                                            FontSize="18"
-                                            Margin="0, 10, 0, 0"/>
-                                        <StackLayout BindableLayout.ItemsSource="{Binding ContraIndicaties}">
-                                            <BindableLayout.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="Info">
-                                                            <Label.GestureRecognizers>
-                                                                <TapGestureRecognizer
-                                                                    Command="{Binding BindingContext.CIInfoButtonPressedCommand, Source={x:Reference MakeReceptPage}}"
-                                                                    CommandParameter="{Binding .}"/>
-                                                            </Label.GestureRecognizers>
-                                                        </Label>
-                                                        <Label
-                                                            Text="{Binding Aard}">
-                                                            <Label.GestureRecognizers>
-                                                                <TapGestureRecognizer
-                                                                    Command="{Binding BindingContext.MedAardPressedCommand, Source={x:Reference MakeReceptPage}}"
-                                                                    CommandParameter="{Binding .}"/>
-                                                            </Label.GestureRecognizers>
-                                                            <Label.Triggers>
-                                                                <DataTrigger
-                                                                    TargetType="Label"
-                                                                    Binding="{Binding IsBewaakt}"
-                                                                    Value="1">
-                                                                    <Setter Property="BackgroundColor" Value="Red" />
-                                                                </DataTrigger>
-                                                                <DataTrigger
-                                                                    TargetType="Label"
-                                                                    Binding="{Binding IsOnderdrukt}"
-                                                                    Value="1">
-                                                                    <Setter
-                                                                        Property="TextDecorations"
-                                                                        Value="Strikethrough" />
-                                                                </DataTrigger>
-                                                            </Label.Triggers>
-                                                        </Label>
-                                                    </StackLayout>
-                                                </DataTemplate>
-                                            </BindableLayout.ItemTemplate>
-                                        </StackLayout>
-                                    </StackLayout>
-                                    <StackLayout>
-                                        <StackLayout.Triggers>
-                                            <DataTrigger
-                                                TargetType="StackLayout"
-                                                Binding="{Binding Interacties.Count}"
-                                                Value="0">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                        </StackLayout.Triggers>
-                                        <Label
-                                            FontAttributes="Bold"
-                                            Text="Interacties"
-                                            FontSize="18"
-                                            Margin="0, 10, 0, 0"/>
-                                        <StackLayout BindableLayout.ItemsSource="{Binding Interacties}">
-                                            <BindableLayout.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="Info">
-                                                            <Label.GestureRecognizers>
-                                                                <TapGestureRecognizer
-                                                                    Command="{Binding BindingContext.IAInfoButtonPressedCommand, Source={x:Reference MakeReceptPage}}"
-                                                                    CommandParameter="{Binding .}"/>
-                                                            </Label.GestureRecognizers>
-                                                        </Label>
-                                                        <Label Text="{Binding IAOms}" />
-                                                    </StackLayout>
-                                                </DataTemplate>
-                                            </BindableLayout.ItemTemplate>
-                                        </StackLayout>
-                                    </StackLayout>
-                                    <StackLayout>
-                                         <StackLayout.Triggers>
-                                            <DataTrigger
-                                                TargetType="StackLayout"
-                                                Binding="{Binding OngewensteMiddelen.Count}"
-                                                Value="0">
-                                                <Setter Property="IsVisible" Value="False" />
-                                            </DataTrigger>
-                                        </StackLayout.Triggers>
-                                        <Label
-                                            FontAttributes="Bold"
-                                            Text="Ongewenste Middelen"
-                                            FontSize="18"
-                                            Margin="0, 10, 0, 0"/>
-                                        <StackLayout BindableLayout.ItemsSource="{Binding OngewensteMiddelen}">
-                                            <BindableLayout.ItemTemplate>
-                                                <DataTemplate>
-                                                    <Label Text="{Binding Naam}" />
-                                                </DataTemplate>
-                                            </BindableLayout.ItemTemplate>
-                                        </StackLayout>
-                                    </StackLayout>
-                                    <StackLayout
-                                        HeightRequest="0.5"
-                                        Margin="0, 10, 0, 3"
-                                        HorizontalOptions="FillAndExpand"
-                                        BackgroundColor="#e3e3e3" />
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
+        <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" Padding="10, 16" Spacing="0">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout Spacing="0">
+                        <Label 
+                            FontFamily="{StaticResource PoppinsBold}"
+                            FontSize="20"
+                            Text="Maak Recept">
+                        </Label>
+                        <Label 
+                            FontSize="12"
+                            TextColor="{StaticResource LightGray}"
+                            FontFamily="{StaticResource PoppinsMedium}"
+                            Text="Tijdelijke/zo nodige medicatie" />  
                     </StackLayout>
-                </ScrollView>
+                    <Label 
+                        FontFamily="{StaticResource PoppinsBold}"
+                        FontSize="12"
+                        HorizontalOptions="EndAndExpand"
+                        VerticalTextAlignment="Center"
+                        VerticalOptions="FillAndExpand">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span 
+                                    TextColor="{StaticResource DarkBlue}" 
+                                    Text="Voorschrijf datum: " />
+                                <Span 
+                                    TextColor="{StaticResource DarkBlue}" 
+                                    Text="   " />
+                                <Span 
+                                    FontFamily="{StaticResource PoppinsMedium}"
+                                    FontSize="12"
+                                    TextColor="{StaticResource LightGray}"
+                                    Text="01/12/2020" />
+                            </FormattedString>    
+                        </Label.FormattedText> 
+                    </Label>
+                </StackLayout>
+                <BoxView 
+                    HeightRequest="1" 
+                    Margin="0, 10, 0, 0"
+                    HorizontalOptions="FillAndExpand" 
+                    BackgroundColor="{StaticResource LightLightGray}"/>
             </StackLayout>
             <StackLayout
-                VerticalOptions="End"
-                Orientation="Horizontal"
-                HorizontalOptions="End">
-                <Button
-                    Command="{Binding CancelButtonPressedCommand}"
-                    Text="Cancel"
-                    TextColor="#1ea8de"
-                    Padding="20, 10"
-                    BorderWidth="2"
-                    FontAttributes="Bold"
-                    BorderColor="#1ea8de" />
-                <Button
-                    Text="Bevestig Recept"
-                    Command="{Binding CreateNewReceptPressedCommand}"
-                    TextColor="White"
-                    FontAttributes="Bold"
-                    Padding="10, 0"
-                    Background="#1ea8de"/>
+                Spacing="0"
+                Margin="0, 20">
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        TextColor="{StaticResource DarkBlue}"
+                        FontFamily="{StaticResource PoppinsMedium}"
+                        Text="Medicatie" /> 
+                    <StackLayout 
+                        HeightRequest="50"
+                        WidthRequest="80"
+                        HorizontalOptions="EndAndExpand">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddButtonPressedCommand}"/>
+                        </StackLayout.GestureRecognizers>
+                        <Label 
+                            HorizontalTextAlignment="End"
+                            Text="&#xf067;"
+                            TextColor="{StaticResource DarkGray}"
+                            FontFamily="FaSolid"/> 
+                    </StackLayout>
+                </StackLayout>
+                <BoxView 
+                    HeightRequest="1" 
+                    HorizontalOptions="FillAndExpand" 
+                    BackgroundColor="{StaticResource LightLightGray}"/>
+            </StackLayout>
+            <StackLayout VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>    
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>    
+                        <Label 
+                            Text="Naam"
+                            FontSize="12"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            />
+                        <Label 
+                            Text="Dosering"
+                            Grid.Column="1"
+                            FontSize="12"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            />
+                        <Label 
+                            Text="Start"
+                            Grid.Column="2"
+                            FontSize="12"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            />
+                        <Label 
+                            Text="Unico"
+                            Grid.Column="3"
+                            FontSize="12"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            />
+                        <Label 
+                            Text="Action"
+                            HorizontalTextAlignment="End"
+                            Grid.Column="4"
+                            FontSize="12"
+                            FontFamily="{StaticResource PoppinsBold}"
+                            />
+                    </Grid>
+                </StackLayout>
+                <ActivityIndicator
+                    VerticalOptions="CenterAndExpand" 
+                    HorizontalOptions="CenterAndExpand" 
+                    IsRunning="True"
+                    IsVisible="{Binding IsLoading}"/>
+                <ScrollView 
+                    x:Name="scrollview" 
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
+                    VerticalOptions="FillAndExpand"
+                    AbsoluteLayout.LayoutFlags="All" 
+                    IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}">
+                    <AbsoluteLayout x:Name="test">
+                         <StackLayout x:Name="container" BindableLayout.ItemsSource="{Binding Recept.ReceptRegels}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions> 
+                                            <ColumnDefinition Width="250"/>
+                                            <ColumnDefinition Width="150"/>
+                                            <ColumnDefinition Width="80"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>    
+                                        <Grid.RowDefinitions >
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition Height="1"/>
+                                        </Grid.RowDefinitions>    
+                                        <Label 
+                                            Text="{Binding Medicijn.Naam}"
+                                            LineBreakMode="TailTruncation"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="12"
+                                            FontFamily="{StaticResource PoppinsMedium}"
+                                            />
+                                        <Label 
+                                            Text="2x dagelijks 1x tablet"
+                                            Grid.Column="1"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="12"
+                                            FontFamily="{StaticResource PoppinsMedium}"
+                                            />
+                                        <Label 
+                                            Text="31/12/2020"
+                                            Grid.Column="2"
+                                            VerticalTextAlignment="Center"
+                                            FontSize="12"
+                                            FontFamily="{StaticResource PoppinsMedium}"
+                                            />
+                                        <Label 
+                                            Text="4353"
+                                            Grid.Column="3"
+                                            FontSize="12"
+                                            VerticalTextAlignment="Center"
+                                            FontFamily="{StaticResource PoppinsMedium}"
+                                            />
+                                        <Button 
+                                            Text="&#xf303;"
+                                            Grid.Column="4"
+                                            VerticalOptions="Center"
+                                            FontSize="12"
+                                            Clicked="Button_Clicked"
+                                            BindingContext="{Binding Id}"
+                                            FontFamily="FaSolid">
+                                        </Button>
+                                        <StackLayout 
+                                            BackgroundColor="{StaticResource LightLightGray}"
+                                            Grid.ColumnSpan="5"
+                                            Grid.Row="1"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                        <components:CostumFrame
+                            x:Name="Dropdown"
+                            Opacity="0"
+                            HasShadow="True"
+                            Elevation="4"
+                            WidthRequest="180"
+                            BackgroundColor="White"
+                            CornerRadius="5"
+                            AbsoluteLayout.LayoutFlags="None" 
+                            AbsoluteLayout.LayoutBounds="0, 0, AutoSize, AutoSize">
+                            <StackLayout Spacing="10">
+                                <StackLayout Spacing="12"  Orientation="Horizontal">
+                                    <Label 
+                                        FontSize="14" 
+                                        FontFamily="FaSolid" 
+                                        TextColor="{StaticResource DarkBlue}"
+                                        Text="&#xf484;" />
+                                    <Label 
+                                        FontSize="14" 
+                                        FontFamily="{StaticResource PoppinsMedium}" 
+                                        TextColor="{StaticResource DarkBlue}"
+                                        Text="Dosering Aanpassen" />
+                                </StackLayout> 
+                                <StackLayout Spacing="12"  Orientation="Horizontal">
+                                    <Label 
+                                        FontSize="14" 
+                                        TextColor="{StaticResource DarkBlue}"
+                                        FontFamily="FaSolid" 
+                                        Text="&#xf017;" />
+                                    <Label 
+                                        FontSize="14" 
+                                        TextColor="{StaticResource DarkBlue}"
+                                        FontFamily="{StaticResource PoppinsMedium}" 
+                                        Text="Tijdelijk Stoppen" />
+                                </StackLayout> 
+                                <StackLayout Spacing="12"  Orientation="Horizontal">
+                                    <Label 
+                                        TextColor="Red"
+                                        FontSize="14" 
+                                        FontFamily="FaSolid" 
+                                        Text="&#xf1f8;" />
+                                    <Label 
+                                        FontSize="14" 
+                                        TextColor="Red"
+                                        FontFamily="{StaticResource PoppinsMedium}" 
+                                        Text="Vewijderen" />
+                                </StackLayout> 
+                            </StackLayout>
+                        </components:CostumFrame>
+                    </AbsoluteLayout>
+                </ScrollView>
             </StackLayout>
         </StackLayout>
+        <components:CostumFrame
+            IsVisible="{Binding AddMenuDropdownIsOpen}"
+            HasShadow="True"
+            Elevation="4"
+            WidthRequest="180"
+            BackgroundColor="White"
+            CornerRadius="5"
+            AbsoluteLayout.LayoutFlags="None" 
+            AbsoluteLayout.LayoutBounds="405, 118, AutoSize, AutoSize">
+            <StackLayout Spacing="10">
+                <StackLayout Spacing="12"  Orientation="Horizontal">
+                    <Label 
+                        FontSize="14" 
+                        FontFamily="FaSolid" 
+                        TextColor="{StaticResource DarkBlue}"
+                        Text="&#xf067;" />
+                    <Label 
+                        FontSize="14" 
+                        FontFamily="{StaticResource PoppinsMedium}" 
+                        TextColor="{StaticResource DarkBlue}"
+                        Text="Nieuwe Medicatie" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NewReceptLinePressedCommand}"/> 
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout> 
+                <StackLayout Spacing="12" Orientation="Horizontal">
+                    <Label 
+                        FontSize="14" 
+                        TextColor="{StaticResource DarkBlue}"
+                        FontFamily="FaSolid" 
+                        Text="&#xf2f9;">
+                    </Label>
+                    <Label 
+                        FontSize="14" 
+                        TextColor="{StaticResource DarkBlue}"
+                        FontFamily="{StaticResource PoppinsMedium}" 
+                        Text="Bestaande Medicatie">
+                    </Label>
+                </StackLayout> 
+            </StackLayout>
+        </components:CostumFrame>
+        </AbsoluteLayout>
     </ContentView.Content>
 </ContentView>
