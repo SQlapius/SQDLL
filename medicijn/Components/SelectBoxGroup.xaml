@@ -5,18 +5,24 @@
     x:Class="medicijn.Components.SelectBoxGroup"
     x:Name="this">
     <ContentView.Content>
-        <StackLayout BindableLayout.ItemsSource="{Binding Options, Source={Reference this}}">
+        <StackLayout x:Name="Container" Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Options, Source={Reference this}}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding Option}">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label" Binding="{Binding SelectedId, Source={Reference this}}" Value="{Binding Id}">
-                                    <Setter Property="BackgroundColor" Value="Red" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-                    </StackLayout>
+                    <Frame
+                        Padding="15, 10"
+                        CornerRadius="20"
+                        VerticalOptions="Start"
+                        HorizontalOptions="Start"
+                        HasShadow="False" BackgroundColor="{StaticResource LightLightGray}">
+                        <Label
+                            FontFamily="{StaticResource PoppinsBold}"
+                            FontSize="12"
+                            TextColor="#B2B2B2"
+                            Text="{Binding Option}" />
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding Id}" Tapped="TapGestureRecognizer_Tapped"/>  
+                        </Frame.GestureRecognizers>
+                    </Frame>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </StackLayout>

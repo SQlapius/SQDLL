@@ -183,6 +183,7 @@ namespace medicijn.ViewModels.Recepten
             );
 
             IsLoading = false;
+            Debug.WriteLine(IsLoading);
         }
 
         private string GetCIAardActieCode(string actie)

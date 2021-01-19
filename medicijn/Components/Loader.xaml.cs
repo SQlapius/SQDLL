@@ -45,6 +45,27 @@ namespace medicijn.Components
             }
         }
 
+        public static readonly BindableProperty VisibilityProperty
+            = BindableProperty.Create(
+                nameof(Visible),
+                typeof(bool),
+                typeof(Loader),
+                defaultBindingMode: BindingMode.TwoWay, 
+                propertyChanged: VisibiltyPropertyChanged);
+
+        public bool Visible
+        {
+            get => (bool)GetValue(VisibilityProperty);
+            set   {
+                SetValue(VisibilityProperty, value);
+            }
+        }
+
+        private static void VisibiltyPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Loader)bindable).IsVisible = (bool)newValue;
+        }
+
         public Loader()
         {
             InitializeComponent();

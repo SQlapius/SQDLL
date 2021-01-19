@@ -81,7 +81,7 @@ namespace medicijn.Components
         }
 
         public static readonly BindableProperty ButtonPaddingProperty
-          = BindableProperty.Create(
+            = BindableProperty.Create(
                 nameof(ButtonPadding),
                 typeof(Thickness),
                 typeof(IconButton),
@@ -198,7 +198,6 @@ namespace medicijn.Components
         {
             if (Command != null)
             {
-                Debug.WriteLine("hit");
                 Command.Execute(((TappedEventArgs)e).Parameter);
             }
         }

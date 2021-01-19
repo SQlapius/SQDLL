@@ -82,6 +82,9 @@ namespace medicijn.Utils
 
         public async void Pop() 
         {
+            if(Pages.Count <= 0)
+                return;
+           
             if(Pages.Count <= 1) 
             {
                 ShowBackButton = false;

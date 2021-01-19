@@ -45,5 +45,10 @@ namespace medicijn.Views.Patienten
                 }
             }
         }
+
+        void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
+        {
+            Navigator.Instance.Pop();
+        }
     }
 }

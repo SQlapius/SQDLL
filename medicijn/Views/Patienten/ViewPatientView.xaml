@@ -236,6 +236,9 @@
                                 </StackLayout>
                             </StackLayout>
                         </StackLayout>
+                        <ContentView.GestureRecognizers>
+                            <SwipeGestureRecognizer Threshold="10000" Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>
+                        </ContentView.GestureRecognizers>
                     </ContentView>
                 </StackLayout>
             </Frame>

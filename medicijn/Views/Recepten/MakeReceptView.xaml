@@ -117,11 +117,11 @@
                             />
                     </Grid>
                 </StackLayout>
-                <components:Loader
+                <ActivityIndicator
                     VerticalOptions="CenterAndExpand" 
+                    IsVisible="{Binding IsLoading}"
                     HorizontalOptions="CenterAndExpand" 
-                    IsSpinning="True"
-                    IsVisible="{Binding IsLoading}"/>
+                    IsRunning="True"/>
                 <ScrollView 
                     x:Name="scrollview" 
                     AbsoluteLayout.LayoutBounds="0, 0, 1, 1" 
@@ -173,7 +173,7 @@
                                             TextColor="{StaticResource DarkBlue}"
                                             HorizontalOptions="EndAndExpand"
                                             FontSize="12"
-                                            Clicked="Button_Clicked"
+                                                        Clicked="Button_Clicked"
                                             BindingContext="{Binding Id}"
                                             FontFamily="FaSolid">
                                         </Button>

@@ -27,21 +27,12 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Frame HasShadow="False" HeightRequest="16" HorizontalOptions="FillAndExpand" BackgroundColor="#F5F6F7">
-                        <StackLayout VerticalOptions="Center" Orientation="Horizontal">
-                            <Label
-                                FontFamily="FaSolid"
-                                VerticalOptions="CenterAndExpand"
-                                Text="&#xf002;" />
-                            <renderers:PaddingEntryRenderer
-                                HorizontalOptions="FillAndExpand"
-                                FontSize="14"
-                                Text="{Binding SearchValue}"
-                                FontFamily="{StaticResource PoppinsBold}"
-                                Placeholder="Enter Name..."
-                                Background="Transparent" />
-                        </StackLayout>
-                    </Frame>
+                    <StackLayout HorizontalOptions="FillAndExpand">
+                        <components:Input 
+                            Text="{Binding SearchValue, Mode=TwoWay}"
+                            Placeholder="Enter Name..."
+                            Icon="&#xf002;"/>
+                    </StackLayout>
                     <Frame
                         x:Name="buttonContainer"
                         Padding="15, 8"

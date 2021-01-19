@@ -35,7 +35,7 @@ namespace medicijn.ViewModels.Patienten
 
             _receptService = new ReceptService();
 
-            //Modal.Instance.OpenModal(new DoseringAanpassenView());
+            Modal.Instance.OpenModal(new DoseringAanpassenView());
         }
 
         public PatientDossierViewModel(Patient patient) : this()

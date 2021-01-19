@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Name="this"
+    xmlns:renderers="clr-namespace:medicijn.Renderers" 
+    x:Class="medicijn.Components.Input">
+    <ContentView.Content>
+        <Frame HasShadow="False" HeightRequest="16" HorizontalOptions="FillAndExpand" BackgroundColor="#F5F6F7">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TappedOnFrame" /> 
+            </Frame.GestureRecognizers>
+            <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                <Label
+                    FontFamily="FaSolid"
+                    x:Name="IconContainer"
+                    VerticalOptions="CenterAndExpand"
+                    />
+                <renderers:PaddingEntryRenderer
+                    HorizontalOptions="FillAndExpand"
+                    FontSize="14"
+                    x:Name="InputBox"
+                    Text="{Binding Source={x:Reference this}, Path=Text}"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    Background="Transparent" />
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
