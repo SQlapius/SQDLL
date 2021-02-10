@@ -19,6 +19,7 @@
                 <renderers:PaddingEntryRenderer
                     HorizontalOptions="FillAndExpand"
                     FontSize="14"
+                    Completed="InputBox_Completed"
                     x:Name="InputBox"
                     Text="{Binding Source={x:Reference this}, Path=Text}"
                     FontFamily="{StaticResource PoppinsBold}"

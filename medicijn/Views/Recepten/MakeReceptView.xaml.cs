@@ -40,7 +40,8 @@ namespace medicijn.Views.Recepten
             foreach(var child in container.Children) 
             {
                 child.BackgroundColor = Color.White;
-                ((Grid)child).Children[4].BackgroundColor = Color.FromHex("#F8F8F8");
+                var horizontalLineSeparator = ((Grid)child).Children[4];
+                horizontalLineSeparator.BackgroundColor = Color.FromHex("#F8F8F8");
             }
 
             var currentReceptRegelY = GetScreenCoordinates(currentReceptRegel).Y;
@@ -58,8 +59,8 @@ namespace medicijn.Views.Recepten
             Dropdown.Opacity = _vm.ReceptRegelMenuIsOpen ? 100 : 0;
 
             //Set highlight color
-            parent.BackgroundColor = _vm.ReceptRegelMenuIsOpen ? 
-                Color.FromRgba(30, 168, 222, 35) : Color.White;
+            //parent.BackgroundColor = _vm.ReceptRegelMenuIsOpen ? Color.FromRgba(30, 168, 222, 35) : Color.White;
+            parent.BackgroundColor = _vm.ReceptRegelMenuIsOpen ? Color.FromRgba(0, 0, 0, 10) : Color.White;
             parent.Children[4].BackgroundColor = _vm.ReceptRegelMenuIsOpen ? 
                 Color.Transparent : Color.FromHex("#F8F8F8");
 

@@ -5,7 +5,11 @@
     x:Class="medicijn.Components.SelectBoxGroup"
     x:Name="this">
     <ContentView.Content>
-        <StackLayout x:Name="Container" Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Options, Source={Reference this}}">
+        <StackLayout 
+            x:Name="Container" 
+            Orientation="Horizontal" 
+            BindableLayout.ItemsSource="{Binding 
+            Options, Source={Reference this}}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Frame

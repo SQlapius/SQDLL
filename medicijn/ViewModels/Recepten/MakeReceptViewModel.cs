@@ -29,6 +29,7 @@ namespace medicijn.ViewModels.Recepten
         public ICommand CreateNewReceptPressedCommand { get; }
         public ICommand CIInfoButtonPressedCommand { get; }
         public ICommand IAInfoButtonPressedCommand { get; }
+        public ICommand PressedDoseringAanpassenCommand { get; }
 
         private bool _isLoading;
         public bool IsLoading
@@ -86,7 +87,7 @@ namespace medicijn.ViewModels.Recepten
         }
 
 
-        private int? _selectedReceptRegel;
+        private int _selectedReceptRegel;
 
         public Patient Patient { get; set; }
 
@@ -102,6 +103,7 @@ namespace medicijn.ViewModels.Recepten
             CIInfoButtonPressedCommand = new Command<ContraIndicatie>(NavigateToCIInfoView);
             IAInfoButtonPressedCommand = new Command<Interactie>(NavigateToIAInfoView);
             AddButtonPressedCommand = new Command(AddButtonPressed);
+            PressedDoseringAanpassenCommand = new Command(ClickedDoseringAanpassen);
         }
 
         public MakeReceptViewModel(INavigation navigation, Patient patient) : this()
@@ -183,7 +185,7 @@ namespace medicijn.ViewModels.Recepten
             );
 
             IsLoading = false;
-            Debug.WriteLine(IsLoading);
+            Debug.WriteLine(JsonConvert.SerializeObject(Recept));
         }
 
         private string GetCIAardActieCode(string actie)
@@ -237,13 +239,20 @@ namespace medicijn.ViewModels.Recepten
             if(_selectedReceptRegel == id) 
             {
                 ReceptRegelMenuIsOpen = false;
-                _selectedReceptRegel = null;
+                _selectedReceptRegel = -1;
                 return;
             }
 
             ReceptRegelMenuIsOpen = true;
             _selectedReceptRegel = id;
         }
+
+        public void ClickedDoseringAanpassen()
+        {
+            Modal.Instance.Content = new DoseringAanpassenView(_selectedReceptRegel);
+            Modal.Instance.IsVisible = true;
+        }
+
 
         private void NavigateBack()
         {

@@ -37,7 +37,7 @@ namespace medicijn.Views.Medicijnen
             BindingContext = _vm;
         }
 
-        void entry_Completed(System.Object sender, System.EventArgs e)
+        void Entry_Completed(System.Object sender, System.EventArgs e)
         {
             if(_vm != null)
             {

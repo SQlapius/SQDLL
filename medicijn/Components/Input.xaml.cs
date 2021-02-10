@@ -69,9 +69,10 @@ namespace medicijn.Components
 
         private static void TextPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            Debug.WriteLine(newValue as string);
             ((Input)bindable).InputBox.Text = newValue as string;
         }
+
+        public event EventHandler<EventArgs> Completed;
 
         public Input()
         {
@@ -81,6 +82,11 @@ namespace medicijn.Components
         void TappedOnFrame(object sender, EventArgs e)
         {
             InputBox.Focus();
+        }
+
+        void InputBox_Completed(System.Object sender, System.EventArgs e)
+        {
+            Completed.Invoke(this, e);
         }
     }
 }

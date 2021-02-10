@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using medicijn.Models.Dosering;
 using medicijn.Utils;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace medicijn.ViewModels.Recepten
@@ -14,6 +16,7 @@ namespace medicijn.ViewModels.Recepten
         public Command DecrementMedicineAmountCommand { get; }
         public Command IncrementMedicineAmountCommand { get; }
         public Command BackButtonPressedCommand { get; }
+        public Command ClickedOnAWeekdayCommand { get; }
 
         public List<dynamic> Options { get; set; }
         public List<dynamic> TakeInOptions { get; set; }
@@ -53,12 +56,25 @@ namespace medicijn.ViewModels.Recepten
             }
         }
 
+        private int _receptRegelId;
+        public int ReceptRegelId
+        {
+            get => _receptRegelId;
+            set
+            {
+                _receptRegelId = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public DoseringAanpassenViewModel()
         {
 
             DecrementMedicineAmountCommand = new Command(DecrementDosering);
             IncrementMedicineAmountCommand = new Command(IncrementDosering);
             BackButtonPressedCommand = new Command(BackButtonPressed);
+            ClickedOnAWeekdayCommand = new Command<int>(WeekdayPressed);
 
             SelectedId = 0;
             Options = new List<dynamic>()
@@ -89,6 +105,11 @@ namespace medicijn.ViewModels.Recepten
             };
         }
 
+        public DoseringAanpassenViewModel(int receptRegelId) : this()
+        {
+            ReceptRegelId = receptRegelId;
+        }
+
         private void UpdateCheckboxes()
         { 
             if(Weekdays == null) return;
@@ -109,30 +130,45 @@ namespace medicijn.ViewModels.Recepten
             }
         }
 
+        private void WeekdayPressed(int clickedDayId)
+        {
+            if(SelectedId != 2)
+                return; 
+
+            var pressedDay  = Weekdays.Where(x => x.Id == clickedDayId).FirstOrDefault();
+            int index = Weekdays.IndexOf(pressedDay);
+            pressedDay.Selected = !pressedDay.Selected;
+            Weekdays[index] = pressedDay;
+
+            if (Weekdays.All(x => x.Selected == true))
+                SelectedId = 0;
+
+        }
+
         private void CheckEveryDay()
         { 
-            foreach(var kip in Weekdays) 
+            foreach(var day in Weekdays) 
             {
-                kip.Selected = true;
-                kip.IsEnabled = false;
+                day.Selected = true;
+                day.IsEnabled = false;
             }
         }
 
         private void CheckOmDeDag()
         { 
-            foreach(var kip in Weekdays) 
+            foreach(var day in Weekdays) 
             {
-                kip.Selected = kip.Id % 2 == 0;
-                kip.IsEnabled = false;
+                day.Selected = day.Id % 2 == 0;
+                day.IsEnabled = false;
             }
         }
 
         private void ResetCheckboxes()
         { 
-            foreach(var kip in Weekdays) 
+            foreach(var day in Weekdays) 
             {
-                kip.Selected = false;
-                kip.IsEnabled = true;
+                day.Selected = false;
+                day.IsEnabled = true;
             }
         }
 

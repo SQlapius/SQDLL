@@ -13,5 +13,10 @@ namespace medicijn.Views.Recepten
 
             BindingContext = new DoseringAanpassenViewModel();
         }
+
+        public DoseringAanpassenView(int id) : this()
+        {
+            BindingContext = new DoseringAanpassenViewModel(id);
+        }
     }
 }

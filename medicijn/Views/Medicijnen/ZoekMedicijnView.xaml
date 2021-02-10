@@ -3,7 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"     
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:converters="clr-namespace:medicijn.Converters" 
-    xmlns:renderers="clr-namespace:medicijn.Renderers" 
+    xmlns:renderers="clr-namespace:medicijn.Renderers" xmlns:components="clr-namespace:medicijn.Components" 
     x:Class="medicijn.Views.Medicijnen.ZoekMedicijnView">
     <ContentView.Content>
         <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="650" WidthRequest="750">
@@ -23,39 +23,21 @@
                 </StackLayout>
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"> 
                     <StackLayout Orientation="Horizontal">
-                        <Grid HeightRequest="40" HorizontalOptions="FillAndExpand">  
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="40"/>
-                            </Grid.ColumnDefinitions>
-                            <renderers:PaddingEntryRenderer
-                                Completed="entry_Completed"
-                                HorizontalOptions="FillAndExpand"
-                                x:Name="entry"
-                                HeightRequest="40"
-                                Grid.ColumnSpan="2"
-                                Text="{Binding SearchValue}" />
-                            <AbsoluteLayout 
-                                HorizontalOptions="CenterAndExpand" 
-                                VerticalOptions="CenterAndExpand" 
-                                Grid.Column="1">
-                                <AbsoluteLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SearchButtonPressedCommand}"/>
-                                </AbsoluteLayout.GestureRecognizers>
-                                <Image 
-                                    VerticalOptions="CenterAndExpand"
-                                    WidthRequest="25"
-                                    Source="SearchIcon.jpg"/>
-                            </AbsoluteLayout>
-                        </Grid>
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            <components:Input 
+                                Text="{Binding SearchValue, Mode=TwoWay}"
+                                Completed="Entry_Completed"
+                                Placeholder="Enter Name..."
+                                Icon="&#xf002;"/>
+                        </StackLayout>
+                        <components:IconButton
+                            Icon="&#xf002;"
+                            ButtonPadding="35, 0"
+                            Fill="{StaticResource Blue}"
+                            VerticalOptions="FillAndExpand"
+                            Text="Zoek"
+                            Command="{Binding SearchButtonPressedCommand}"/>
                     </StackLayout>
-                    <!--<Entry
-                        Placeholder="Aantal"
-                        Text="{Binding Aantal} "/>
-                    <Entry
-                        Placeholder="Dosering"
-                        Text="{Binding Dosering}"/>-->
-
                     <StackLayout VerticalOptions="FillAndExpand" HeightRequest="0"  HorizontalOptions="FillAndExpand">
                         <StackLayout Margin="0, 10"> 
                             <Label Text="{Binding HeaderText}" FontAttributes="Bold" TextColor="#808080" FontSize="12"/>

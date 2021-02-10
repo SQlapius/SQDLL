@@ -112,15 +112,16 @@ namespace medicijn.Components
 
         public Color Color
         {
-            get => (Color)GetValue(IconProperty);
+            get => (Color)GetValue(ColorProperty);
             set
             {
-                SetValue(IconProperty, value);
+                SetValue(ColorProperty, value);
             }
         }
 
         private static void ColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
+
             var myButton = bindable as IconButton;
 
             myButton.buttonIcon.TextColor = (Color)newValue;
