@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GZIDAL002.Recepten.Models;
 using medicijn.ViewModels.Recepten;
 using Xamarin.Forms;
 
@@ -14,9 +15,9 @@ namespace medicijn.Views.Recepten
             BindingContext = new DoseringAanpassenViewModel();
         }
 
-        public DoseringAanpassenView(int id) : this()
+        public DoseringAanpassenView(int id, Action<ReceptRegel> updateDosering) : this()
         {
-            BindingContext = new DoseringAanpassenViewModel(id);
+            BindingContext = new DoseringAanpassenViewModel(id, updateDosering);
         }
     }
 }

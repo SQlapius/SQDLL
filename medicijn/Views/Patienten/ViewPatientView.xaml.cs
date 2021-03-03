@@ -30,17 +30,21 @@ namespace medicijn.Views.Patienten
             BindingContext = new ViewPatientViewModel(patient);
 
             Navigator.Instance.Add(new Models.NavPage("", new MakeReceptView(patient)));
+
+            Modal.Instance.PropertyChanged += Instance_PropertyChanged;
         }
 
-        async void Overlay_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        async private void Instance_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if(e.PropertyName == "IsVisible") {
                 if(Modal.Instance.IsVisible)
                 {
+                    Overlay.IsVisible = true;
                     await Overlay.FadeTo(1, 500, Easing.SpringOut);
                 } 
                 else 
                 {
+                    Overlay.IsVisible = false;
                     await Overlay.FadeTo(0, 500, Easing.SpringOut);
                 }
             }
@@ -49,6 +53,11 @@ namespace medicijn.Views.Patienten
         void SwipeGestureRecognizer_Swiped(object sender, SwipedEventArgs e)
         {
             Navigator.Instance.Pop();
+        }
+
+        void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        {
+            Modal.Instance.CloseModal();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 namespace medicijn.Utils
 {
@@ -40,13 +41,14 @@ namespace medicijn.Utils
 
         public void OpenModal(ContentView view)
         {
-            IsVisible = true;
             Content = view;
+            IsVisible = true;
         }
 
         public void CloseModal()
         {
             IsVisible = false;
+            Content = null;
         }
     }
 }

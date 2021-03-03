@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using GZIDAL002.Recepten.Models;
 using medicijn.Models.Dosering;
 using medicijn.Utils;
 using Newtonsoft.Json;
@@ -105,7 +106,7 @@ namespace medicijn.ViewModels.Recepten
             };
         }
 
-        public DoseringAanpassenViewModel(int receptRegelId) : this()
+        public DoseringAanpassenViewModel(int receptRegelId, Action<ReceptRegel> action) : this()
         {
             ReceptRegelId = receptRegelId;
         }
@@ -137,6 +138,7 @@ namespace medicijn.ViewModels.Recepten
 
             var pressedDay  = Weekdays.Where(x => x.Id == clickedDayId).FirstOrDefault();
             int index = Weekdays.IndexOf(pressedDay);
+
             pressedDay.Selected = !pressedDay.Selected;
             Weekdays[index] = pressedDay;
 

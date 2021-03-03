@@ -247,9 +247,14 @@ namespace medicijn.ViewModels.Recepten
             _selectedReceptRegel = id;
         }
 
+        private async void UpdateDosering(ReceptRegel receptRegel)
+        {
+            Debug.WriteLine("hey");
+        }
+
         public void ClickedDoseringAanpassen()
         {
-            Modal.Instance.Content = new DoseringAanpassenView(_selectedReceptRegel);
+            Modal.Instance.Content = new DoseringAanpassenView(_selectedReceptRegel, UpdateDosering);
             Modal.Instance.IsVisible = true;
         }
 
