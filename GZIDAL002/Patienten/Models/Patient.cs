@@ -45,6 +45,8 @@ namespace GZIDAL002.Patienten.Models
 
         [JsonProperty("IA")]
         public List<Interactie> Interacties { get; set; }
+
+        public List<CIPatient> ContraIndicaties { get; set; }
     }
 
     internal class DetailedPatientResponse

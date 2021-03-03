@@ -5,31 +5,11 @@ using Newtonsoft.Json;
 
 namespace GZIDAL002.Recepten.Models
 {
-    public class ContraIndicatie : BaseViewModel
-    {
-        [JsonProperty("medId")]
-        public int MedId { get; set; }
+    public class CIPatient : ContraIndicatie
+    { 
+        public DateTime ToevoegDatum { get; set; }
 
-        [JsonProperty("prKode")]
-        public int PRKode { get; set; }
-
-        [JsonProperty("medNaam")]
-        public string MedNaam { get; set; }
-
-        [JsonProperty("inaard")]
-        public int InAard { get; set; }
-
-        [JsonProperty("aard")]
-        public string Aard { get; set; }
-
-        [JsonProperty("pcaId")]
-        public int PcaId { get; set; }
-
-        [JsonProperty("ciCode")]
-        public int CICode { get; set; }
-
-        [JsonProperty("pcaFlag")]
-        public int PcaFlag { get; set; }
+        public Arts Arts { get; set; }
 
         private int _isActief;
         [JsonProperty("is-a")]
@@ -80,6 +60,33 @@ namespace GZIDAL002.Recepten.Models
                 OnPropertyChanged();
             }
         }
+    }
+
+    public class ContraIndicatie : BaseViewModel
+    {
+        [JsonProperty("medId")]
+        public int MedId { get; set; }
+
+        [JsonProperty("prKode")]
+        public int PRKode { get; set; }
+
+        [JsonProperty("medNaam")]
+        public string MedNaam { get; set; }
+
+        [JsonProperty("inaard")]
+        public int InAard { get; set; }
+
+        [JsonProperty("aard")]
+        public string Aard { get; set; }
+
+        [JsonProperty("pcaId")]
+        public int PcaId { get; set; }
+
+        [JsonProperty("ciCode")]
+        public int CICode { get; set; }
+
+        [JsonProperty("pcaFlag")]
+        public int PcaFlag { get; set; }
     }
 
     internal class CIInfoText
