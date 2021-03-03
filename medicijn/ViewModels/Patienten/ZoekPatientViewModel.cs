@@ -22,7 +22,16 @@ namespace medicijn.ViewModels.Patienten
         public ICommand ChangeSearchFilterCommand { get; }
         public ICommand ClickedOnFilterItemCommand { get; }
 
-        public string SearchValue { get; set; }
+        private string _searchValue;
+        public string SearchValue 
+        {
+            get => _searchValue;
+            set
+            {
+                _searchValue = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Patient SelectedPatient
         {

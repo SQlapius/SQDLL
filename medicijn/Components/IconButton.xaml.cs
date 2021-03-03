@@ -81,7 +81,7 @@ namespace medicijn.Components
         }
 
         public static readonly BindableProperty ButtonPaddingProperty
-          = BindableProperty.Create(
+            = BindableProperty.Create(
                 nameof(ButtonPadding),
                 typeof(Thickness),
                 typeof(IconButton),
@@ -112,15 +112,16 @@ namespace medicijn.Components
 
         public Color Color
         {
-            get => (Color)GetValue(IconProperty);
+            get => (Color)GetValue(ColorProperty);
             set
             {
-                SetValue(IconProperty, value);
+                SetValue(ColorProperty, value);
             }
         }
 
         private static void ColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
+
             var myButton = bindable as IconButton;
 
             myButton.buttonIcon.TextColor = (Color)newValue;
@@ -198,7 +199,6 @@ namespace medicijn.Components
         {
             if (Command != null)
             {
-                Debug.WriteLine("hit");
                 Command.Execute(((TappedEventArgs)e).Parameter);
             }
         }

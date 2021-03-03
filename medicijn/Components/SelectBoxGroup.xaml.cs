@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace medicijn.Components
@@ -13,7 +15,7 @@ namespace medicijn.Components
                 nameof(Options),
                 typeof(IEnumerable),
                 typeof(IEnumerable),
-                propertyChanged: ok);
+                propertyChanged: kip);
 
         public IEnumerable Options
         {
@@ -24,11 +26,17 @@ namespace medicijn.Components
             }
         }
 
+        private static void kip(BindableObject bindable, object oldValue, object newValue)
+        {
+        }
+
         public static readonly BindableProperty SelectedIdProperty
             = BindableProperty.Create(
                 nameof(SelectedId),
                 typeof(int),
                 typeof(int),
+                defaultValue: -1,
+                defaultBindingMode: BindingMode.TwoWay,
                 propertyChanged: ok);
 
         public int SelectedId
@@ -42,12 +50,33 @@ namespace medicijn.Components
 
         private static void ok(BindableObject bindable, object oldValue, object newValue)
         {
-            Debug.WriteLine("ok" + newValue);
+
+            var view = (SelectBoxGroup)bindable;
+
+            foreach (var c in view.Container.Children)
+            {
+                var child = (Frame)c;
+                child.BackgroundColor = Color.FromHex("#F8F8F8");
+                ((Label)child.Content).TextColor = Color.FromHex("#B2B2B2");
+            }
+
+            var frame = (Frame)view.Container.Children[(int)newValue];
+
+            frame.BackgroundColor = Color.FromRgba(1, 153, 153, 60);
+            ((Label)frame.Content).TextColor = Color.FromRgb(1, 153, 153);
         }
+
 
         public SelectBoxGroup()
         {
             InitializeComponent();
+        }
+
+        void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var id = ((TappedEventArgs)e).Parameter;
+
+            SelectedId = (int)id;
         }
     }
 }

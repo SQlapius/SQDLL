@@ -66,6 +66,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>Apple Development: Londy Martina (7GM946P778)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <ItemGroup>

@@ -53,6 +53,7 @@
     <Folder Include="Views\Main\" />
     <Folder Include="ViewModels\Main\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Models\Dosering\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">
