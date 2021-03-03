@@ -11,6 +11,7 @@ namespace medicijn.Views.Recepten
         public EditReceptRegelView(ReceptRegel receptRegel, Action<ReceptRegel> EditReceptRegel)
         {
             InitializeComponent();
+
             BindingContext = new EditReceptRegelViewModel(receptRegel, EditReceptRegel);
         }
     }

@@ -2,10 +2,12 @@
 <ContentView
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:my="clr-namespace:medicijn.ViewModels.Patienten"
     xmlns:components="clr-namespace:medicijn.Components"
     xmlns:renderers="clr-namespace:medicijn.Renderers"
     xmlns:converters="clr-namespace:medicijn.Converters"
-    x:Class="medicijn.ViewModels.Patienten.EditPatientCIsView">
+    x:Class="medicijn.ViewModels.Patienten.EditPatientCIsView"
+    x:Name="this">
     <ContentView.Content>
         <Frame
             HorizontalOptions="CenterAndExpand"
@@ -40,6 +42,7 @@
                         </Label.FormattedText>
                     </Label>
                 </StackLayout>
+
                 <components:HorizontalLine Margin="0, 15" />
                 
                 <StackLayout Orientation="Horizontal">
@@ -67,80 +70,245 @@
                         Command="{Binding SearchButtonPressedCommand}"/>
                 </StackLayout>
 
-                <Label 
-                    FontFamily="{StaticResource PoppinsMedium}"
-                    Margin="0, 27">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding Patients.Count}"/> 
-                            <Span Text="Actieve Aandoeningen"/> 
-                        </FormattedString> 
-                    </Label.FormattedText> 
-                </Label>
+                <!-- Patient Actieve ContraIndicaties -->
+                <StackLayout IsVisible="False">
+                    <StackLayout.Triggers>
+                        <DataTrigger
+                            TargetType="StackLayout"
+                            Binding="{Binding State}"
+                            Value="{x:Static my:EditPatientCIsState.showActiveCIs}">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+                    <Label 
+                        FontFamily="{StaticResource PoppinsMedium}"
+                        Margin="0, 27">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Patients.Count}"/> 
+                                <Span Text="Actieve Aandoeningen"/> 
+                            </FormattedString> 
+                        </Label.FormattedText> 
+                    </Label>
 
-                <ListView
-                    x:Name="PatientsList"
-                    IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}"
-                    SeparatorVisibility="None"
-                    ItemsSource="{Binding Patients}"
-                    SelectedItem="{Binding SelectedPatient, Mode=TwoWay}"
-                    HasUnevenRows="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout>
-                                    <StackLayout Orientation="Horizontal">
-                                        <StackLayout 
-                                            VerticalOptions="FillAndExpand"
-                                            WidthRequest="3.5" 
-                                            BackgroundColor="{Binding ., Converter={converters:BackgroundColorConverter}, ConverterParameter={x:Reference PatientsList}}"/>
-                                        <StackLayout Padding="8" Spacing="3">
-                                            <StackLayout VerticalOptions="CenterAndExpand" Orientation="Horizontal">
-                                                <Label
-                                                    FontFamily="{StaticResource PoppinsBold}"
-                                                    VerticalTextAlignment="Center"
-                                                    Text="{Binding Naam}"  />
-                                                <Label 
-                                                    VerticalTextAlignment="Center"
-                                                    VerticalOptions="CenterAndExpand"
-                                                    TextColor="{StaticResource Green}"
-                                                    FontFamily="{StaticResource PoppinsMedium}"
-                                                    FontSize="12"
-                                                    Text="{Binding Sedula}" />
+                    <ListView
+                        x:Name="PatientsList"
+                        IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}"
+                        SeparatorVisibility="None"
+                        SelectedItem="{Binding SelectedActiveCI, Mode=TwoWay}"
+                        ItemsSource="{Binding ActiveCIs}"
+                        HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout 
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="3.5" 
+                                                BackgroundColor="{Binding ., Converter={converters:BackgroundColorConverter}, ConverterParameter={x:Reference PatientsList}}"/>
+                                            <StackLayout Padding="8" Spacing="3">
+                                                <StackLayout VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                                    <Label
+                                                        FontFamily="{StaticResource PoppinsBold}"
+                                                        VerticalTextAlignment="Center"
+                                                        Text="{Binding MedNaam}" />
+                                                    <Label 
+                                                        VerticalTextAlignment="Center"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        TextColor="{StaticResource Blue}"
+                                                        FontFamily="FaSolid"
+                                                        FontSize="16"
+                                                        Text="&#xf059;" />
+                                                </StackLayout>
+                                                <Label FontFamily="{StaticResource PoppinsSemiBold}" FontSize="14" TextColor="{StaticResource Green} ">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Toegevoegd op: " />
+                                                            <Span Text="{Binding ToevoegDatum}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label FontFamily="{StaticResource PoppinsRegular}" FontSize="12" TextColor="{StaticResource LightGray}">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Arts.Naam}" />
+                                                            <Span Text=" " />
+                                                            <Span TextColor="{StaticResource Blue}" Text="{Binding Arts.Unico, StringFormat='#{0:0}'}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
                                             </StackLayout>
-                                            <Label 
-                                                TextColor="{StaticResource Green}"
-                                                FontSize="12"
-                                                FontFamily="{StaticResource PoppinsSemiBold}"
-                                                Text="{Binding SexFull}"/>
-                                            <Label 
-                                                TextColor="{StaticResource LightGray}"
-                                                FontSize="12"
-                                                FontFamily="{StaticResource PoppinsMedium}">
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="SQpatId: "/> 
-                                                        <Span Text="{Binding SqPatId}"/> 
-                                                    </FormattedString> 
-                                                </Label.FormattedText> 
-                                            </Label>
+                                            <Button
+                                                BackgroundColor="Transparent"
+                                                Text="&#xf00d;"
+                                                HorizontalOptions="EndAndExpand"
+                                                Command="{Binding BindingContext.DeleteCIButtonPressedCommand, Source={x:Reference this}}"
+                                                CommandParameter="{Binding .}"
+                                                WidthRequest="100"
+                                                TextColor="#AF0000"
+                                                FontSize="20"
+                                                VerticalOptions="CenterAndExpand"
+                                                FontFamily="FaSolid" />
                                         </StackLayout>
-                                        <Label
-                                            Text="&#xf054;"
-                                            HorizontalOptions="EndAndExpand"
-                                            VerticalOptions="CenterAndExpand"
-                                            FontFamily="FaSolid" />
+                                        <StackLayout 
+                                            HeightRequest="1" 
+                                            Margin="0, 6"
+                                            HorizontalOptions="FillAndExpand" 
+                                            BackgroundColor="{StaticResource LightLightGray}"/>
                                     </StackLayout>
-                                    <StackLayout 
-                                        HeightRequest="1" 
-                                        Margin="0, 6"
-                                        HorizontalOptions="FillAndExpand" 
-                                        BackgroundColor="{StaticResource LightLightGray}"/>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <!-- All ContraIndicaties -->
+                <StackLayout IsVisible="False">
+                    <StackLayout.Triggers>
+                        <DataTrigger
+                            TargetType="StackLayout"
+                            Binding="{Binding State}"
+                            Value="{x:Static my:EditPatientCIsState.showAllCIs}">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                            HorizontalOptions="FillAndExpand"
+                            FontFamily="{StaticResource PoppinsMedium}"
+                            Margin="0, 27">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding FilteredCIs.Count}"/>
+                                    <Span Text=" " />
+                                    <Span Text="ContraIndicatie(s) gevonden"/> 
+                                </FormattedString> 
+                            </Label.FormattedText>
+                        </Label>
+                        <Button
+                            Command="{Binding ShowActiveCIsButtonPressedCommand}"
+                            HorizontalOptions="End"
+                            FontFamily="{StaticResource PoppinsSemiBold}" 
+                            Text="Toon Actieve CIs"
+                            TextColor="{StaticResource Green}" />
+                    </StackLayout>
+
+                    <ListView
+                        x:Name="allCIsList"
+                        IsVisible="{Binding IsLoading, Converter={converters:InverseBoolConverter}}"
+                        SeparatorVisibility="None"
+                        SelectedItem="{Binding SelectedCI, Mode=TwoWay}"
+                        ItemsSource="{Binding FilteredCIs}"
+                        HasUnevenRows="True">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout 
+                                                VerticalOptions="FillAndExpand"
+                                                WidthRequest="3.5" 
+                                                BackgroundColor="{Binding ., Converter={converters:BackgroundColorConverter}, ConverterParameter={x:Reference allCIsList}}"/>
+                                            <StackLayout Padding="8" Spacing="3">
+                                                <StackLayout VerticalOptions="CenterAndExpand" Orientation="Horizontal">
+                                                    <Label
+                                                        FontFamily="{StaticResource PoppinsBold}"
+                                                        VerticalTextAlignment="Center"
+                                                        Text="{Binding Naam}" />
+                                                    <Label 
+                                                        VerticalTextAlignment="Center"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        TextColor="{StaticResource Blue}"
+                                                        FontFamily="FaSolid"
+                                                        FontSize="16"
+                                                        Text="&#xf059;" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <Button
+                                                BackgroundColor="Transparent"
+                                                IsVisible="{Binding ., Converter={converters:IsNotActiveCIConverter}, ConverterParameter={x:Reference PatientsList}}"
+                                                Text="&#xf067;"
+                                                HorizontalOptions="EndAndExpand"
+                                                Command="{Binding BindingContext.AddCIButtonPressedCommand, Source={x:Reference this}}"
+                                                CommandParameter="{Binding .}"
+                                                WidthRequest="100"
+                                                TextColor="Green"
+                                                FontSize="20"
+                                                VerticalOptions="CenterAndExpand"
+                                                FontFamily="FaSolid" />
+                                        </StackLayout>
+                                        <StackLayout 
+                                            HeightRequest="1" 
+                                            Margin="0, 6"
+                                            HorizontalOptions="FillAndExpand" 
+                                            BackgroundColor="{StaticResource LightLightGray}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+                <!-- Show Detailed CI Info -->
+                <StackLayout VerticalOptions="FillAndExpand" IsVisible="False">
+                    <StackLayout.Triggers>
+                        <DataTrigger
+                            TargetType="StackLayout"
+                            Binding="{Binding State}"
+                            Value="{x:Static my:EditPatientCIsState.showSpecificCIInfo}">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+                    </StackLayout.Triggers>
+                    <StackLayout Orientation="Horizontal">
+                        <Button
+                            Command="{Binding DetailedCIStateBackButtonPressedCommand}"
+                            FontFamily="FaSolid" 
+                            Text="&#xf053;"
+                            TextColor="Black" />
+                        <Label
+                            FontFamily="{StaticResource PoppinsMedium}"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="0, 27">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Info - " />
+                                    <Span Text="{Binding SelectedCI.Naam}"/>
+                                    <Span
+                                        FontSize="16"
+                                        TextColor="{StaticResource Blue}"
+                                        Text="{Binding SelectedCI.Id, StringFormat='#{0}'}" />
+                                </FormattedString> 
+                            </Label.FormattedText> 
+                        </Label>
+                        <Button
+                            Command="{Binding AddCIButtonPressedCommand}"
+                            HorizontalOptions="End"
+                            FontFamily="{StaticResource PoppinsSemiBold}"
+                            CommandParameter="{Binding SelectedCI}"
+                            Text="Toevoegen"
+                            TextColor="{StaticResource Green}">
+                            <Button.Triggers>
+                                <DataTrigger
+                                    TargetType="Button"
+                                    Binding="{Binding SelectedCI, Converter={converters:IsNotActiveCIConverter}, ConverterParameter={x:Reference PatientsList}}"
+                                    Value="False">
+                                    <Setter Property="TextColor" Value="Red" />
+                                    <Setter Property="Text" Value="Verwijderen van patient" />
+                                    <Setter Property="Command" Value="{Binding DeleteInfoStateCIButtonPressedCommand}" />
+                                    <Setter Property="CommandParameter" Value="{Binding SelectedCI}" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </StackLayout>
+
+                    <ContentView
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        Content="{Binding WebView}" />
+
+                </StackLayout>
             </StackLayout>
         </Frame>
     </ContentView.Content>

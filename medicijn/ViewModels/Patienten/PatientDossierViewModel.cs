@@ -43,9 +43,9 @@ namespace medicijn.ViewModels.Patienten
             Patient = patient;
         }
 
-        private async void OpenEditCIsModal()
+        private void OpenEditCIsModal()
         {
-            Modal.Instance.OpenModal(new EditPatientCIsView());
+            Modal.Instance.OpenModal(new EditPatientCIsView(Patient));
         }
 
         private void BackButtonPressed() 

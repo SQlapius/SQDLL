@@ -118,37 +118,37 @@ namespace medicijn.ViewModels.Recepten
         }
         private async void ChoosePatientCIAardAction(ContraIndicatie contra)
         {
-            if (contra.PatCIAardActie == "B")
-                return;
+            //    if (contra.PatCIAardActie == "B")
+            //        return;
 
-            var chosenOption = await Application.Current.MainPage.DisplayActionSheet(
-                "Kies je actie voor " + contra.Aard,
-                "cancel",
-                null,
-                "bewaken",
-                "onderdrukken"
-            );
+            //    var chosenOption = await Application.Current.MainPage.DisplayActionSheet(
+            //        "Kies je actie voor " + contra.Aard,
+            //        "cancel",
+            //        null,
+            //        "bewaken",
+            //        "onderdrukken"
+            //    );
 
-            if (chosenOption == string.Empty)
-                return;
+            //    if (chosenOption == string.Empty)
+            //        return;
 
-            /*
-             *  Reset Values
-             */
-            contra.IsBewaakt = 0;
-            contra.IsOnderdrukt = 0;
+            //    /*
+            //     *  Reset Values
+            //     */
+            //    contra.IsBewaakt = 0;
+            //    contra.IsOnderdrukt = 0;
 
-            var actie = GetCIAardActieCode(chosenOption);
-            var status = await _patientService.SavePatientCIAardFlag(
-                contra.PcaId,
-                actie
-            );
+            //    var actie = GetCIAardActieCode(chosenOption);
+            //    var status = await _patientService.SavePatientCIAardFlag(
+            //        contra.PcaId,
+            //        actie
+            //    );
 
-            if (actie == "B")
-                contra.IsBewaakt = 1;
+            //    if (actie == "B")
+            //        contra.IsBewaakt = 1;
 
-            if (actie == "H")
-                contra.IsOnderdrukt = 1;
+            //    if (actie == "H")
+            //        contra.IsOnderdrukt = 1;
 
         }
 
@@ -158,7 +158,7 @@ namespace medicijn.ViewModels.Recepten
             {
                 "Bewaken",
                 "Onderdrukken",
-                CI.PatCIAardActie == "B" ? "Bewaking stoppen" : null
+                //CI.PatCIAardActie == "B" ? "Bewaking stoppen" : null
             };
         }
 

@@ -116,7 +116,7 @@ namespace GZIDAL002.Recepten
             }
         }
 
-        public async Task<bool> GetAllCI()
+        public async Task<List<LOV>> GetAllCI()
         {
             try
             {
@@ -126,14 +126,13 @@ namespace GZIDAL002.Recepten
                     { "soort", 1 }
                 };
 
-                var response = await _api.Post<GetCIInfoTekstResponse>(url, body);
+                var response = await _api.Post<LOVResponse>(url, body);
 
-                return false;
-
+                return response.LOVs;
             }
-            catch (Exception _)
+            catch
             {
-                return false;
+                return default;
             }
         }
 
@@ -149,7 +148,7 @@ namespace GZIDAL002.Recepten
 
                 var response = await _api.Post<GetCIInfoTekstResponse>(url, body);
 
-                return response.Infos[0].Info;
+                return response.Infos[0].Info ?? "No Info Found";
             }
             catch
             {
