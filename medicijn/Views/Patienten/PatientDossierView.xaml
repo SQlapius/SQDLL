@@ -102,6 +102,31 @@
                         VerticalOptions="FillAndExpand"/>
                 </StackLayout>
 
+                <StackLayout Orientation="Vertical" Spacing="0">
+                    <StackLayout HeightRequest="45" Orientation="Horizontal">
+                        <Label 
+                            VerticalOptions="CenterAndExpand" 
+                            FontFamily="{StaticResource PoppinsBold}"
+                            FontSize="14"
+                            WidthRequest="150" 
+                            Text="Email"/> 
+                        <BoxView 
+                            WidthRequest="1" 
+                            VerticalOptions="FillAndExpand" 
+                            BackgroundColor="{StaticResource LightLightGray}"/>
+                        <Label 
+                            VerticalOptions="CenterAndExpand" 
+                            TextColor="{StaticResource DarkBlue}"
+                            FontFamily="{StaticResource PoppinsMedium}"
+                            FontSize="14"
+                            Text="londy@sqlapius.net"/> 
+                    </StackLayout>
+                    <BoxView 
+                        BackgroundColor="{StaticResource LightLightGray}"
+                        HeightRequest="1" 
+                        VerticalOptions="FillAndExpand"/>
+                </StackLayout>
+
 
                 <StackLayout Orientation="Vertical" Spacing="0">
                     <StackLayout HeightRequest="45" Orientation="Horizontal">

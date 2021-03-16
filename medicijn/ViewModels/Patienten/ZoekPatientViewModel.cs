@@ -109,7 +109,7 @@ namespace medicijn.ViewModels.Patienten
             {
                 new DropdownItem()
                 {
-                    Naam = "PatId",
+                    Naam = "File Nummer",
                     Icon = "\uf1fd",
                     Id = 1
                 },

@@ -14,6 +14,8 @@ namespace medicijn.ViewModels.Patienten
 {
     public class ViewPatientViewModel : BaseViewModel 
     {
+        INavigation _navigation;
+
         PatientService _patientSerivce;
 
         public ICommand CloseOverlayCommand { get; }
@@ -22,6 +24,7 @@ namespace medicijn.ViewModels.Patienten
         public ICommand PressedBackButton { get; }
         public ICommand GCButtonPressedCommand { get; }
         public ICommand ViewPatientDossierCmmmand { get; }
+        public ICommand BackButtonPressedCommand { get; }
 
         public Patient Patient { get; set; }
 
@@ -35,11 +38,14 @@ namespace medicijn.ViewModels.Patienten
             PressedBackButton = new Command(GoBack);
             GCButtonPressedCommand = new Command(CleanPatientData);
             ViewPatientDossierCmmmand = new Command(NavigateToViewPatientDossier);
+            BackButtonPressedCommand = new Command(BackButtonPressed);
         }
 
-        public ViewPatientViewModel(Patient patient) : this()
+        public ViewPatientViewModel(Patient patient, INavigation navigation) : this()
         {
             Patient = patient;
+
+            _navigation = navigation;
         }
 
         public async void CleanPatientData()
@@ -48,6 +54,11 @@ namespace medicijn.ViewModels.Patienten
 
             if (!success)
                 Debug.WriteLine("FAILED Garbage Collection");
+        }
+
+        private async void BackButtonPressed()
+        {
+            await _navigation.PopAsync();
         }
 
         public void NavigateToCreateNewRecept()

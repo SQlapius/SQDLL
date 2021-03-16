@@ -222,6 +222,17 @@
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
                             </StackLayout>
+                            <Button 
+                                Command="{Binding BackButtonPressedCommand}"
+                                BackgroundColor="Transparent"
+                                BorderWidth="2"
+                                BorderColor="{StaticResource Red}"
+                                Padding="30, 12"
+                                TextColor="{StaticResource Red}"
+                                FontFamily="{StaticResource PoppinsMedium}"
+                                HorizontalOptions="EndAndExpand" 
+                                VerticalOptions="EndAndExpand" 
+                                Text="back"/>
                         </StackLayout>
                         <ContentView.GestureRecognizers>
                             <SwipeGestureRecognizer Threshold="4294967295" Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>

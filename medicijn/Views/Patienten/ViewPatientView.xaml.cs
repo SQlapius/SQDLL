@@ -27,7 +27,7 @@ namespace medicijn.Views.Patienten
 
         public ViewPatientView(Patient patient) : this()
         {
-            BindingContext = new ViewPatientViewModel(patient);
+            BindingContext = new ViewPatientViewModel(patient, Navigation);
 
             Navigator.Instance.Add(new Models.NavPage("", new MakeReceptView(patient)));
 
