@@ -110,7 +110,7 @@ namespace medicijn.ViewModels.Patienten
                     .ToList();
 
                 var recept = new Recept(Patient, "Londy");
-                var response = await _receptService.AddBestaandeMedicatieToRecept(
+                Recept response = await _receptService.AddBestaandeMedicatieToRecept(
                     recept,
                     medicaties
                 );

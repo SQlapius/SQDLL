@@ -7,6 +7,7 @@ using System.Windows.Input;
 using GZIDAL002.Patienten;
 using GZIDAL002.Patienten.Models;
 using medicijn.Models;
+using medicijn.Utils;
 using medicijn.Views.Patienten;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -158,6 +159,7 @@ namespace medicijn.ViewModels.Patienten
             IsLoading = true;
 
             var pat = await _patientService.GetPatientDetailed(patient.VesId, patient.PatId);
+            PatientState.Instance.UpdatePatient(pat);
             await _navigation.PushAsync(new ViewPatientView(pat));
 
             IsLoading = false;

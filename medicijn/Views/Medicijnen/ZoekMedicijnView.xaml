@@ -4,23 +4,23 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:converters="clr-namespace:medicijn.Converters" 
     xmlns:renderers="clr-namespace:medicijn.Renderers" xmlns:components="clr-namespace:medicijn.Components" 
+    xmlns:local="clr-namespace:medicijn.Utils"
     x:Class="medicijn.Views.Medicijnen.ZoekMedicijnView">
     <ContentView.Content>
-        <Frame HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" HeightRequest="650" WidthRequest="750">
-            <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-                <StackLayout Padding="0, 20" HorizontalOptions="FillAndExpand" Orientation="Horizontal"> 
-                    <Label FontSize="30" FontAttributes="Bold" Text="Zoek medicijn" HorizontalOptions="FillAndExpand"/>
-                    <StackLayout 
-                        x:Name="CloseIcon"
-                        WidthRequest="40"
-                        HeightRequest="40"
-                        VerticalOptions="Start" 
-                        HorizontalOptions="End">
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding CloseOverlayCommand}"/>    
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
-                </StackLayout>
+        <Frame 
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="CenterAndExpand" 
+            HeightRequest="650" 
+            WidthRequest="750">
+            <StackLayout 
+                VerticalOptions="FillAndExpand" 
+                Padding="{StaticResource DefaultPagePadding}"
+                HorizontalOptions="FillAndExpand">
+
+            <components:ModalHeader
+                Patient="{Binding Source={x:Static local:PatientState.Instance},Path=Patient}"
+                Title="Dossering Aanpassen"
+                />
                 <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"> 
                     <StackLayout Orientation="Horizontal">
                         <StackLayout HorizontalOptions="FillAndExpand">

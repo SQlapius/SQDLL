@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:components="clr-namespace:medicijn.Components" 
+    x:Name="this"
+    x:Class="medicijn.Components.ModalHeader">
+    <ContentView.Content>
+        <StackLayout Spacing="0">
+            <Label 
+                FontFamily="{StaticResource PoppinsBold}"
+                FontSize="{StaticResource TitleFontSize}"
+                TextColor="{StaticResource Green}"
+                Text="{Binding Source={x:Reference this}, Path=Title}" />
+            <StackLayout 
+                Orientation="Horizontal">
+                <Label 
+                    FontFamily="{StaticResource PoppinsBold}" 
+                    Text="Patient:" />
+                <Label
+                    FontFamily="{StaticResource PoppinsMedium}" 
+                    TextColor="{StaticResource DarkGray}" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding Source={x:Reference this}, Path=Patient.Naam, StringFormat='{0:N},'}"/>
+                            <Span Text=" "/>
+                            <Span Text="{Binding Source={x:Reference this}, Path=Patient.SexFull, StringFormat='{0:N},'}"/>
+                            <Span Text=" "/>
+                            <Span Text="{Binding Source={x:Reference this}, Path=Patient.Leeftijd, StringFormat='{0:F0}jr'}"/>
+                            <Span Text=" "/>
+                            <Span 
+                                TextColor="{StaticResource Blue}" 
+                                Text="{Binding Source={x:Reference this}, Path=Patient.Sedula, StringFormat='#{0:N}'}"/>
+                        </FormattedString> 
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+            <components:HorizontalLine Margin="0, 15" />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

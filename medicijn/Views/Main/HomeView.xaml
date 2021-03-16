@@ -37,20 +37,28 @@
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                 AbsoluteLayout.LayoutFlags="All"
                 Padding="100, 100, 100, 50">
+                <StackLayout Spacing="0">
+                    <Label
+                        FontSize="45"
+                        FontFamily="{StaticResource PoppinsBold}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Welcome" />
+                                <Span Text=" " />
+                                <Span TextColor="{StaticResource Green}" Text="Londy" />
+                                <Span TextColor="{StaticResource Green}" Text="," />
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label 
+                        FontFamily="{StaticResource PoppinsBold}"
+                        Margin="2, -5, 0, 0"
+                        TextColor="{StaticResource Blue}"
+                        FontSize="15"
+                        Text="Medewerker - Curacao Medical Center"/> 
+                </StackLayout>
                 <Label
-                    FontSize="45"
-                    FontFamily="{StaticResource PoppinsBold}">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Welcome" />
-                            <Span Text=" " />
-                            <Span TextColor="{StaticResource Green}" Text="Londy" />
-                            <Span TextColor="{StaticResource Green}" Text="," />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label
-                    Text="Actions"
+                    Text="Acties"
                     Margin="0, 25, 0, 10"
                     FontSize="20"
                     FontFamily="{StaticResource PoppinsBold}" />

@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:components="clr-namespace:medicijn.Components"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:medicijn.Utils"
     x:Name="doseringAanpassenPage"
     x:Class="medicijn.Views.Recepten.DoseringAanpassenView">
     <ContentView.Content>
@@ -16,34 +17,10 @@
                     Padding="{StaticResource DefaultPagePadding}" 
                     VerticalOptions="FillAndExpand" 
                     Spacing="0">
-                    <Label 
-                        FontFamily="{StaticResource PoppinsBold}"
-                        FontSize="{StaticResource TitleFontSize}"
-                        TextColor="{StaticResource Green}"
-                        Text="Dossering Aanpassen" />
-                    <StackLayout Margin="0, 0, 5, 0" Orientation="Horizontal">
-                        <Label
-                            Text="Patient: "
-                            FontSize="16"
-                            FontFamily="{StaticResource PoppinsBold}" />
-                        <Label
-                            FontFamily="{StaticResource PoppinsSemiBold}"
-                            FontSize="16"
-                            TextColor="{StaticResource DarkGray}">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <Span Text="{Binding Patient.Naam, StringFormat='{0:N}, '}" />
-                                    <Span Text=" " />
-                                    <Span Text="{Binding Patient.SexFull, StringFormat='{0:N},'}" />
-                                    <Span Text=" " />
-                                    <Span
-                                        TextColor="{StaticResource Blue}"
-                                        Text="{Binding Patient.Sedula, StringFormat='#{0:N}'}" />
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
-                    </StackLayout>
-                    <components:HorizontalLine Margin="0, 15" />
+                    <components:ModalHeader
+                        Patient="{Binding Source={x:Static local:PatientState.Instance},Path=Patient}"
+                        Title="Dossering Aanpassen"
+                        />
                     <Label
                         Text="Geneesmiddel:"
                         FontSize="21"

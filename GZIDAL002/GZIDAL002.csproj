@@ -47,6 +47,7 @@
     <Compile Include="Recepten\Models\Dosering.cs" />
     <Compile Include="Recepten\Models\LOV.cs" />
     <Compile Include="Recepten\Models\Arts.cs" />
+    <Compile Include="Helpers\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Patienten\" />

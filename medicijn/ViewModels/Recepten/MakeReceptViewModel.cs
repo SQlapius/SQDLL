@@ -247,7 +247,7 @@ namespace medicijn.ViewModels.Recepten
             _selectedReceptRegel = id;
         }
 
-        private async void UpdateDosering(ReceptRegel receptRegel)
+        private void UpdateDosering(ReceptRegel receptRegel)
         {
             Debug.WriteLine("hey");
         }

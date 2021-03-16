@@ -17,12 +17,6 @@ namespace medicijn.Views.Medicijnen
         {
             InitializeComponent();
 
-            CloseIcon.Children.Insert(0, new IconLabel(IconLabel.Icon.Times, IconLabel.Type.Light)
-            {
-                FontSize = 16,
-                TextColor = Color.Black,
-                HorizontalOptions = LayoutOptions.Center
-            });
         }
 
         public ZoekMedicijnView(Recept recept) : this()

@@ -15,7 +15,7 @@ namespace medicijn.Components
                 nameof(Options),
                 typeof(IEnumerable),
                 typeof(IEnumerable),
-                propertyChanged: kip);
+                propertyChanged: OptionsChanged);
 
         public IEnumerable Options
         {
@@ -26,7 +26,7 @@ namespace medicijn.Components
             }
         }
 
-        private static void kip(BindableObject bindable, object oldValue, object newValue)
+        private static void OptionsChanged(BindableObject bindable, object oldValue, object newValue)
         {
         }
 

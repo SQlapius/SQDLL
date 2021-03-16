@@ -143,7 +143,8 @@ namespace medicijn.ViewModels.Patienten
             DeleteInfoStateCIButtonPressedCommand = new Command<LOV>(DeletePatientCI);
             AddCIButtonPressedCommand = new Command<LOV>(AddCIToPatient);
             ShowActiveCIsButtonPressedCommand = new Command(ShowActiveCIs);
-            DetailedCIStateBackButtonPressedCommand = new Command(() => {
+            DetailedCIStateBackButtonPressedCommand = new Command(() => 
+            {
                 State = SearchValue == "" ? EditPatientCIsState.showActiveCIs :
                     EditPatientCIsState.showAllCIs;
             });

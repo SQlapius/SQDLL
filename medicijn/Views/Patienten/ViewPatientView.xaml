@@ -183,35 +183,21 @@
                     <ContentView VerticalOptions="FillAndExpand" x:Name="ok">
                         <StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Button
-                                    Command="{Binding CreateNewReceptPressedCommand}"
-                                    BackgroundColor="#1ea8de"
-                                    Padding="10, 0" 
-                                    FontAttributes="Bold"
-                                    TextColor="white"
-                                    HeightRequest="50"
-                                    VerticalOptions="Start"
+                                <components:IconButton 
+                                    Color="#019999"
+                                    FontFamily="{StaticResource PoppinsMedium}"
+                                    FontSize="14"
+                                    Icon="&#xf486;"
                                     HorizontalOptions="EndAndExpand"
-                                    Text="Nieuw Recept"/>
-                                <Button
-                                    BackgroundColor="#1ea8de"
-                                    Command="{Binding ShowPatientMedicationPressedCommand}"
-                                    Padding="10, 0" 
-                                    FontAttributes="Bold"
-                                    TextColor="white"
-                                    HeightRequest="50"
-                                    VerticalOptions="Start"
+                                    Command="{Binding CreateNewReceptPressedCommand}"
+                                    Text="Recept Voorschrijven"/>
+                                <components:IconButton 
+                                    Color="Red"
+                                    FontFamily="{StaticResource PoppinsMedium}"
+                                    FontSize="14"
+                                    Icon="&#xf1f8;"
                                     HorizontalOptions="End"
-                                    Text="Toon Medicatie"/>
-                                <Button
-                                    BackgroundColor="#1ea8de"
                                     Command="{Binding GCButtonPressedCommand}"
-                                    Padding="10, 0" 
-                                    FontAttributes="Bold"
-                                    TextColor="white"
-                                    HeightRequest="50"
-                                    VerticalOptions="Start"
-                                    HorizontalOptions="End"
                                     Text="Garbage Collection"/>
                             </StackLayout>
                             <StackLayout>
@@ -238,7 +224,7 @@
                             </StackLayout>
                         </StackLayout>
                         <ContentView.GestureRecognizers>
-                            <SwipeGestureRecognizer Threshold="10000" Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>
+                            <SwipeGestureRecognizer Threshold="4294967295" Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>
                         </ContentView.GestureRecognizers>
                     </ContentView>
                 </StackLayout>

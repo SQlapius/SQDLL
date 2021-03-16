@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using GZIDAL002.Global.Models;
+using GZIDAL002.Helpers;
 using GZIDAL002.Recepten.Models;
 using Newtonsoft.Json;
 
@@ -19,6 +20,8 @@ namespace GZIDAL002.Patienten.Models
 
         [JsonProperty("dob")]
         public DateTime Dob { get; set; }
+
+        public int Leeftijd => Utils.CalculateAge(Dob, DateTime.Now);
 
         [JsonProperty("sex")]
         public string Sex { get; set; }
@@ -49,6 +52,7 @@ namespace GZIDAL002.Patienten.Models
         public List<CIPatient> ContraIndicaties { get; set; }
     }
 
+
     internal class DetailedPatientResponse
     {
         [JsonProperty("patient")]
@@ -72,4 +76,9 @@ namespace GZIDAL002.Patienten.Models
         [JsonProperty("patciAard")]
         public List<PatCIAardRe> Aard { get; set; }
     }
+
+
+
 }
+
+
