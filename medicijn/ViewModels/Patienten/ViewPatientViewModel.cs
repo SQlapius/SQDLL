@@ -9,6 +9,7 @@ using medicijn.Views.Recepten;
 using medicijn.Views.Patienten;
 using GZIDAL002.Patienten;
 using medicijn.Models;
+using System.Collections.Generic;
 
 namespace medicijn.ViewModels.Patienten
 {
@@ -28,6 +29,8 @@ namespace medicijn.ViewModels.Patienten
 
         public string TodayDate => DateTime.Today.ToString("dd/MM/yyyy");
 
+        public List<HomeActionItem> ActionItems { get; set; }
+
         public Patient Patient { get; set; }
 
         public ViewPatientViewModel()
@@ -41,6 +44,31 @@ namespace medicijn.ViewModels.Patienten
             GCButtonPressedCommand = new Command(CleanPatientData);
             ViewPatientDossierCmmmand = new Command(NavigateToViewPatientDossier);
             BackButtonPressedCommand = new Command(BackButtonPressed);
+
+            ActionItems = new List<HomeActionItem>()
+            {
+                new HomeActionItem
+                {
+                    Title = "Patient Dossier",
+                    Icon = "\uf0c0",
+                    Color = Color.FromHex("#019999"),
+                    Command = new Command(async() => await _navigation.PushAsync(new ZoekPatientView()))
+                },
+                new HomeActionItem
+                {
+                    Title = "Medicatie",
+                    Icon = "\uf013",
+                    Color = Color.FromHex("#1EA8DE"),
+                    Command = new Command(() => Debug.WriteLine("OK"))
+                },
+                new HomeActionItem
+                {
+                    Title = "TherapieSignalen",
+                    Icon = "\uf08b",
+                    Color = Color.FromHex("#54C6DB"),
+                    Command = new Command(() => Debug.WriteLine("OK"))
+                }
+            };
         }
 
         public ViewPatientViewModel(Patient patient, INavigation navigation) : this()
