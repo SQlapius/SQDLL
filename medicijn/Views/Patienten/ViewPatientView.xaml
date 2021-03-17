@@ -5,7 +5,7 @@
     BackgroundColor="#F8F8F8"
     NavigationPage.HasNavigationBar="False"
     xmlns:local="clr-namespace:medicijn.Utils"
-    xmlns:components="clr-namespace:medicijn.Components"
+    xmlns:components="clr-namespace:medicijn.Components" xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
     x:Class="medicijn.Views.Patienten.ViewPatientView">
     <AbsoluteLayout>
         <Grid AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All" ColumnSpacing="10" Padding="20, 40, 20, 20">
@@ -199,6 +199,9 @@
                                     HorizontalOptions="End"
                                     Command="{Binding GCButtonPressedCommand}"
                                     Text="Garbage Collection"/>
+                                <Button 
+                                    Text="test" 
+                                    Pressed="Button_Pressed"/>
                             </StackLayout>
                             <StackLayout>
                                 <Label Margin="0, 20, 0, 0" FontAttributes="Bold"  Text="Patient Interacties"/>
@@ -222,17 +225,6 @@
                                     </BindableLayout.ItemTemplate>
                                 </StackLayout>
                             </StackLayout>
-                            <Button 
-                                Command="{Binding BackButtonPressedCommand}"
-                                BackgroundColor="Transparent"
-                                BorderWidth="2"
-                                BorderColor="{StaticResource Red}"
-                                Padding="30, 12"
-                                TextColor="{StaticResource Red}"
-                                FontFamily="{StaticResource PoppinsMedium}"
-                                HorizontalOptions="EndAndExpand" 
-                                VerticalOptions="EndAndExpand" 
-                                Text="back"/>
                         </StackLayout>
                         <ContentView.GestureRecognizers>
                             <SwipeGestureRecognizer Threshold="4294967295" Direction="Right" Swiped="SwipeGestureRecognizer_Swiped"/>
@@ -261,5 +253,52 @@
                 VerticalOptions="CenterAndExpand"
                 Content="{Binding Source={x:Static local:Modal.Instance},Path=Content}"/>
         </Grid>
+            <components:CostumFrame
+                Padding="20, 0"
+                WidthRequest="700"
+                IsVisible="False"
+                x:Name="MenuBar"
+                HeightRequest="70"
+                CornerRadius="20"
+                AbsoluteLayout.LayoutBounds="0.5, 1.0, AutoSize, AutoSize"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+                <StackLayout
+                    BindableLayout.ItemsSource="{Binding ActionItems}"
+                    Spacing="15"
+                    Orientation="Horizontal">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <xe:BorderView
+                                xe:Commands.Tap="{Binding Command}"
+                                CornerRadius="8"
+                                xe:TouchEffect.Color="Black">
+                                <StackLayout
+                                    Spacing="8"
+                                    Padding="10">
+                                    <StackLayout Spacing="10" VerticalOptions="CenterAndExpand">
+                                        <Label
+                                            HorizontalTextAlignment="Center"
+                                            FontFamily="FaSolid"
+                                            FontSize="25"
+                                            Text="{Binding Icon}"
+                                            VerticalOptions="Center"
+                                            TextColor="{Binding Color}" />
+                                        <Label
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding Title}"
+                                            TextColor="{Binding Color}"
+                                            FontFamily="{StaticResource PoppinsBold}"
+                                            FontAttributes="Bold"
+                                            FontSize="14" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </xe:BorderView>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </components:CostumFrame>
     </AbsoluteLayout>
 </ContentPage>
+
+

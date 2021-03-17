@@ -59,5 +59,20 @@ namespace medicijn.Views.Patienten
         {
             Modal.Instance.CloseModal();
         }
+
+        async void Button_Pressed(System.Object sender, System.EventArgs e)
+        {
+            if(!MenuBar.IsVisible)
+            {
+                MenuBar.IsVisible = true;
+                await MenuBar.TranslateTo(0, -40, 200, Easing.SinIn);
+            }
+            else
+            { 
+                await MenuBar.TranslateTo(0, 70, 250, Easing.SinOut);
+                await Task.Delay(300);
+                MenuBar.IsVisible = false;
+            }
+        }
     }
 }
