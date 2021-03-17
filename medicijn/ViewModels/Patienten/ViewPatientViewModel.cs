@@ -26,6 +26,8 @@ namespace medicijn.ViewModels.Patienten
         public ICommand ViewPatientDossierCmmmand { get; }
         public ICommand BackButtonPressedCommand { get; }
 
+        public string TodayDate => DateTime.Today.ToString("dd/MM/yyyy");
+
         public Patient Patient { get; set; }
 
         public ViewPatientViewModel()

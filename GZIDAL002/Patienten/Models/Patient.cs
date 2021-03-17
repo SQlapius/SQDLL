@@ -18,6 +18,8 @@ namespace GZIDAL002.Patienten.Models
         [JsonProperty("roepNaam")]
         public string RoepNaam { get; set; }
 
+        public string FullName => Naam + " " + RoepNaam;
+
         [JsonProperty("dob")]
         public DateTime Dob { get; set; }
 

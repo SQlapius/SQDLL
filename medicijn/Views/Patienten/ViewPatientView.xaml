@@ -15,11 +15,43 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="120"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <StackLayout>
-                <Label FontSize="36" FontAttributes="Bold" Text="Patient"/>  
+            <StackLayout Grid.ColumnSpan="2">
+                <Label
+                    TextColor="{StaticResource Green}"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    FontSize="36"
+                    Text="Patient"/>
+                <Label
+                    FontFamily="{StaticResource PoppinsSemiBold}" 
+                    TextColor="{StaticResource DarkGray}" >
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Londy Ferero, " />
+                            <Span TextColor="{StaticResource Blue}" Text="Arts - Medical Center Curacao " />
+                            <Span Text="{Binding TodayDate, StringFormat='- {0:N}'}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label
+                    Margin="0, -5, 0, 0"
+                    FontFamily="{StaticResource PoppinsSemiBold}" 
+                    TextColor="{StaticResource DarkGray}">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span TextColor="Black" FontFamily="{StaticResource PoppinsBold}" Text="Patient: " />
+                            <Span Text="{Binding Patient.FullName, StringFormat='{0:N},'}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding Patient.SexFull, StringFormat='{0:N},'}" />
+                            <Span Text=" " />
+                            <Span Text="{Binding Patient.Leeftijd, StringFormat='{0:F0}jr   '}" />
+                            <Span Text=" " />
+                            <Span TextColor="{StaticResource Blue}" Text="{Binding Patient.Sedula, StringFormat='#{0:N}'}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
             </StackLayout>
             <ScrollView Grid.Column="0" Grid.Row="1">
                 <StackLayout VerticalOptions="FillAndExpand" Spacing="10">
