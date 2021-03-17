@@ -67,7 +67,7 @@
                                     Color="#1EA8dE"
                                     FontFamily="{StaticResource PoppinsBold}"
                                     FontSize="11"
-                                    Icon="&#xf1eb;"
+                                    Icon="&#xf481;"
                                     HorizontalOptions="EndAndExpand"
                                     Text="Notities" />
                             </StackLayout>
