@@ -23,6 +23,7 @@
     <PackageReference Include="Polly" Version="7.2.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="XamEffects" Version="1.6.3" />
+    <PackageReference Include="Sharpnado.Presentation.Forms" Version="1.7.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GZIDAL002\GZIDAL002.csproj" />
@@ -54,6 +55,8 @@
     <Folder Include="ViewModels\Main\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Models\Dosering\" />
+    <Folder Include="Views\TherapySignals\" />
+    <Folder Include="ViewModels\TherapySignals\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Views\Medicijnen\ZoekMedicijnView.xaml.cs">

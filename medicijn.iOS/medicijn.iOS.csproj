@@ -141,6 +141,9 @@
     <PackageReference Include="XamEffects">
       <Version>1.6.3</Version>
     </PackageReference>
+    <PackageReference Include="Sharpnado.Presentation.Forms">
+      <Version>1.7.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\medicijn\medicijn.csproj">

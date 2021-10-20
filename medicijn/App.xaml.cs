@@ -23,6 +23,22 @@ namespace medicijn
             InitializeComponent();
 
             MainPage = new NavigationPage(new LoginView());
+
+            MessagingCenter.Subscribe(this, "DisplayErrorAlert", async (App vm, string message) =>
+            {
+                await MainPage.DisplayAlert("Error!", message, "Ok");
+            });
+
+            MessagingCenter.Subscribe(this, "DisplaySuccessAlert", async (App vm, string message) =>
+            {
+                await MainPage.DisplayAlert("Success!", message, "Ok");
+            });
+
+            MessagingCenter.Subscribe(this, "DisplaySuccessInfo", async (App vm, string message) =>
+            {
+                await MainPage.DisplayAlert("Info", message, "Ok");
+            });
+
         }
 
         protected override async void OnStart()

@@ -10,6 +10,7 @@ namespace medicijn.Components
 {
     public partial class SelectBoxGroup : ContentView
     {
+
         public static readonly BindableProperty OptionsProperty
             = BindableProperty.Create(
                 nameof(Options),
@@ -37,7 +38,7 @@ namespace medicijn.Components
                 typeof(int),
                 defaultValue: -1,
                 defaultBindingMode: BindingMode.TwoWay,
-                propertyChanged: ok);
+                propertyChanged: IdChanged);
 
         public int SelectedId
         {
@@ -48,9 +49,8 @@ namespace medicijn.Components
             }
         }
 
-        private static void ok(BindableObject bindable, object oldValue, object newValue)
+        private static void IdChanged(BindableObject bindable, object oldValue, object newValue)
         {
-
             var view = (SelectBoxGroup)bindable;
 
             foreach (var c in view.Container.Children)
@@ -65,7 +65,6 @@ namespace medicijn.Components
             frame.BackgroundColor = Color.FromRgba(1, 153, 153, 60);
             ((Label)frame.Content).TextColor = Color.FromRgb(1, 153, 153);
         }
-
 
         public SelectBoxGroup()
         {

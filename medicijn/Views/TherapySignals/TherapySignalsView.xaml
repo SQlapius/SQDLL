@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:components="clr-namespace:medicijn.Components" 
+    xmlns:tabs="clr-namespace:Sharpnado.Presentation.Forms.CustomViews.Tabs;assembly=Sharpnado.Presentation.Forms"
+    xmlns:local="clr-namespace:medicijn.Utils" 
+    x:Class="medicijn.Views.TherapySignals.TherapySignalsView">
+    <ContentView.Content>
+        <Frame 
+            HorizontalOptions="CenterAndExpand" 
+            VerticalOptions="CenterAndExpand" 
+            HeightRequest="650" 
+            WidthRequest="750">
+            <ContentView.Resources>
+                <ResourceDictionary>
+                    <Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
+                        <Setter Property="SelectedTabColor" Value="{StaticResource Green}" />
+                        <Setter Property="FontFamily" Value="{StaticResource PoppinsBold}" />
+                        <Setter Property="LabelSize" Value="14" />
+                        <Setter Property="BackgroundColor" Value="White" />
+                        <Setter Property="UnselectedLabelColor" Value="LightGray" />
+                    </Style>
+                </ResourceDictionary> 
+            </ContentView.Resources>
+            <StackLayout 
+                VerticalOptions="FillAndExpand" 
+                Padding="{StaticResource DefaultPagePadding}"
+                HorizontalOptions="FillAndExpand">
+            <components:ModalHeader
+                Patient="{Binding Source={x:Static local:PatientState.Instance},Path=Patient}"
+                Title="Therapie Signalen"
+                />
+                <ScrollView 
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55"/> 
+                            <RowDefinition Height="*"/> 
+                        </Grid.RowDefinitions> 
+                        <tabs:TabHostView
+                            x:Name="TabHost"
+                            SelectedIndex="{Binding TabIndex, Mode=TwoWay}"
+                            BackgroundColor="White" >
+                            <tabs:TabHostView.Tabs>
+                                <tabs:UnderlinedTabItem
+                                    Style="{StaticResource TabStyle}"
+                                    Label="test" />
+                                <tabs:UnderlinedTabItem
+                                    Style="{StaticResource TabStyle}"
+                                    Label="test" />
+                            </tabs:TabHostView.Tabs>
+                        </tabs:TabHostView>
+                        <tabs:ViewSwitcher
+                            Grid.Row="1"
+                            Animate="True"
+                            SelectedIndex="{Binding SelectedIndex, Source={x:Reference TabHost}}">
+                                <!--<views:LabRequestView
+                                    User="{Binding BindingContext.User, Source={x:Reference LabMainPage}}" />
+                                <views:LabRequestsResultsView
+                                    User="{Binding BindingContext.User, Source={x:Reference LabMainPage}}" />-->
+                       </tabs:ViewSwitcher>
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

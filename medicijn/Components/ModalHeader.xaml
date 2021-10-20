@@ -6,35 +6,65 @@
     x:Class="medicijn.Components.ModalHeader">
     <ContentView.Content>
         <StackLayout Spacing="0">
-            <Label 
-                FontFamily="{StaticResource PoppinsBold}"
-                FontSize="{StaticResource TitleFontSize}"
-                TextColor="{StaticResource Green}"
-                Text="{Binding Source={x:Reference this}, Path=Title}" />
-            <StackLayout 
-                Orientation="Horizontal">
+            <Grid RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Label 
-                    FontFamily="{StaticResource PoppinsBold}" 
-                    Text="Patient:" />
-                <Label
-                    FontFamily="{StaticResource PoppinsMedium}" 
-                    TextColor="{StaticResource DarkGray}" >
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{Binding Source={x:Reference this}, Path=Patient.Naam, StringFormat='{0:N},'}"/>
-                            <Span Text=" "/>
-                            <Span Text="{Binding Source={x:Reference this}, Path=Patient.SexFull, StringFormat='{0:N},'}"/>
-                            <Span Text=" "/>
-                            <Span Text="{Binding Source={x:Reference this}, Path=Patient.Leeftijd, StringFormat='{0:F0}jr'}"/>
-                            <Span Text=" "/>
-                            <Span 
-                                TextColor="{StaticResource Blue}" 
-                                Text="{Binding Source={x:Reference this}, Path=Patient.Sedula, StringFormat='#{0:N}'}"/>
-                        </FormattedString> 
-                    </Label.FormattedText>
-                </Label>
-            </StackLayout>
-            <components:HorizontalLine Margin="0, 15" />
+                    Grid.Column="0"
+                    FontFamily="{StaticResource PoppinsBold}"
+                    FontSize="{StaticResource TitleFontSize}"
+                    TextColor="{StaticResource Green}"
+                    Text="{Binding Source={x:Reference this}, Path=Title}" />
+                <StackLayout 
+                    Grid.Row="1"
+                    Orientation="Horizontal">
+                    <Label 
+                        FontFamily="{StaticResource PoppinsBold}" 
+                        Text="Patient:" />
+                    <Label
+                        FontFamily="{StaticResource PoppinsMedium}" 
+                        TextColor="{StaticResource DarkGray}" >
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding Source={x:Reference this}, Path=Patient.Naam, StringFormat='{0:N},'}"/>
+                                <Span Text=" "/>
+                                <Span Text="{Binding Source={x:Reference this}, Path=Patient.SexFull, StringFormat='{0:N},'}"/>
+                                <Span Text=" "/>
+                                <Span Text="{Binding Source={x:Reference this}, Path=Patient.Leeftijd, StringFormat='{0:F0}jr'}"/>
+                                <Span Text=" "/>
+                                <Span 
+                                    TextColor="{StaticResource Blue}" 
+                                    Text="{Binding Source={x:Reference this}, Path=Patient.Sedula, StringFormat='#{0:N}'}"/>
+                            </FormattedString> 
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+                <Label 
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    VerticalOptions="FillAndExpand"
+                    VerticalTextAlignment="End"
+                    TextColor="{StaticResource DarkGray}"
+                    HorizontalTextAlignment="End"
+                    FontFamily="{StaticResource PoppinsSemiBold}" 
+                    Text="Londy Martina" />
+                <Label 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    VerticalOptions="FillAndExpand"
+                    TextColor="{StaticResource Blue}"
+                    HorizontalTextAlignment="End"
+                    FontFamily="{StaticResource PoppinsSemiBold}" 
+                    Text="Arts - Medical Center Curacao" />
+                <components:HorizontalLine Grid.ColumnSpan="2" Grid.Row="2" Margin="0, 15" />
+            </Grid>
         </StackLayout>
     </ContentView.Content>
 </ContentView>

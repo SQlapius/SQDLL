@@ -10,6 +10,7 @@ using medicijn.Views.Patienten;
 using GZIDAL002.Patienten;
 using medicijn.Models;
 using System.Collections.Generic;
+using medicijn.Views.TherapySignals;
 
 namespace medicijn.ViewModels.Patienten
 {
@@ -26,6 +27,7 @@ namespace medicijn.ViewModels.Patienten
         public ICommand GCButtonPressedCommand { get; }
         public ICommand ViewPatientDossierCmmmand { get; }
         public ICommand BackButtonPressedCommand { get; }
+        public ICommand TherapySignalsPressedCommand { get; }
 
         public string TodayDate => DateTime.Today.ToString("dd/MM/yyyy");
 
@@ -44,6 +46,7 @@ namespace medicijn.ViewModels.Patienten
             GCButtonPressedCommand = new Command(CleanPatientData);
             ViewPatientDossierCmmmand = new Command(NavigateToViewPatientDossier);
             BackButtonPressedCommand = new Command(BackButtonPressed);
+            TherapySignalsPressedCommand = new Command(TherapySignalsPressed);
 
             ActionItems = new List<HomeActionItem>()
             {
@@ -84,6 +87,11 @@ namespace medicijn.ViewModels.Patienten
 
             if (!success)
                 Debug.WriteLine("FAILED Garbage Collection");
+        }
+
+        public async void TherapySignalsPressed()
+        {
+            Modal.Instance.OpenModal(new TherapySignalsView());
         }
 
         private async void BackButtonPressed()

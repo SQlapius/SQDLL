@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using medicijn.Utils;
 using Plugin.SQ_UIKit;
 using medicijn.Views.Medicijnen;
+using medicijn.Models;
 
 namespace medicijn.Views.Patienten
 {
@@ -29,9 +30,15 @@ namespace medicijn.Views.Patienten
         {
             BindingContext = new ViewPatientViewModel(patient, Navigation);
 
-            Navigator.Instance.Add(new Models.NavPage("", new MakeReceptView(patient)));
+            Navigator.Instance.Add(
+                new NavPage(
+                    "View Patient Dossier",
+                    new PatientDossierView(patient)
+                )
+            );
 
             Modal.Instance.PropertyChanged += Instance_PropertyChanged;
+            Modal.Instance.OpenModal(new DoseringAanpassenView());
         }
 
         async private void Instance_PropertyChanged(object sender, PropertyChangedEventArgs e)

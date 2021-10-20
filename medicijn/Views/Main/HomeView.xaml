@@ -108,7 +108,7 @@
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
                 <Label
-                    Text="Recente Patienten"
+                    Text="Wachtkamer"
                     Margin="0, 25, 0, 10"
                     FontSize="20"
                     FontFamily="{StaticResource PoppinsBold}" />

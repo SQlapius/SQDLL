@@ -197,14 +197,67 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
+                        <components:Input 
+                            Icon="&#xf249;"
+                            Placeholder="Vrije text invoer..."
+                            IsVisible="False"> 
+                            <components:Input.Triggers>
+                                <DataTrigger 
+                                    TargetType="components:Input" 
+                                    Binding="{Binding SelectedId}" 
+                                    Value="5">
+                                    <Setter Property="IsVisible" Value="True"/>
+                                </DataTrigger>
+                            </components:Input.Triggers>
+                        </components:Input>
                         <StackLayout>
                             <Label
                                 Text="In nemen"
                                 FontFamily="{StaticResource PoppinsBold}"
                                 FontSize="14"/>
-                                <components:SelectBoxGroup 
+                                <components:MultiSelectBoxGroup 
                                     Options="{Binding TakeInOptions}" 
-                                    SelectedId="{Binding SelectedTakeInId}"  />
+                                    SelectedIds="{Binding SelectedIds}"  />
+                            <StackLayout BindableLayout.ItemsSource="{Binding SelectedOptions}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Margin="0, 20, 0, 0">
+                                            <Label 
+                                                FontFamily="{StaticResource PoppinsBold}"
+                                                FontSize="14"
+                                                Text="{Binding Option}"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <components:Input 
+                                                    WidthRequest="120"
+                                                    Text="{Binding Amount}"/>
+                                                <Label 
+                                                    VerticalOptions="CenterAndExpand" 
+                                                    FontFamily="{StaticResource PoppinsSemiBold}"
+                                                    FontSize="14"
+                                                    Text="tablet(en)"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </DataTemplate> 
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label
+                                Text="bepaal waar het geneesmiddel gebruikt moet worden"
+                                FontFamily="{StaticResource PoppinsBold}"
+                                FontSize="14"/>
+                            <components:SelectBoxGroup 
+                                Options="{Binding UsageOptions}" 
+                                SelectedId="{Binding UsageOptionsSelectedId}"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Label
+                                Text="Moet deze medicatie toegevoegd worden aan het herhaal recept"
+                                FontFamily="{StaticResource PoppinsBold}"
+                                FontSize="14"/>
+                            <components:SelectBoxGroup 
+                                Options="{Binding RepeatedOptions}" 
+                                SelectedId="{Binding RepeatedOptionsSelectedId}"/>
                         </StackLayout>
                         <StackLayout>
                             <Label
